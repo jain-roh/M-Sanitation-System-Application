@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import Business.UserAccount.UserAccountDirectory;
 import Business.UserAccount.UserAccount;
 import Business.DB4OUtil.DB4OUtil;
+import Business.Role.Role;
 
 
 
@@ -189,7 +190,8 @@ public class MainFrame1 extends javax.swing.JFrame {
         }
         else{
             CardLayout layout=(CardLayout)container.getLayout();
-            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inCity, inState, system));
+
+            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inCity, inState, null,system));
             layout.next(container);
         }
         
