@@ -6,6 +6,7 @@
 package UI.ManageCountryPanel;
 
 import UI.ManageCityPanel.*;
+import UI.ManageCountryPanel.*;
 import Business.City.City;
 import Business.Country.Country;
 import Business.Request.RequestID;
@@ -83,6 +84,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         addStateTextField = new javax.swing.JTextField();
         AddButton = new javax.swing.JButton();
         stateComboBox = new javax.swing.JComboBox();
+        AddStateAdmin = new javax.swing.JButton();
 
         jLabel1.setText("Country :");
 
@@ -102,6 +104,13 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
             }
         });
 
+        AddStateAdmin.setText("Add State Admin");
+        AddStateAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddStateAdminActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,6 +122,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddStateAdmin)
                     .addComponent(stateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -136,7 +146,9 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
                     .addComponent(AddButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(stateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(AddStateAdmin)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -179,6 +191,16 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         
         
     }//GEN-LAST:event_AddButtonActionPerformed
+
+    private void AddStateAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStateAdminActionPerformed
+        // TODO add your handling code here:
+        if(stateComboBox.getSelectedItem()!=null)
+        {
+            State state = (State) stateComboBox.getSelectedItem();
+            ManageCountryAdminJPanel mcajp = new ManageCountryAdminJPanel(userProcessContainer, state);
+        }
+
+    }//GEN-LAST:event_AddStateAdminActionPerformed
    private void populateState()
    {
        stateComboBox.removeAllItems();
@@ -190,6 +212,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
+    private javax.swing.JButton AddStateAdmin;
     private javax.swing.JTextField addStateTextField;
     private javax.swing.JTextField countryTextField;
     private javax.swing.JLabel jLabel1;
