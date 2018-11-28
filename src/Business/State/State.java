@@ -8,6 +8,8 @@ package Business.State;
 import java.util.ArrayList;
 import Business.City.CityDirectory;
 import Business.City.City;
+import Business.Employee.EmployeeDirectory;
+import Business.UserAccount.UserAccountDirectory;
 
 /**
  *
@@ -20,6 +22,24 @@ public  class State {
     private ArrayList<City> city;
     private DepartmentType departmentType;
     private CityDirectory cityDirectory;
+    private EmployeeDirectory employeeDirectory;
+    private UserAccountDirectory userAccountDirectory;
+
+    public EmployeeDirectory getEmployeeDirectory() {
+        return employeeDirectory;
+    }
+
+    public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
+        this.employeeDirectory = employeeDirectory;
+    }
+
+    public UserAccountDirectory getUserAccountDirectory() {
+        return userAccountDirectory;
+    }
+
+    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
+        this.userAccountDirectory = userAccountDirectory;
+    }
 
     public DepartmentType getDepartmentType() {
         return departmentType;
@@ -81,10 +101,10 @@ public  class State {
     {
         return stateName;
     }
-     /*public State(String name,DepartmentType type){
-        super(name);
-        this.departmentType=type;
-        cityDirectory=new CityDirectory();
-    }*/
+    //public State(String name,DepartmentType type){
+    //    super(name);
+    //    this.departmentType=type;
+    //    cityDirectory=new CityDirectory();
+    //} 
     
 }
