@@ -76,7 +76,11 @@ public abstract class State extends City {
     public void setCityDirectory(CityDirectory cityDirectory) {
         this.cityDirectory = cityDirectory;
     }
-    
+    @Override
+    public String toString()
+    {
+        return stateName;
+    }
      public State(String name,DepartmentType type){
         super(name);
         this.departmentType=type;
