@@ -18,6 +18,7 @@ import Business.Country.Country;
 import javax.swing.JPanel;
 import Business.UserAccount.UserAccountDirectory;
 import Business.UserAccount.UserAccount;
+import Business.DB4OUtil.DB4OUtil;
 
 
 
@@ -27,6 +28,7 @@ import Business.UserAccount.UserAccount;
  */
 public class MainFrame1 extends javax.swing.JFrame {
     private WHO system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     /**
      * Creates new form MainFrame1
@@ -34,9 +36,8 @@ public class MainFrame1 extends javax.swing.JFrame {
     public MainFrame1() {
         
         initComponents();
-                CardLayout layout=(CardLayout)container.getLayout();
-            container.add("workArea",new ManageCityJPanel(container));
-            layout.next(container);
+        system = dB4OUtil.retrieveSystem();
+        this.setSize(1680, 1050);
     }
 
     /**
@@ -213,7 +214,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
-        
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
     /**
