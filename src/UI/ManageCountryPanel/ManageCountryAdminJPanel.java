@@ -6,6 +6,7 @@
 package UI.ManageCountryPanel;
 
 
+import Business.State.State;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -19,6 +20,13 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
      * Creates new form ManagerCityRequestViewJPanel
      */
     JPanel userProcessContainer;
+    
+    State state;
+
+    public ManageCountryAdminJPanel(JPanel userProcessContainer, State state) {
+        this.userProcessContainer = userProcessContainer;
+        this.state = state;
+    }
    
    
 
