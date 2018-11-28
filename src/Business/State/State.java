@@ -13,7 +13,7 @@ import Business.City.City;
  *
  * @author VAIBHAV RAJ
  */
-public abstract class State extends City {
+public  class State {
     
     private int stateID;
     private String stateName;
@@ -81,10 +81,10 @@ public abstract class State extends City {
     {
         return stateName;
     }
-     public State(String name,DepartmentType type){
+     /*public State(String name,DepartmentType type){
         super(name);
         this.departmentType=type;
         cityDirectory=new CityDirectory();
-    }
+    }*/
     
 }
