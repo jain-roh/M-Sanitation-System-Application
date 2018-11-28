@@ -198,6 +198,9 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         {
             State state = (State) stateComboBox.getSelectedItem();
             ManageCountryAdminJPanel mcajp = new ManageCountryAdminJPanel(userProcessContainer, state);
+            userProcessContainer.add(mcajp);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
         }
 
     }//GEN-LAST:event_AddStateAdminActionPerformed
