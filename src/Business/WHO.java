@@ -11,6 +11,7 @@ import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import Business.City.City;
 import Business.Role.AdminRole;
+import Business.UserAccount.UserAccountDirectory;
 
 /**
  *
@@ -18,14 +19,16 @@ import Business.Role.AdminRole;
  */
 public class WHO extends City {
     private static WHO business;
+    private static UserAccountDirectory userAccountDirectory;
     private ArrayList<Country> countryList;
     public static WHO getInstance(){
         if(business==null){
             business=new WHO();
+           userAccountDirectory=new UserAccountDirectory();
         }
         return business;
     }
-    
+
     public Country createAndAddCountry(){
         Country country=new Country();
         countryList.add(country);
