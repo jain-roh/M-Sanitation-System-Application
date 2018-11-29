@@ -44,7 +44,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         requestList=new ArrayList<RequestID>();
         countryAdminRole=(CountryAdminRole)account.getRole();
         this.country = country;
-        
+        populateState();
              
         /*RequestID request=new RequestID();
         request.setRequestID(1);

@@ -32,7 +32,7 @@ public class StateDirectory {
      public State createAndAddState(String name,State.DepartmentType type){
         State state=null;
         if(type==State.DepartmentType.Sanitation){
-            state=new SanitationDepartment(name);
+           // state=new SanitationDepartment(name);
             stateList.add(state);
         }
         return state;
