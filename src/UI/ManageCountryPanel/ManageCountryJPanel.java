@@ -202,6 +202,9 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
+        
+        else
+            JOptionPane.showMessageDialog(this, "Please select a state from the drop down");
 
     }//GEN-LAST:event_AddStateAdminActionPerformed
    private void populateState()
