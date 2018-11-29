@@ -151,10 +151,14 @@ public class MainFrame1 extends javax.swing.JFrame {
         
         State inState=null;
         City inCity=null;
-        
+        Country inCountry=null;
         if(userAccount==null){
             //Step 2: Go inside each network and check each enterprise
             for(Country country:system.getCountryList()){
+                userAccount=country.getUserAccountDirectory().authenticateUser(userName, password);
+                inCountry=country;
+                if(userAccount==null)
+                {
                 //Step 2.a: check against each enterprise
                 for(State state:country.getStateDirectory().getStateList()){
                     userAccount=state.getUserAccountDirectory().authenticateUser(userName, password);
@@ -182,6 +186,7 @@ public class MainFrame1 extends javax.swing.JFrame {
                     break;
                 }
             }
+            }
         }
         
         if(userAccount==null){
@@ -191,7 +196,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         else{
             CardLayout layout=(CardLayout)container.getLayout();
 
-            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inCity, inState, null,system));
+            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inCity, inState, inCountry,system));
             layout.next(container);
         }
         
