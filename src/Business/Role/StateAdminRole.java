@@ -11,6 +11,7 @@ import Business.State.State;
 import Business.UserAccount.UserAccount;
 import Business.WHO;
 import UI.ManageCityPanel.ManageCityJPanel;
+import UI.ManageState.ManageStateJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -23,7 +24,7 @@ public class StateAdminRole extends Role {
             State state,
             Country country,
             WHO business) {
-        return new ManageCityJPanel(userProcessContainer, account, city, 
+        return new ManageStateJPanel(userProcessContainer, account, city, 
             state,
             country,
            business);

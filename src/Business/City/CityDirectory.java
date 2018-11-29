@@ -25,24 +25,8 @@ public class CityDirectory {
     }
 
     public CityDirectory() {
-        cityList = new ArrayList();
+        cityList = new ArrayList<City>();
     }
     
-    public City createCity(Type type){
-        City city = null;
-        if (type.getValue().equals(Type.Manager.getValue())){
-            city = new ManagerCity();
-            cityList.add(city);
-        }
-        else if (type.getValue().equals(Type.Auditor.getValue())){
-            city = new AuditorCity();
-            cityList.add(city);
-        }
-        else if (type.getValue().equals(Type.Requestor.getValue())){
-            city = new RequestorCity();
-            cityList.add(city);
-        }
-        
-        return city;
-    }
+   
 }

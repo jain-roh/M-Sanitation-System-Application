@@ -15,40 +15,22 @@ import java.util.ArrayList;
  *
  * @author VAIBHAV RAJ
  */
-public abstract class City {
+public class City {
   private String CityName;
   private int CityID;
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
-    private ManagerCity managerCity;
-    private AuditorCity auditorCity;
-    private RequestorCity requestorCity;
-
-    public ManagerCity getManagerCity() {
-        return managerCity;
-    }
-
-    public void setManagerCity(ManagerCity managerCity) {
-        this.managerCity = managerCity;
-    }
-
-    public AuditorCity getAuditorCity() {
-        return auditorCity;
-    }
-
-    public void setAuditorCity(AuditorCity auditorCity) {
-        this.auditorCity = auditorCity;
-    }
-
-    public RequestorCity getRequestorCity() {
-        return requestorCity;
-    }
-
-    public void setRequestorCity(RequestorCity requestorCity) {
-        this.requestorCity = requestorCity;
-    }
+   
     
+    public City()
+            
+    {
+        employeeDirectory = new EmployeeDirectory();
+        userAccountDirectory = new UserAccountDirectory();    
+    }
+
+      
 
     public String getCityName() {
         return CityName;
@@ -110,7 +92,7 @@ public abstract class City {
         
     }
 
-    public abstract ArrayList<Role> getSupportedRole();
+    //public abstract ArrayList<Role> getSupportedRole();
     
     @Override
     public String toString() {

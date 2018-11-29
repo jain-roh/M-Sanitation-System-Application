@@ -28,6 +28,7 @@ public  class State {
     public State() {
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
+        cityDirectory = new CityDirectory();
     }
 
     public EmployeeDirectory getEmployeeDirectory() {

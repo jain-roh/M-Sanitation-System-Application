@@ -6,6 +6,9 @@
 package Business.DB4OUtil;
 
 import Business.ConfigureASystem;
+import Business.Country.CountryDirectory;
+import Business.Employee.EmployeeDirectory;
+import Business.UserAccount.UserAccountDirectory;
 import Business.WHO;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
@@ -23,6 +26,7 @@ public class DB4OUtil {
     private static DB4OUtil dB4OUtil;
     
     public synchronized static DB4OUtil getInstance(){
+        //dB4OUtil=null;
         if (dB4OUtil == null){
             dB4OUtil = new DB4OUtil();
         }
@@ -65,14 +69,21 @@ public class DB4OUtil {
     
     public WHO retrieveSystem(){
         ObjectContainer conn = createConnection();
+        
         ObjectSet<WHO> systems = conn.query(WHO.class); // Change to the object you want to save
+     //   systems.clear();
         WHO system;
+        // system = ConfigureASystem.configure();
+      //  systems.clear();
         if (systems.size() == 0){
             system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         }
         else{
-            system = systems.get(systems.size() - 1);
+         //  system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
+       
+           system = systems.get(systems.size() - 1);
         }
+       
         conn.close();
         return system;
     }  

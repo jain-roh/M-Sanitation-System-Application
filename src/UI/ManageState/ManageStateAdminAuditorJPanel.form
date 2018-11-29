@@ -37,11 +37,11 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="AddStateAdminjButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="AddCityAuditorjButton" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="stateAdminPasswordField" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
-                              <Component id="stateAdminTextBox" min="-2" pref="240" max="-2" attributes="0"/>
-                              <Component id="StateAdminUserID" min="-2" pref="240" max="-2" attributes="0"/>
+                              <Component id="cityAuditorPasswordField" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
+                              <Component id="cityAuditorTextBox" min="-2" pref="240" max="-2" attributes="0"/>
+                              <Component id="cityAuditorUserID" min="-2" pref="240" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
@@ -53,9 +53,13 @@
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="countryTextField" min="-2" pref="105" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="stateTextField" min="-2" pref="197" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="95" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -68,28 +72,30 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="countryTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stateTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="95" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="stateAdminTextBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityAuditorTextBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="StateAdminUserID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityAuditorUserID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="stateAdminPasswordField" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityAuditorPasswordField" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="backJButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="AddStateAdminjButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="AddCityAuditorjButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
@@ -105,23 +111,23 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backJButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="stateAdminTextBox">
+    <Component class="javax.swing.JTextField" name="cityAuditorTextBox">
     </Component>
-    <Component class="javax.swing.JTextField" name="StateAdminUserID">
+    <Component class="javax.swing.JTextField" name="cityAuditorUserID">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="State Admin Password"/>
+        <Property name="text" type="java.lang.String" value="City Auditor Password"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="State Admin Name"/>
+        <Property name="text" type="java.lang.String" value="City Auditor Name"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="State Admin User Id"/>
+        <Property name="text" type="java.lang.String" value="City Auditor User Id"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -131,11 +137,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="stateJTable">
+        <Component class="javax.swing.JTable" name="cityJTable">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="2" rowCount="4">
-                <Column editable="false" title="State" type="java.lang.Object"/>
+                <Column editable="false" title="City" type="java.lang.Object"/>
                 <Column editable="true" title="Username" type="java.lang.Object"/>
               </Table>
             </Property>
@@ -160,14 +166,14 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JPasswordField" name="stateAdminPasswordField">
+    <Component class="javax.swing.JPasswordField" name="cityAuditorPasswordField">
     </Component>
-    <Component class="javax.swing.JButton" name="AddStateAdminjButton">
+    <Component class="javax.swing.JButton" name="AddCityAuditorjButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add State Admin"/>
+        <Property name="text" type="java.lang.String" value="Add City Auditor"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddStateAdminjButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddCityAuditorjButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
@@ -176,6 +182,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="countryTextField">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="State"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="stateTextField">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>

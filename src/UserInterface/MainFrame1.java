@@ -39,6 +39,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
+        
     }
 
     /**
@@ -141,14 +142,22 @@ public class MainFrame1 extends javax.swing.JFrame {
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
         // Get user name
+     //  ConfigureASystem.configure();
         String userName = UserNameTextField.getText();
         // Get Password
         char[] passwordCharArray = PasswordField.getPassword();
         String password = String.valueOf(passwordCharArray);
         
         //Step1: Check in the system admin user account directory if you have the user
-        UserAccount userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
-        
+      UserAccount userAccount=null;
+        try
+       {
+        userAccount=system.getUserAccountDirectory().authenticateUser(userName, password);
+       }
+       catch(Exception ex)
+       {
+           System.out.println(ex.getMessage());
+       }
         State inState=null;
         City inCity=null;
         Country inCountry=null;
@@ -159,15 +168,17 @@ public class MainFrame1 extends javax.swing.JFrame {
                 inCountry=country;
                 if(userAccount==null)
                 {
+                    
                 //Step 2.a: check against each enterprise
                 for(State state:country.getStateDirectory().getStateList()){
                     userAccount=state.getUserAccountDirectory().authenticateUser(userName, password);
+                    inState=state;
                     if(userAccount==null){
                        //Step 3:check against each organization for each enterprise
                        for(City city:state.getCityDirectory().getCityList()){
                            userAccount=city.getUserAccountDirectory().authenticateUser(userName, password);
                            if(userAccount!=null){
-                               inState=state;
+                               //inState=state;
                                inCity=city;
                                break;
                            }
@@ -186,6 +197,10 @@ public class MainFrame1 extends javax.swing.JFrame {
                     break;
                 }
             }
+            else
+                {
+                    break;
+                }
             }
         }
         
