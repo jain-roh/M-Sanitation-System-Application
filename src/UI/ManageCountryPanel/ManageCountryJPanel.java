@@ -44,6 +44,8 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         requestList=new ArrayList<RequestID>();
         countryAdminRole=(CountryAdminRole)account.getRole();
         this.country = country;
+        countryTextField.setText(country.getCountryName());
+          
         populateState();
              
         /*RequestID request=new RequestID();
@@ -179,11 +181,12 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // TODO add your handling code here:
-        State state = new State();
+       
         if(addStateTextField.getText().equals("") )
           JOptionPane.showMessageDialog(this,"Please enter a value");
         else
         {
+             State state = new State();
             state.setStateName(addStateTextField.getText());
             country.getStateDirectory().getStateList().add(state);    
             populateState();
@@ -197,8 +200,8 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         if(stateComboBox.getSelectedItem()!=null)
         {
             State state = (State) stateComboBox.getSelectedItem();
-            ManageCountryAdminJPanel mcajp = new ManageCountryAdminJPanel(userProcessContainer, state);
-            userProcessContainer.add(mcajp);
+            ManageCountryAdminJPanel mcajp = new ManageCountryAdminJPanel(userProcessContainer, state,country);
+            userProcessContainer.add("managecountryadminjapanel",mcajp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }

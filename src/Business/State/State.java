@@ -25,6 +25,11 @@ public  class State {
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
 
+    public State() {
+        employeeDirectory = new EmployeeDirectory();
+        userAccountDirectory = new UserAccountDirectory();
+    }
+
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
