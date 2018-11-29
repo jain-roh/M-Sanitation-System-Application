@@ -182,12 +182,14 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // TODO add your handling code here:
        
+  
         if(addStateTextField.getText().equals("") )
           JOptionPane.showMessageDialog(this,"Please enter a value");
         else
         {
              State state = new State();
             state.setStateName(addStateTextField.getText());
+        
             country.getStateDirectory().getStateList().add(state);    
             populateState();
         }   

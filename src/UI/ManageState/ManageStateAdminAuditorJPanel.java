@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.ManageCountryPanel;
+package UI.ManageState;
 
 
+import Business.City.City;
+import UI.ManageCountryPanel.*;
 import Business.Country.Country;
 import Business.Employee.Employee;
+import Business.Role.AuditorRole;
 import Business.Role.CountryAdminRole;
-import Business.Role.StateAdminRole;
+import Business.Role.ManagerRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -20,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author rohitjain
  */
-public class ManageCountryAdminJPanel extends javax.swing.JPanel {
+public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManagerCityRequestViewJPanel
@@ -28,24 +31,27 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     Country country;
     State state;
+    City city;
 
-    public ManageCountryAdminJPanel(JPanel userProcessContainer, State state, Country country) {
+    public ManageStateAdminAuditorJPanel(JPanel userProcessContainer, State state, Country country, City city) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.state = state;    
         this.country = country;
+        this.city = city;
         countryTextField.setText(country.getCountryName());
+        stateTextField.setText(state.getStateName());
         populateTable();
     }
    
    private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) stateJTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) cityJTable.getModel();
         model.setRowCount(0);
         
-        for (State state : country.getStateDirectory().getStateList()) {
-                for (UserAccount userAccount : state.getUserAccountDirectory().getUserAccountList()) {
+        for (City city : state.getCityDirectory().getCityList()) {
+                for (UserAccount userAccount : city.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[2];
-                    row[0] = state.getStateName();
+                    row[0] = city.getCityName();
                     row[1] = userAccount.getUsername();
                     model.addRow(row);
                 }
@@ -63,17 +69,19 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         backJButton = new javax.swing.JButton();
-        stateAdminTextBox = new javax.swing.JTextField();
-        StateAdminUserID = new javax.swing.JTextField();
+        cityAuditorTextBox = new javax.swing.JTextField();
+        cityAuditorUserID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        stateJTable = new javax.swing.JTable();
-        stateAdminPasswordField = new javax.swing.JPasswordField();
-        AddStateAdminjButton = new javax.swing.JButton();
+        cityJTable = new javax.swing.JTable();
+        cityAuditorPasswordField = new javax.swing.JPasswordField();
+        AddCityAuditorjButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         countryTextField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        stateTextField = new javax.swing.JTextField();
 
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -82,13 +90,13 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("State Admin Password");
+        jLabel1.setText("City Auditor Password");
 
-        jLabel2.setText("State Admin Name");
+        jLabel2.setText("City Auditor Name");
 
-        jLabel3.setText("State Admin User Id");
+        jLabel3.setText("City Auditor User Id");
 
-        stateJTable.setModel(new javax.swing.table.DefaultTableModel(
+        cityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -96,7 +104,7 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
                 {null, null}
             },
             new String [] {
-                "State", "Username"
+                "City", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -107,18 +115,22 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(stateJTable);
+        jScrollPane1.setViewportView(cityJTable);
 
-        AddStateAdminjButton.setText("Add State Admin");
-        AddStateAdminjButton.addActionListener(new java.awt.event.ActionListener() {
+        AddCityAuditorjButton.setText("Add City Auditor");
+        AddCityAuditorjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddStateAdminjButtonActionPerformed(evt);
+                AddCityAuditorjButtonActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Country");
 
         countryTextField.setEnabled(false);
+
+        jLabel5.setText("State");
+
+        stateTextField.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -137,17 +149,15 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jLabel3)))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AddStateAdminjButton)
+                            .addComponent(AddCityAuditorjButton)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(stateAdminPasswordField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(stateAdminTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(StateAdminUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cityAuditorPasswordField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cityAuditorTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cityAuditorUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(87, 87, 87))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,8 +165,12 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(countryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(countryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(stateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 95, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,25 +178,27 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(countryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(countryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(stateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(stateAdminTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cityAuditorTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(StateAdminUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cityAuditorUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(stateAdminPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cityAuditorPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backJButton)
-                    .addComponent(AddStateAdminjButton))
+                    .addComponent(AddCityAuditorjButton))
                 .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -194,32 +210,33 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
-    private void AddStateAdminjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStateAdminjButtonActionPerformed
+    private void AddCityAuditorjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCityAuditorjButtonActionPerformed
         // TODO add your handling code here:
         
-        String username =  StateAdminUserID.getText();
-        String password = String.valueOf(stateAdminPasswordField.getPassword());
-        String name = stateAdminTextBox.getText();
-        Employee employee = state.getEmployeeDirectory().createEmployee(name);
-
-        UserAccount account = state.getUserAccountDirectory().createUserAccount(username, password, employee, new StateAdminRole());
+        String username =  cityAuditorUserID.getText();
+        String password = String.valueOf(cityAuditorPasswordField.getPassword());
+        String name = cityAuditorTextBox.getText();
+        Employee employee = city.getEmployeeDirectory().createEmployee(name);
+        UserAccount account = city.getUserAccountDirectory().createUserAccount(username, password, employee, new AuditorRole());
         populateTable();
-        
-    }//GEN-LAST:event_AddStateAdminjButtonActionPerformed
+     
+    }//GEN-LAST:event_AddCityAuditorjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddStateAdminjButton;
-    private javax.swing.JTextField StateAdminUserID;
+    private javax.swing.JButton AddCityAuditorjButton;
     private javax.swing.JButton backJButton;
+    private javax.swing.JPasswordField cityAuditorPasswordField;
+    private javax.swing.JTextField cityAuditorTextBox;
+    private javax.swing.JTextField cityAuditorUserID;
+    private javax.swing.JTable cityJTable;
     private javax.swing.JTextField countryTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPasswordField stateAdminPasswordField;
-    private javax.swing.JTextField stateAdminTextBox;
-    private javax.swing.JTable stateJTable;
+    private javax.swing.JTextField stateTextField;
     // End of variables declaration//GEN-END:variables
 }

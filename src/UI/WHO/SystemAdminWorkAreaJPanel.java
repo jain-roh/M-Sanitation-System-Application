@@ -31,6 +31,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.who=who;
+      //  who.getCountryList().clear();
         populateTree();
     }
     
