@@ -8,10 +8,9 @@ package Business.Role;
 import Business.City.City;
 import Business.Country.Country;
 import Business.State.State;
-import Business.State.StateDirectory;
 import Business.UserAccount.UserAccount;
 import Business.WHO;
-import UI.ManageCityPanel.ManageCityJPanel;
+import UI.ManageCountryPanel.ManageCountryJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -26,7 +25,7 @@ public class CountryAdminRole extends Role {
             State state,
             Country country,
             WHO business) {
-        return new ManageCityJPanel(userProcessContainer, account, city, 
+        return new ManageCountryJPanel(userProcessContainer, account, city, 
             state,
             country,
            business);

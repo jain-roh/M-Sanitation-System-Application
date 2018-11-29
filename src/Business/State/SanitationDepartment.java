@@ -12,14 +12,11 @@ import java.util.ArrayList;
  *
  * @author VAIBHAV RAJ
  */
-public class SanitationDepartment extends State{
+public class SanitationDepartment {
     
-     public SanitationDepartment(String name){
-        super(name,DepartmentType.Sanitation);
-    }
-    @Override
-    public ArrayList<Role> getSupportedRole() {
-        return null;
-    }
+//     public SanitationDepartment(String name){
+//        super(name.DepartmentType.Sanitation);
+//    }
+   
   
 }
