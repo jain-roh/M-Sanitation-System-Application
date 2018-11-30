@@ -54,7 +54,7 @@ public class ManageCityJPanel extends javax.swing.JPanel {
 //        city.setCityName("Mumbai");
         
         //Populate the requesting status table
-        requestList1=new ArrayList<RequestID>();
+        //requestList1=new ArrayList<RequestID>();
         RequestID request1=new RequestID();
         request1.setRequestID(200);
         request1.setRequestNo("100");
@@ -62,44 +62,56 @@ public class ManageCityJPanel extends javax.swing.JPanel {
         Requestor requestor1=new Requestor(2,"Avinash","avinash.chourasiya787@gmail.com");
         request1.setStatus(status1);
         request1.setRequestor(requestor1);
-        requestList1.add(request1);
+        requestList.add(request1);
         
-        populatRequestTable(requestList,requestList1);
+        populatNewRequestTable(requestList);
          
 
         
     }
+public void refreshTable()
+{
+     populatNewRequestTable(requestList);
+}
 
-
-private void populatRequestTable(ArrayList<RequestID> requestList,ArrayList<RequestID> requestList1 )
+private void populatNewRequestTable(ArrayList<RequestID> requestList )
 {
     
     System.out.println("Inside populate");
-     DefaultTableModel model = (DefaultTableModel) newRequestJTable.getModel();
+     
+                        DefaultTableModel model = (DefaultTableModel) newRequestJTable.getModel();
         
         model.setRowCount(0);
+                DefaultTableModel model1 = (DefaultTableModel) newRequestJTable1.getModel();
+        
+        model1.setRowCount(0);
         
         for (RequestID request : requestList){
+            if(request.getStatus().getStatusId()==1)
+            {
+
             Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getRequestor().getRequestorName();
             row[2]=request.getDateTime();
             row[3] = request.getStatus();
             model.addRow(row);
-        }
-        
-        DefaultTableModel model1 = (DefaultTableModel) newRequestJTable1.getModel();
-        
-        model1.setRowCount(0);
-        
-        for (RequestID request1 : requestList1){
+            }
+        else
+        {
+
+     
             Object[] row = new Object[4];
-            row[0] = request1;
-            row[1] = request1.getRequestor().getRequestorName();
-            row[2]=request1.getDateTime();
-            row[3] = request1.getStatus();
+            row[0] = request;
+            row[1] = request.getRequestor().getRequestorName();
+            row[2]=request.getDateTime();
+            row[3] = request.getStatus();
             model1.addRow(row);
-        }
+        
+       }
+            
+     }
+       
         
 }
     /**
