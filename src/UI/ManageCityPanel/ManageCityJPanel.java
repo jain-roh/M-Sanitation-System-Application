@@ -28,11 +28,13 @@ public class ManageCityJPanel extends javax.swing.JPanel {
      * Creates new form ManageCityJPanel
      */
     ArrayList<RequestID> requestList;
+    ArrayList<RequestID> requestList1;
     JPanel userProcessContainer;
     public ManageCityJPanel(JPanel userProcessContainer, UserAccount account,City city, 
             State state,
             Country country,
-            WHO business) {
+            WHO business) 
+    {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         requestList=new ArrayList<RequestID>();
@@ -43,47 +45,61 @@ public class ManageCityJPanel extends javax.swing.JPanel {
         Requestor requestor=new Requestor(1,"Rohit","rohit.jain058@gmail.com");
         request.setStatus(status);
         request.setRequestor(requestor);
-      //  requests.add(request);
+        requestList.add(request);
+        
 //        account.setUsername("rohit");
 //        account.setPassword("rohit");
 //        city.setCityID(1);
 //        city.setCityName("Mumbai");
         
-    }
-public ManageCityJPanel(JPanel container)
-{
-     initComponents();
-     userProcessContainer=container;
-    requestList=new ArrayList<RequestID>();
-   RequestID request=new RequestID();
-        request.setRequestID(1);
-        request.setRequestNo("889");
-        Status status=new Status(1,"New");
-        Requestor requestor=new Requestor(1,"Rohit","rohit.jain058@gmail.com");
-        request.setStatus(status);
-        request.setRequestor(requestor);
-        requestList.add(request);
-        populatRequestTable(requestList);
-//        account.setUsername("rohit");
-//        account.setPassword("rohit");
-//        city.setCityID(1);
-//        city.setCityName("Mumbai");
+        //Populate the requesting status table
+        requestList1=new ArrayList<RequestID>();
+        RequestID request1=new RequestID();
+        request1.setRequestID(200);
+        request1.setRequestNo("100");
+        Status status1=new Status(2,"In Process");
+        Requestor requestor1=new Requestor(2,"Avinash","avinash.chourasiya787@gmail.com");
+        request1.setStatus(status1);
+        request1.setRequestor(requestor1);
+        requestList1.add(request1);
+        
+        populatRequestTable(requestList,requestList1);
          
-}
 
-private void populatRequestTable(ArrayList<RequestID> requestList)
+        
+    }
+
+
+private void populatRequestTable(ArrayList<RequestID> requestList,ArrayList<RequestID> requestList1 )
 {
+    
+    System.out.println("Inside populate");
      DefaultTableModel model = (DefaultTableModel) newRequestJTable.getModel();
         
         model.setRowCount(0);
         
         for (RequestID request : requestList){
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getRequestor().getRequestorName();
             row[2]=request.getDateTime();
+            row[3] = request.getStatus();
             model.addRow(row);
         }
+        
+        DefaultTableModel model1 = (DefaultTableModel) newRequestJTable1.getModel();
+        
+        model1.setRowCount(0);
+        
+        for (RequestID request1 : requestList1){
+            Object[] row = new Object[4];
+            row[0] = request1;
+            row[1] = request1.getRequestor().getRequestorName();
+            row[2]=request1.getDateTime();
+            row[3] = request1.getStatus();
+            model1.addRow(row);
+        }
+        
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,23 +115,25 @@ private void populatRequestTable(ArrayList<RequestID> requestList)
         newRequestJTable = new javax.swing.JTable();
         viewRequest = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        newRequestJTable1 = new javax.swing.JTable();
 
         newRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "RequestID", "Name", "Date"
+                "RequestID", "Name", "Date", "Status"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -142,6 +160,34 @@ private void populatRequestTable(ArrayList<RequestID> requestList)
             }
         });
 
+        newRequestJTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "RequestID", "Name", "Date", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(newRequestJTable1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -149,20 +195,24 @@ private void populatRequestTable(ArrayList<RequestID> requestList)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(backJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addComponent(viewRequest)
                 .addGap(175, 175, 175))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addGap(77, 77, 77)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(42, 42, 42)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewRequest)
                     .addComponent(backJButton))
@@ -193,19 +243,24 @@ private void populatRequestTable(ArrayList<RequestID> requestList)
 
     private void viewRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestActionPerformed
 
-        if(!(newRequestJTable.getSelectedRow()<0))
+        if(!(newRequestJTable.getSelectedRow()<0)  )
         {
         RequestID requestID = (RequestID) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
-          ManagerCityRequestViewJPanel mcvjp = new ManagerCityRequestViewJPanel(userProcessContainer, requestID);
+        ManagerCityRequestViewJPanel mcvjp = new ManagerCityRequestViewJPanel(userProcessContainer, requestID);
         userProcessContainer.add(mcvjp);
-
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
+        newRequestJTable.getSelectionModel().clearSelection();
       
         }
-        else
+        else if(!(newRequestJTable1.getSelectedRow()<0))
         {
-            
+            RequestID requestID1 = (RequestID) newRequestJTable1.getValueAt(newRequestJTable1.getSelectedRow(), 0);
+            ManagerCityRequestViewJPanel mcvjp1 = new ManagerCityRequestViewJPanel(userProcessContainer, requestID1);
+            userProcessContainer.add(mcvjp1);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+            newRequestJTable1.getSelectionModel().clearSelection();
         }
 
     }//GEN-LAST:event_viewRequestActionPerformed
@@ -222,7 +277,9 @@ private void populatRequestTable(ArrayList<RequestID> requestList)
     private javax.swing.JButton backJButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable newRequestJTable;
+    private javax.swing.JTable newRequestJTable1;
     private javax.swing.JButton viewRequest;
     // End of variables declaration//GEN-END:variables
 }
