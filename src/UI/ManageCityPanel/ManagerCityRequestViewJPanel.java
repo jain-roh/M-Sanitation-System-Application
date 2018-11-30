@@ -7,6 +7,7 @@ package UI.ManageCityPanel;
 
 import Business.Request.RequestID;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -132,6 +133,14 @@ public class ManagerCityRequestViewJPanel extends javax.swing.JPanel {
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
         userProcessContainer.remove(this);
+        //CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        //layout.previous(userProcessContainer);
+        
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageCityJPanel manageFlightScheduleJPane2 = (ManageCityJPanel) component;
+        manageFlightScheduleJPane2.refreshTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
