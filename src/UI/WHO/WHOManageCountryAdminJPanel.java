@@ -13,6 +13,7 @@ import Business.Role.CountryAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -228,6 +229,19 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
         
+        if(usernameJTextField.getText().equals(""))
+      
+        JOptionPane.showMessageDialog(this, "Please enter a user name");
+        
+        else if(String.valueOf(passwordJPasswordField.getPassword()).equals(""))
+         JOptionPane.showMessageDialog(this, "Please enter a password");  
+        
+        else if(nameJTextField.getText().equals("")) 
+        JOptionPane.showMessageDialog(this, "Please enter a Name"); 
+        
+        
+        else
+        {
         Country country = (Country) countryJComboBox.getSelectedItem();
         
         String username = usernameJTextField.getText();
@@ -238,7 +252,8 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
         
         UserAccount account = country.getUserAccountDirectory().createUserAccount(username, password, employee, new CountryAdminRole());
         populateTable();
-        
+        JOptionPane.showMessageDialog(this, "User succesfully created"); 
+        }
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

@@ -13,6 +13,7 @@ import Business.Role.StateAdminRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -197,6 +198,17 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
     private void AddStateAdminjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStateAdminjButtonActionPerformed
         // TODO add your handling code here:
         
+        if(StateAdminUserID.getText().equals(""))
+            JOptionPane.showMessageDialog(this, "Please enter state admin's user id");
+        
+        else  if(String.valueOf(stateAdminPasswordField.getPassword()).equals(""))
+            JOptionPane.showMessageDialog(this, "Please enter state admin's password");
+        
+        else  if(stateAdminTextBox.getText().equals(""))
+            JOptionPane.showMessageDialog(this, "Please enter state admin's name");
+        
+        else
+        {    
         String username =  StateAdminUserID.getText();
         String password = String.valueOf(stateAdminPasswordField.getPassword());
         String name = stateAdminTextBox.getText();
@@ -204,6 +216,8 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
 
         UserAccount account = state.getUserAccountDirectory().createUserAccount(username, password, employee, new StateAdminRole());
         populateTable();
+        JOptionPane.showMessageDialog(this, "State Admin succesfully created");
+        }
         
     }//GEN-LAST:event_AddStateAdminjButtonActionPerformed
 

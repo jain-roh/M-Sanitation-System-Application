@@ -15,6 +15,7 @@ import Business.Role.ManagerRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -212,13 +213,24 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
     private void AddCityAdminjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCityAdminjButtonActionPerformed
         // TODO add your handling code here:
         
+        if(cityAdminUserID.getText().equals(""))
+            JOptionPane.showMessageDialog(this, "Please enter city admin's user id");
+        else  if(String.valueOf(cityAdminPasswordField.getPassword()).equals(""))
+            JOptionPane.showMessageDialog(this, "Please enter city admin's password");
+        
+        else  if(cityAdminTextBox.getText().equals(""))
+            JOptionPane.showMessageDialog(this, "Please enter city admin's name");
+        
+        else
+        {
         String username =  cityAdminUserID.getText();
         String password = String.valueOf(cityAdminPasswordField.getPassword());
         String name = cityAdminTextBox.getText();
         Employee employee = city.getEmployeeDirectory().createEmployee(name);
         UserAccount account = city.getUserAccountDirectory().createUserAccount(username, password, employee, new ManagerRole());
         populateTable();
-     
+        JOptionPane.showMessageDialog(this, "City Admin successfully created");
+        }
     }//GEN-LAST:event_AddCityAdminjButtonActionPerformed
 
 

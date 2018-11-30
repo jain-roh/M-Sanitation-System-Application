@@ -8,6 +8,7 @@ import Business.WHO;
 import Business.Country.Country;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -144,12 +145,16 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
+        if(nameJTextField.getText().equals(""))
+            JOptionPane.showMessageDialog(this, "Please enter a value");
+        {
         String name = nameJTextField.getText();
 
         Country country = who.createAndAddCountry();
         country.setCountryName(name);
 
         populateNetworkTable();
+        }
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
