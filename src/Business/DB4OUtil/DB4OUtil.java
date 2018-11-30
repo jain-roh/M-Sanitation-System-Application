@@ -6,6 +6,7 @@
 package Business.DB4OUtil;
 
 import Business.ConfigureASystem;
+import Business.Country.Country;
 import Business.Country.CountryDirectory;
 import Business.Employee.EmployeeDirectory;
 import Business.UserAccount.UserAccountDirectory;
@@ -16,6 +17,7 @@ import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
 import com.db4o.ta.TransparentPersistenceSupport;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 /**
  *
@@ -79,10 +81,17 @@ public class DB4OUtil {
             system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         }
         else{
-         //  system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
-       
+        // system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
+         //  for(int j=systems.size()-1;j>=0;j--)
+           //    systems.remove(j);
+           
+      //      system = ConfigureASystem.configure();
            system = systems.get(systems.size() - 1);
         }
+//       system.setCountryDirectory(new CountryDirectory());
+     //  system.setCountryList(new ArrayList<Country>());
+//       system.setEmployeeDirectory(new EmployeeDirectory());
+//       system.setUserAccountDirectory(new UserAccountDirectory());
        
         conn.close();
         return system;

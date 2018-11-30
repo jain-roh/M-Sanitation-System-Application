@@ -47,14 +47,14 @@ public class WHO {
     public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
         this.userAccountDirectory = userAccountDirectory;
     }
-    private static ArrayList<Country> countryList;
+    private ArrayList<Country> countryList;
    
     
     public static WHO getInstance(){
-     //business=null;
+    // business=new WHO() ;
         if(business==null){
             business=new WHO();
-          
+  
         }
         return business;
     }

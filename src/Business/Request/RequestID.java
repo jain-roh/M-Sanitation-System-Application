@@ -8,6 +8,8 @@ package Business.Request;
 import Business.Request.Requestor;
 import Business.Request.Status;
 import java.util.Date;
+import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
 
 /**
  *
@@ -15,6 +17,15 @@ import java.util.Date;
  */
 public class RequestID {
     private int RequestID;
+    private UserAccount userAccount;
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
 
 private float Long;
 private float Lat;
