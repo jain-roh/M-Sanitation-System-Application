@@ -8,6 +8,7 @@ package UI.ManageCityPanel;
 import Business.Request.RequestID;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +21,7 @@ public class ManagerCityRequestViewJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     RequestID request;
+    ManageCityJPanel m;
     public ManagerCityRequestViewJPanel(JPanel userProcessContainer,RequestID request) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
@@ -46,6 +48,8 @@ public class ManagerCityRequestViewJPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         RequestStatusTextBox = new javax.swing.JTextField();
+        AcceptButton = new javax.swing.JButton();
+        RejectButton = new javax.swing.JButton();
 
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -60,6 +64,15 @@ public class ManagerCityRequestViewJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Requestor Name");
 
+        AcceptButton.setText("Accept");
+        AcceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptButtonActionPerformed(evt);
+            }
+        });
+
+        RejectButton.setText("Reject");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,6 +80,10 @@ public class ManagerCityRequestViewJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(backJButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(AcceptButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(RejectButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
@@ -104,7 +121,10 @@ public class ManagerCityRequestViewJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1)
                     .addComponent(RequestStatusTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(91, 91, 91)
-                .addComponent(backJButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backJButton)
+                    .addComponent(AcceptButton)
+                    .addComponent(RejectButton))
                 .addGap(48, 48, 48))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -116,8 +136,16 @@ public class ManagerCityRequestViewJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
+        // TODO add your handling code here:
+        m.AcceptRequest(request);
+        
+    }//GEN-LAST:event_AcceptButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AcceptButton;
+    private javax.swing.JButton RejectButton;
     private javax.swing.JTextField RequestIdTextBox;
     private javax.swing.JTextField RequestStatusTextBox;
     private javax.swing.JTextField RequestorNameTextBox;

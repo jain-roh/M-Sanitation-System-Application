@@ -15,6 +15,7 @@ import Business.UserAccount.UserAccount;
 import Business.WHO;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -265,6 +266,15 @@ private void populatRequestTable(ArrayList<RequestID> requestList,ArrayList<Requ
 
     }//GEN-LAST:event_viewRequestActionPerformed
 
+    public void AcceptRequest(RequestID requestID)
+    {
+         
+        
+    }
+    
+    
+    
+    
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
         userProcessContainer.remove(this);
