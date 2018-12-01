@@ -59,7 +59,7 @@ public class MainFrame1 extends javax.swing.JFrame {
 	 long time1 = date1.getTime();
         request1.setRequestNo(time1+"");
         Status status1=new Status(1,"Known");
-        Requestor requestor1=new Requestor(2,"Vaibhav","vaibhav@husky.neu.edu");
+        Requestor requestor1=new Requestor(1,"Vaibhav","vaibhav@husky.neu.edu");
         request1.setStatus(status1);
         request1.setRequestor(requestor1);
 for(Country country:system.getCountryList())
