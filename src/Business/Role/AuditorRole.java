@@ -28,4 +28,9 @@ public class AuditorRole extends Role {
             country,
            business);
     }
+
+    @Override
+    public String toString() {
+        return "Auditor";
+    }
 }
