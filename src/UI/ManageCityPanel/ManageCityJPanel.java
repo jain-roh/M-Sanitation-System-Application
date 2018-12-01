@@ -50,17 +50,14 @@ public class ManageCityJPanel extends javax.swing.JPanel {
         //requestList1=new ArrayList<RequestID>();
        
         
-        populatNewRequestTable(requestList);
+        populatNewRequestTable();
          
 
         
     }
-public void refreshTable()
-{
-     populatNewRequestTable(requestList);
-}
 
-private void populatNewRequestTable(ArrayList<RequestID> requestList )
+
+protected void populatNewRequestTable()
 {
     
     System.out.println("Inside populate");
@@ -257,24 +254,14 @@ private void populatNewRequestTable(ArrayList<RequestID> requestList )
 
     private void viewRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestActionPerformed
 
-        if(!(newRequestJTable.getSelectedRow()<0)  )
-        {
-        RequestID requestID = (RequestID) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
-        ManagerCityRequestViewJPanel mcvjp = new ManagerCityRequestViewJPanel(userProcessContainer, requestID);
-        userProcessContainer.add(mcvjp);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-        newRequestJTable.getSelectionModel().clearSelection();
-      
-        }
-        else if(!(newRequestJTable1.getSelectedRow()<0))
+ if(!(newRequestJTable1.getSelectedRow()<0))
         {
             RequestID requestID1 = (RequestID) newRequestJTable1.getValueAt(newRequestJTable1.getSelectedRow(), 0);
             ManagerCityRequestViewJPanel mcvjp1 = new ManagerCityRequestViewJPanel(userProcessContainer, requestID1);
             userProcessContainer.add(mcvjp1);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-            newRequestJTable1.getSelectionModel().clearSelection();
+        //    newRequestJTable1.getSelectionModel().clearSelection();
         }
 
     }//GEN-LAST:event_viewRequestActionPerformed
@@ -300,17 +287,17 @@ private void populatNewRequestTable(ArrayList<RequestID> requestList )
           if(!(newRequestJTable.getSelectedRow()<0)  )
         {
             RequestID requestID = (RequestID) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
-            AuditorCityRequestViewJPanel mcvjp = new AuditorCityRequestViewJPanel(userProcessContainer, requestID);
-            userProcessContainer.add(mcvjp);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-            newRequestJTable.getSelectionModel().clearSelection();
-            RequestID request = (RequestID)newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
+//            AuditorCityRequestViewJPanel mcvjp = new AuditorCityRequestViewJPanel(userProcessContainer, requestID);
+//            userProcessContainer.add(mcvjp);
+//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//            layout.next(userProcessContainer);
+//            newRequestJTable.getSelectionModel().clearSelection();
+    //        RequestID request = (RequestID)newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
        // request.setUserAccount(userAccount);
-        request.getStatus().setStatusId(2);
+        requestID.getStatus().setStatusId(2);
        // userAccount.getWorkQueue().
         
-        populatNewRequestTable(requestList);
+        populatNewRequestTable();
         
         }
     }//GEN-LAST:event_acceptRequestActionPerformed

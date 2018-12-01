@@ -61,7 +61,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         //requestList1=new ArrayList<RequestID>();
  
         
-        populateRequestTable(requestList);
+        populateRequestTable();
          
 
     }
@@ -81,6 +81,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         newRequestJTable1 = new javax.swing.JTable();
         backJButton = new javax.swing.JButton();
         AssignRequest = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         newRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,6 +153,13 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Audit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,6 +171,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(219, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
                     .addComponent(AssignRequest)
                     .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ScrollJPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,7 +186,9 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
                 .addComponent(AssignRequest)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(12, 12, 12)
                 .addComponent(backJButton)
                 .addGap(41, 41, 41))
         );
@@ -205,10 +216,26 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         requestID.getStatus().setStatusId(3);
        // userAccount.getWorkQueue().
         
-        populateRequestTable(requestList);
+        populateRequestTable();
         
         }
     }//GEN-LAST:event_AssignRequestActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(!(newRequestJTable1.getSelectedRow()<0)  )
+        {
+            RequestID requestID = (RequestID) newRequestJTable1.getValueAt(newRequestJTable1.getSelectedRow(), 0);
+            AuditorCityRequestViewJPanel mcvjp = new AuditorCityRequestViewJPanel(userProcessContainer, requestID);
+            userProcessContainer.add(mcvjp);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+           // newRequestJTable.getSelectionModel().clearSelection();
+            //RequestID request = (RequestID)newRequestJTable.getValueAt(newRequestJTable.getSelectedRowCount(), 0);
+//        requestID.setUserAccount(userAccount);
+//        requestID.getStatus().setStatusId(3);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -216,11 +243,12 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane ScrollJPane1;
     private javax.swing.JScrollPane ScrollPane2;
     private javax.swing.JButton backJButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JTable newRequestJTable;
     private javax.swing.JTable newRequestJTable1;
     // End of variables declaration//GEN-END:variables
 
-    private void populateRequestTable(ArrayList<RequestID> requestList) {
+    protected void populateRequestTable() {
         
         System.out.println("Inside populate");
      
@@ -242,7 +270,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             row[3] = request.getStatus();
             model.addRow(row);
             }
-            else if(request.getStatus().getStatusId()==3 && request.getUserAccount().equals(userAccount))
+            else if(request.getStatus().getStatusId()==3 && request.getUserAccount().getUsername().equals(userAccount.getUsername()))
         {
             
         
