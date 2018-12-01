@@ -6,9 +6,11 @@
 package Business.Country;
 
 import Business.Employee.EmployeeDirectory;
+import Business.Request.RequestID;
 import Business.State.StateDirectory;
 import Business.Role.CountryAdminRole;
 import Business.UserAccount.UserAccountDirectory;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +20,8 @@ public class Country {
     
 private int CountryID;
 private int  CountryCode;
+
+private ArrayList<RequestID> requestList;
 private String CountryName;
 private StateDirectory stateDirectory;
 private CountryAdminRole countryAdmin;
@@ -42,10 +46,19 @@ public Country(){
         stateDirectory=new StateDirectory();
         userAccountDirectory=new UserAccountDirectory();
         employeeDirectory=new EmployeeDirectory();
+        requestList=new ArrayList<RequestID>();
     } 
 
     public int getCountryID() {
         return CountryID;
+    }
+
+    public ArrayList<RequestID> getRequestList() {
+        return requestList;
+    }
+
+    public void setRequestList(ArrayList<RequestID> requestList) {
+        this.requestList = requestList;
     }
 
     public void setCountryID(int CountryID) {

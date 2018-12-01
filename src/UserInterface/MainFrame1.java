@@ -19,7 +19,12 @@ import javax.swing.JPanel;
 import Business.UserAccount.UserAccountDirectory;
 import Business.UserAccount.UserAccount;
 import Business.DB4OUtil.DB4OUtil;
+import Business.Request.RequestID;
+import Business.Request.Requestor;
+import Business.Request.Status;
 import Business.Role.Role;
+import java.util.Date;
+import java.util.Random;
 
 
 
@@ -166,19 +171,32 @@ public class MainFrame1 extends javax.swing.JFrame {
             for(Country country:system.getCountryList()){
                 userAccount=country.getUserAccountDirectory().authenticateUser(userName, password);
                 inCountry=country;
-                if(userAccount==null)
+         RequestID request=new RequestID();
+        request.setRequestID(1);
+        Date date= new Date();
+
+	 long time = date.getTime();
+        request.setRequestNo(time+"");
+        Status status=new Status(1,"Unknown");
+        Requestor requestor=new Requestor(1,"Rohit","rohit.jain058@gmail.com");
+        request.setStatus(status);
+        request.setRequestor(requestor);
+        country.getRequestList().add(request);
+        if(userAccount==null)
                 {
                     
                 //Step 2.a: check against each enterprise
                 for(State state:country.getStateDirectory().getStateList()){
                     userAccount=state.getUserAccountDirectory().authenticateUser(userName, password);
                     inState=state;
+                            country.getRequestList().add(request);
                     if(userAccount==null){
                        //Step 3:check against each organization for each enterprise
                        for(City city:state.getCityDirectory().getCityList()){
                            userAccount=city.getUserAccountDirectory().authenticateUser(userName, password);
                            if(userAccount!=null){
                                //inState=state;
+                                       city.getRequestList().add(request);
                                inCity=city;
                                break;
                            }

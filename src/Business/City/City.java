@@ -5,6 +5,7 @@
  */
 package Business.City;
 import Business.Employee.EmployeeDirectory;
+import Business.Request.RequestID;
 import Business.Role.Role;
 import Business.State.StateDirectory;
 import Business.UserAccount.UserAccountDirectory;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class City {
   private String CityName;
   private int CityID;
+  private ArrayList<RequestID> requestList;
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
@@ -27,7 +29,16 @@ public class City {
             
     {
         employeeDirectory = new EmployeeDirectory();
-        userAccountDirectory = new UserAccountDirectory();    
+        userAccountDirectory = new UserAccountDirectory();  
+         requestList=new ArrayList<RequestID>();
+    }
+
+    public ArrayList<RequestID> getRequestList() {
+        return requestList;
+    }
+
+    public void setRequestList(ArrayList<RequestID> requestList) {
+        this.requestList = requestList;
     }
 
       

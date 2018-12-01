@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import Business.City.CityDirectory;
 import Business.City.City;
 import Business.Employee.EmployeeDirectory;
+import Business.Request.RequestID;
 import Business.UserAccount.UserAccountDirectory;
 
 /**
@@ -19,6 +20,7 @@ public  class State {
     
     private int stateID;
     private String stateName;
+    private ArrayList<RequestID> requestList;
     private ArrayList<City> city;
     private DepartmentType departmentType;
     private CityDirectory cityDirectory;
@@ -29,6 +31,15 @@ public  class State {
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         cityDirectory = new CityDirectory();
+         requestList=new ArrayList<RequestID>();
+    }
+
+    public ArrayList<RequestID> getRequestList() {
+        return requestList;
+    }
+
+    public void setRequestList(ArrayList<RequestID> requestList) {
+        this.requestList = requestList;
     }
 
     public EmployeeDirectory getEmployeeDirectory() {
