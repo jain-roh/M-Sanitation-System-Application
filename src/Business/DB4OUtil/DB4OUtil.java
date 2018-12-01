@@ -89,9 +89,11 @@ public class DB4OUtil {
            system = systems.get(systems.size() - 1);
         }
 //       system.setCountryDirectory(new CountryDirectory());
-     //  system.setCountryList(new ArrayList<Country>());
+//       system.setCountryList(new ArrayList<Country>());
+//  
 //       system.setEmployeeDirectory(new EmployeeDirectory());
 //       system.setUserAccountDirectory(new UserAccountDirectory());
+//  
        
         conn.close();
         return system;
