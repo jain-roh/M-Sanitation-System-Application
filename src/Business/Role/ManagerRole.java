@@ -29,4 +29,9 @@ public class ManagerRole extends Role {
            business);
     }
 
+    @Override
+    public String toString() {
+        return "Manager";
+    }
+
 }
