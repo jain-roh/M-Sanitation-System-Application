@@ -18,6 +18,10 @@ import javax.swing.JPanel;
  * @author VAIBHAV RAJ
  */
 public class AuditorRole extends Role {
+    public AuditorRole()
+       {
+           super();
+       }
      @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, City city, 
             State state,

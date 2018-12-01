@@ -41,16 +41,16 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
     {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        requestList=new ArrayList<RequestID>();
-     
-        RequestID request=new RequestID();
-        request.setRequestID(1);
-        request.setRequestNo("889");
-        Status status=new Status(1,"New");
-        Requestor requestor=new Requestor(1,"Rohit","rohit.jain058@gmail.com");
-        request.setStatus(status);
-        request.setRequestor(requestor);
-        requestList.add(request);
+        this.requestList=city.getRequestList();
+     this.userAccount=account;
+//        RequestID request=new RequestID();
+//        request.setRequestID(1);
+//        request.setRequestNo("889");
+//        Status status=new Status(1,"New");
+//        Requestor requestor=new Requestor(1,"Rohit","rohit.jain058@gmail.com");
+//        request.setStatus(status);
+//        request.setRequestor(requestor);
+//        requestList.add(request);
         this.userAccount=account;
 //        account.setUsername("rohit");
 //        account.setPassword("rohit");
@@ -59,14 +59,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         
         //Populate the requesting status table
         //requestList1=new ArrayList<RequestID>();
-        RequestID request1=new RequestID();
-        request1.setRequestID(200);
-        request1.setRequestNo("100");
-        Status status1=new Status(2,"In Process");
-        Requestor requestor1=new Requestor(2,"Avinash","avinash.chourasiya787@gmail.com");
-        request1.setStatus(status1);
-        request1.setRequestor(requestor1);
-        requestList.add(request1);
+ 
         
         populateRequestTable(requestList);
          
@@ -199,28 +192,21 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
 
     private void AssignRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AssignRequestActionPerformed
 
-        if(!(newRequestJTable.getSelectedRow()<0)  )
+         if(!(newRequestJTable.getSelectedRow()<0)  )
         {
-            RequestID requestID = (RequestID) newRequestJTable.getValueAt(newRequestJTable.getSelectedRowCount(), 0);
-            AuditorCityRequestViewJPanel mcvjp = new AuditorCityRequestViewJPanel(userProcessContainer, requestID);
-            userProcessContainer.add(mcvjp);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-            newRequestJTable.getSelectionModel().clearSelection();
-            RequestID request = (RequestID)newRequestJTable.getValueAt(newRequestJTable.getSelectedRowCount(), 0);
-        request.setUserAccount(userAccount);
-        request.getStatus().setStatusId(3);
+            RequestID requestID = (RequestID) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
+           // AuditorCityRequestViewJPanel mcvjp = new AuditorCityRequestViewJPanel(userProcessContainer, requestID);
+            //userProcessContainer.add(mcvjp);
+            //CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            //layout.next(userProcessContainer);
+           // newRequestJTable.getSelectionModel().clearSelection();
+            //RequestID request = (RequestID)newRequestJTable.getValueAt(newRequestJTable.getSelectedRowCount(), 0);
+        requestID.setUserAccount(userAccount);
+        requestID.getStatus().setStatusId(3);
+       // userAccount.getWorkQueue().
+        
         populateRequestTable(requestList);
-
-        }
-        else if(!(newRequestJTable1.getSelectedRow()<0))
-        {
-            RequestID requestID1 = (RequestID) newRequestJTable1.getValueAt(newRequestJTable1.getSelectedRowCount(), 0);
-            AuditorCityRequestViewJPanel mcvjp1 = new AuditorCityRequestViewJPanel(userProcessContainer, requestID1);
-            userProcessContainer.add(mcvjp1);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-            newRequestJTable1.getSelectionModel().clearSelection();
+        
         }
     }//GEN-LAST:event_AssignRequestActionPerformed
 
@@ -246,7 +232,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         model1.setRowCount(0);
         
         for (RequestID request : requestList){
-            if(request.getStatus().getStatusId()==1)
+            if(request.getStatus().getStatusId()==2)
             {
 
             Object[] row = new Object[4];
@@ -256,9 +242,10 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             row[3] = request.getStatus();
             model.addRow(row);
             }
-        else
+            else if(request.getStatus().getStatusId()==3 && request.getUserAccount().equals(userAccount))
         {
-
+            
+        
      
             Object[] row = new Object[4];
             row[0] = request;
@@ -268,6 +255,8 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             model1.addRow(row);
         
        }
+        
+                
             
      }
     }

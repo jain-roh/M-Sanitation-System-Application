@@ -24,7 +24,7 @@ public class WHO {
     private UserAccountDirectory userAccountDirectory;
     private EmployeeDirectory employeeDirectory;    
     private CountryDirectory countryDirectory;
-
+    private static int lastFetchedID=0;
     public CountryDirectory getCountryDirectory() {
         return countryDirectory;
     }

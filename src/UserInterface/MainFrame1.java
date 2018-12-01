@@ -44,7 +44,61 @@ public class MainFrame1 extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
+          RequestID request=new RequestID();
+        request.setRequestID(1);
+        Date date= new Date();
+	 long time = date.getTime();
+        request.setRequestNo(time+"");
+        Status status=new Status(1,"Unknown");
+        Requestor requestor=new Requestor(1,"Rohit","rohit.jain058@gmail.com");
+        request.setStatus(status);
+        request.setRequestor(requestor);
+          RequestID request1=new RequestID();
+        request1.setRequestID(1);
+        Date date1= new Date();
+	 long time1 = date1.getTime();
+        request1.setRequestNo(time1+"");
+        Status status1=new Status(1,"Known");
+        Requestor requestor1=new Requestor(2,"Vaibhav","vaibhav@husky.neu.edu");
+        request1.setStatus(status1);
+        request1.setRequestor(requestor1);
+for(Country country:system.getCountryList())
+{
+    for(State state:country.getStateDirectory().getStateList())
+    {
+        for(City city:state.getCityDirectory().getCityList())
+        {
+            if(!country.getRequestList().contains(request))
+            {
+        country.getRequestList().add(request);
         
+            }
+                        if(!state.getRequestList().contains(request))
+                        {
+        state.getRequestList().add(request);
+                        }
+                                    if(!city.getRequestList().contains(request))
+                                    {
+        city.getRequestList().add(request);
+                                    }
+      if(!country.getRequestList().contains(request1))
+            {
+        country.getRequestList().add(request1);
+        
+            }
+                        if(!state.getRequestList().contains(request1))
+                        {
+        state.getRequestList().add(request1);
+                        }
+                                    if(!city.getRequestList().contains(request1))
+                                    {
+        city.getRequestList().add(request1);
+                                    }
+  
+        }
+    }
+}
+
     }
 
     /**

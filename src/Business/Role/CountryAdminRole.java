@@ -19,7 +19,10 @@ import javax.swing.JPanel;
  */
 public class CountryAdminRole extends Role {
     
-    
+     public CountryAdminRole()
+       {
+           super();
+       }
      @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, City city, 
             State state,

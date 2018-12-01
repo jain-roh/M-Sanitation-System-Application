@@ -10,14 +10,26 @@ import Business.WHO;
 import Business.State.State;
 import Business.City.City;
 import Business.Country.Country;
+import Business.Request.RequestID;
 import Business.UserAccount.UserAccount;
 import java.awt.Component;
+import java.util.ArrayList;
 
 /**
  *
  * @author VAIBHAV RAJ
  */
 public abstract class Role {
+    private ArrayList<RequestID> workList;
+
+    public ArrayList<RequestID> getWorkList() {
+        return workList;
+    }
+
+    public void setWorkList(ArrayList<RequestID> workList) {
+        this.workList = workList;
+    }
+
 
     public Component createWorkArea(JPanel container, UserAccount userAccount, City inCity, State inState, WHO system) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

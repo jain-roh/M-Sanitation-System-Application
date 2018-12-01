@@ -33,5 +33,47 @@ private int statusId;
     public void setStatusMsg(String statusMsg) {
         this.statusMsg = statusMsg;
     }
+    @Override
+    public String toString()
+    {
+        if(this.statusId==1)
+        {
+            return "New Request";
+        }
+        else if(this.statusId==2)
+        {
+            return "Management Acceptance";
+        }
+            else if(this.statusId==3)
+        {
+            return "Assigned TO Auditor";
+        }
+               else if(this.statusId==4)
+        {
+            return "Auditor Acceptance";
+        }
+               else if(this.statusId==5)
+        {
+            return "Management Proposal";
+        }
+               else if(this.statusId==6)
+        {
+            return "State Reversal";
+        }
+               else if(this.statusId==7)
+        {
+            return "Reversal Accepted";
+        }
+               else if(this.statusId==8)
+        {
+            return "State Acceptence";
+        }
+               else if(this.statusId==9)
+        {
+            return "Lavatory Built";
+        }        
+        return "";
+                
+    }
      
 }
