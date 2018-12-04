@@ -37,6 +37,10 @@ public  class State {
     public State(String state)
     {
         this.stateName=state;
+         employeeDirectory = new EmployeeDirectory();
+        userAccountDirectory = new UserAccountDirectory();
+        cityDirectory = new CityDirectory();
+         requestList=new HashMap<Integer,Request>();
     }
 
     public HashMap<Integer,Request> getRequestList() {

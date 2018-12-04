@@ -19,13 +19,7 @@ public class Request {
     private int RequestID;
     private UserAccount userAccount;
 
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
-    }
+  
 
 private Double Long;
 private Double Lat;
@@ -37,6 +31,18 @@ private State state;
 private City city;
 private Country country;
 private String  Address;
+private int CityID;
+private String Notes;
+private Double Budget;
+
+
+  public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
 
     public String getAddress() {
         return Address;
@@ -69,9 +75,7 @@ private String  Address;
         this.country = country;
     }
 
-private int CityID;
-private String Notes;
-private Double Budget;
+
     public Status getStatus() {
         return status;
     }

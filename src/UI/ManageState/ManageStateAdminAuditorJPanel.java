@@ -50,9 +50,10 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
         
         for (City city : state.getCityDirectory().getCityList()) {
                 for (UserAccount userAccount : city.getUserAccountDirectory().getUserAccountList()) {
-                    Object[] row = new Object[2];
+                    Object[] row = new Object[3];
                     row[0] = city.getCityName();
                     row[1] = userAccount.getUsername();
+                    row[2] = userAccount.getRole();
                     model.addRow(row);
                 }
             
@@ -104,17 +105,17 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
 
         cityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "City", "Username"
+                "City", "Username", "Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -174,8 +175,7 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(69, 69, 69)
-                        .addComponent(backJButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(backJButton)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -202,7 +202,7 @@ public class MainFrame1 extends javax.swing.JFrame {
                 //Step 2.a: check against each enterprise
                 for(State state:country.getStateDirectory().getStateList()){
                     userAccount=state.getUserAccountDirectory().authenticateUser(userName, password);
-                    
+                        
                         //    country.getRequestList().add(request);
                     if(userAccount==null){
                        //Step 3:check against each organization for each enterprise
@@ -210,7 +210,8 @@ public class MainFrame1 extends javax.swing.JFrame {
                            userAccount=city.getUserAccountDirectory().authenticateUser(userName, password);
                            if(userAccount!=null){
                                inState=state;
-                                    //   city.getRequestList().add(request);
+                                inCountry=country;
+                               //   city.getRequestList().add(request);
                                inCity=city;
                                break;
                            }
@@ -218,7 +219,8 @@ public class MainFrame1 extends javax.swing.JFrame {
                         
                     }
                     else{
-                       inState=state;
+                        inCountry=country;
+                        inState=state;
                        break;
                     }
                     if(inCity!=null){

@@ -86,20 +86,20 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
 
         newRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "RequestID", "Name", "Date", "Status"
+                "RequestID", "Name", "Date", "Status", "EmailId", "Phone"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -114,20 +114,20 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
 
         newRequestJTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "RequestID", "Name", "Date", "Status"
+                "RequestID", "Name", "Date", "Status", "Email Id", "Phone No"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, false, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -264,11 +264,13 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             if(request.getStatus().getStatusId()==2)
             {
 
-            Object[] row = new Object[4];
+            Object[] row = new Object[6];
             row[0] = request;
             row[1] = request.getRequestor().getRequestorName();
             row[2]=request.getDateTime();
             row[3] = request.getStatus();
+            row[4] = request.getRequestor().getRequestorEmail();
+            row[5] = request.getRequestor().getRequestorPhoneNumber();
             model.addRow(row);
             }
             else if(request.getStatus().getStatusId()==3 && request.getUserAccount().getUsername().equals(userAccount.getUsername()))
@@ -276,11 +278,13 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             
         
      
-            Object[] row = new Object[4];
+            Object[] row = new Object[6];
             row[0] = request;
             row[1] = request.getRequestor().getRequestorName();
             row[2]=request.getDateTime();
             row[3] = request.getStatus();
+            row[4] = request.getRequestor().getRequestorEmail();
+            row[5] = request.getRequestor().getRequestorPhoneNumber();
             model1.addRow(row);
         
        }

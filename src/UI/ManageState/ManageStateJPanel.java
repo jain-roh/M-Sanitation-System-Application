@@ -47,9 +47,9 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         requestList=new ArrayList<Request>();
         stateAdminRole=(StateAdminRole)account.getRole();
         this.country = country;
+        this.state=state;
         countryTextField.setText(country.getCountryName());
         stateTextField.setText(state.getStateName());
-        this.state=state;
         populateCity();
              
         /*RequestID request=new RequestID();

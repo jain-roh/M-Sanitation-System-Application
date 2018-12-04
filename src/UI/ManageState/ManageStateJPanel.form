@@ -94,7 +94,7 @@
                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                  <Component id="stateTextField" pref="49" max="32767" attributes="0"/>
+                                  <Component id="stateTextField" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
