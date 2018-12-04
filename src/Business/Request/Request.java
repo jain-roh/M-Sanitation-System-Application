@@ -5,17 +5,17 @@
  */
 package Business.Request;
 
-import Business.Request.Requestor;
-import Business.Request.Status;
+import Business.City.City;
+import Business.Country.Country;
+import Business.State.State;
 import java.util.Date;
 import Business.UserAccount.UserAccount;
-import Business.UserAccount.UserAccountDirectory;
 
 /**
  *
  * @author VAIBHAV RAJ
  */
-public class RequestID {
+public class Request {
     private int RequestID;
     private UserAccount userAccount;
 
@@ -27,12 +27,47 @@ public class RequestID {
         this.userAccount = userAccount;
     }
 
-private float Long;
-private float Lat;
+private Double Long;
+private Double Lat;
 private String RequestNo;
 private Requestor requestor;
 private Status status;
 private Date DateTime;
+private State state;
+private City city;
+private Country country;
+private String  Address;
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String Address) {
+        this.Address = Address;
+    }
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
 
 private int CityID;
 private String Notes;
@@ -66,19 +101,19 @@ private Double Budget;
     
 
 
-    public float getLong() {
+    public Double getLong() {
         return Long;
     }
 
-    public void setLong(float Long) {
+    public void setLong(Double Long) {
         this.Long = Long;
     }
 
-    public float getLat() {
+    public Double getLat() {
         return Lat;
     }
 
-    public void setLat(float Lat) {
+    public void setLat(Double Lat) {
         this.Lat = Lat;
     }
 

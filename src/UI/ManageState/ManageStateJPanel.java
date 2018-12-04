@@ -10,7 +10,7 @@ import UI.ManageCityPanel.*;
 import UI.ManageCountryPanel.*;
 import Business.City.City;
 import Business.Country.Country;
-import Business.Request.RequestID;
+import Business.Request.Request;
 import Business.Request.Requestor;
 import Business.Request.Status;
 import Business.Role.CountryAdminRole;
@@ -33,7 +33,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageCityJPanel
      */
-    ArrayList<RequestID> requestList;
+    ArrayList<Request> requestList;
     JPanel userProcessContainer;
     StateAdminRole stateAdminRole;
     private Country country;
@@ -44,7 +44,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
             WHO business) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        requestList=new ArrayList<RequestID>();
+        requestList=new ArrayList<Request>();
         stateAdminRole=(StateAdminRole)account.getRole();
         this.country = country;
         countryTextField.setText(country.getCountryName());

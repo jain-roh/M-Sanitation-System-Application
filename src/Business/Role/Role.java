@@ -10,7 +10,7 @@ import Business.WHO;
 import Business.State.State;
 import Business.City.City;
 import Business.Country.Country;
-import Business.Request.RequestID;
+import Business.Request.Request;
 import Business.UserAccount.UserAccount;
 import java.awt.Component;
 import java.util.ArrayList;
@@ -20,13 +20,13 @@ import java.util.ArrayList;
  * @author VAIBHAV RAJ
  */
 public abstract class Role {
-    private ArrayList<RequestID> workList;
+    private ArrayList<Request> workList;
 
-    public ArrayList<RequestID> getWorkList() {
+    public ArrayList<Request> getWorkList() {
         return workList;
     }
 
-    public void setWorkList(ArrayList<RequestID> workList) {
+    public void setWorkList(ArrayList<Request> workList) {
         this.workList = workList;
     }
 

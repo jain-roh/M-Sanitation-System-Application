@@ -19,10 +19,11 @@ import javax.swing.JPanel;
 import Business.UserAccount.UserAccountDirectory;
 import Business.UserAccount.UserAccount;
 import Business.DB4OUtil.DB4OUtil;
-import Business.Request.RequestID;
+import Business.Request.Request;
 import Business.Request.Requestor;
 import Business.Request.Status;
 import Business.Role.Role;
+import DBConnect.Server.FetchFromServer;
 import java.util.Date;
 import java.util.Random;
 
@@ -43,61 +44,10 @@ public class MainFrame1 extends javax.swing.JFrame {
         
         initComponents();
         system = dB4OUtil.retrieveSystem();
+                FetchFromServer.FetchRequestAndStore(system);
+           (new FetchPastRequest()).FetchRequestAndStore(system);
         this.setSize(1680, 1050);
-          RequestID request=new RequestID();
-        request.setRequestID(1);
-        Date date= new Date();
-	 long time = date.getTime();
-        request.setRequestNo(time+"");
-        Status status=new Status(1,"Unknown");
-        Requestor requestor=new Requestor(1,"Rohit","rohit.jain058@gmail.com");
-        request.setStatus(status);
-        request.setRequestor(requestor);
-          RequestID request1=new RequestID();
-        request1.setRequestID(1);
-        Date date1= new Date();
-	 long time1 = date1.getTime();
-        request1.setRequestNo(time1+"");
-        Status status1=new Status(1,"Known");
-        Requestor requestor1=new Requestor(1,"Vaibhav","vaibhav@husky.neu.edu");
-        request1.setStatus(status1);
-        request1.setRequestor(requestor1);
-for(Country country:system.getCountryList())
-{
-    for(State state:country.getStateDirectory().getStateList())
-    {
-        for(City city:state.getCityDirectory().getCityList())
-        {
-            if(!country.getRequestList().contains(request))
-            {
-        country.getRequestList().add(request);
         
-            }
-                        if(!state.getRequestList().contains(request))
-                        {
-        state.getRequestList().add(request);
-                        }
-                                    if(!city.getRequestList().contains(request))
-                                    {
-        city.getRequestList().add(request);
-                                    }
-      if(!country.getRequestList().contains(request1))
-            {
-        country.getRequestList().add(request1);
-        
-            }
-                        if(!state.getRequestList().contains(request1))
-                        {
-        state.getRequestList().add(request1);
-                        }
-                                    if(!city.getRequestList().contains(request1))
-                                    {
-        city.getRequestList().add(request1);
-                                    }
-  
-        }
-    }
-}
 
     }
 
@@ -210,6 +160,7 @@ for(Country country:system.getCountryList())
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
         // Get user name
+     // Get user name
      //  ConfigureASystem.configure();
         String userName = UserNameTextField.getText();
         // Get Password
@@ -233,33 +184,33 @@ for(Country country:system.getCountryList())
             //Step 2: Go inside each network and check each enterprise
             for(Country country:system.getCountryList()){
                 userAccount=country.getUserAccountDirectory().authenticateUser(userName, password);
-                inCountry=country;
-         RequestID request=new RequestID();
-        request.setRequestID(1);
-        Date date= new Date();
-
-	 long time = date.getTime();
-        request.setRequestNo(time+"");
-        Status status=new Status(1,"Unknown");
-        Requestor requestor=new Requestor(1,"Rohit","rohit.jain058@gmail.com");
-        request.setStatus(status);
-        request.setRequestor(requestor);
-        country.getRequestList().add(request);
+                
+        // Request request=new Request();
+//        request.setRequestID(1);
+//        Date date= new Date();
+//
+//	 long time = date.getTime();
+//        request.setRequestNo(time+"");
+//        Status status=new Status(1,"Unknown");
+//        Requestor requestor=new Requestor(1,"Rohit","rohit.jain058@gmail.com");
+//        request.setStatus(status);
+//        request.setRequestor(requestor);
+       // country.getRequestList().add(request);
         if(userAccount==null)
                 {
                     
                 //Step 2.a: check against each enterprise
                 for(State state:country.getStateDirectory().getStateList()){
                     userAccount=state.getUserAccountDirectory().authenticateUser(userName, password);
-                    inState=state;
-                            country.getRequestList().add(request);
+                    
+                        //    country.getRequestList().add(request);
                     if(userAccount==null){
                        //Step 3:check against each organization for each enterprise
                        for(City city:state.getCityDirectory().getCityList()){
                            userAccount=city.getUserAccountDirectory().authenticateUser(userName, password);
                            if(userAccount!=null){
-                               //inState=state;
-                                       city.getRequestList().add(request);
+                               inState=state;
+                                    //   city.getRequestList().add(request);
                                inCity=city;
                                break;
                            }
@@ -280,6 +231,7 @@ for(Country country:system.getCountryList())
             }
             else
                 {
+                    inCountry=country;
                     break;
                 }
             }

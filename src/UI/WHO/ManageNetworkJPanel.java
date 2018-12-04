@@ -147,6 +147,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         if(nameJTextField.getText().equals(""))
             JOptionPane.showMessageDialog(this, "Please enter a value");
+        else
         {
         String name = nameJTextField.getText();
 

@@ -12,8 +12,10 @@ import Business.UserAccount.UserAccount;
 import Business.City.City;
 import Business.Country.CountryDirectory;
 import Business.Employee.EmployeeDirectory;
+import Business.Request.Request;
 import Business.Role.AdminRole;
 import Business.UserAccount.UserAccountDirectory;
+import java.util.HashMap;
 
 /**
  *
@@ -21,10 +23,27 @@ import Business.UserAccount.UserAccountDirectory;
  */
 public class WHO {
     private static WHO business;
-    private UserAccountDirectory userAccountDirectory;
-    private EmployeeDirectory employeeDirectory;    
+    private static UserAccountDirectory userAccountDirectory;
+    private static EmployeeDirectory employeeDirectory;    
     private CountryDirectory countryDirectory;
-    private static int lastFetchedID=0;
+    private HashMap<Integer,Request> requestList;
+
+    public HashMap<Integer, Request> getRequestList() {
+        return requestList;
+    }
+
+    public void setRequestList(HashMap<Integer, Request> requestList) {
+        this.requestList = requestList;
+    }
+    private int lastFetchedID;
+
+    public int getLastFetchedID() {
+        return lastFetchedID;
+    }
+
+    public void setLastFetchedID(int lastFetchedID) {
+        this.lastFetchedID = lastFetchedID;
+    }
     public CountryDirectory getCountryDirectory() {
         return countryDirectory;
     }
@@ -51,11 +70,12 @@ public class WHO {
    
     
     public static WHO getInstance(){
-    // business=new WHO() ;
+    // business=new WHO();
         if(business==null){
             business=new WHO();
-  
+            
         }
+        //this.lastFetchedID=0;
         return business;
     }
 
@@ -76,6 +96,7 @@ public class WHO {
       countryDirectory=new CountryDirectory();
             employeeDirectory=new EmployeeDirectory();
            userAccountDirectory=new UserAccountDirectory();
+           requestList=new HashMap<>();
     }
 
     public ArrayList<Country> getCountryList() {

@@ -7,7 +7,7 @@ package UI.ManageCityPanel;
 
 import Business.City.City;
 import Business.Country.Country;
-import Business.Request.RequestID;
+import Business.Request.Request;
 import Business.Request.Requestor;
 import Business.Request.Status;
 import Business.State.State;
@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import java.util.HashMap;
 
 /**
  *
@@ -30,7 +31,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AuditorCityJPanel
      */
-    ArrayList<RequestID> requestList;
+    HashMap<Integer,Request> requestList;
     
     UserAccount userAccount;
     JPanel userProcessContainer;
@@ -205,7 +206,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
 
          if(!(newRequestJTable.getSelectedRow()<0)  )
         {
-            RequestID requestID = (RequestID) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
+            Request requestID = (Request) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
            // AuditorCityRequestViewJPanel mcvjp = new AuditorCityRequestViewJPanel(userProcessContainer, requestID);
             //userProcessContainer.add(mcvjp);
             //CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -225,7 +226,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(!(newRequestJTable1.getSelectedRow()<0)  )
         {
-            RequestID requestID = (RequestID) newRequestJTable1.getValueAt(newRequestJTable1.getSelectedRow(), 0);
+            Request requestID = (Request) newRequestJTable1.getValueAt(newRequestJTable1.getSelectedRow(), 0);
             AuditorCityRequestViewJPanel mcvjp = new AuditorCityRequestViewJPanel(userProcessContainer, requestID);
             userProcessContainer.add(mcvjp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -259,7 +260,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         
         model1.setRowCount(0);
         
-        for (RequestID request : requestList){
+        for (Request request : requestList.values()){
             if(request.getStatus().getStatusId()==2)
             {
 

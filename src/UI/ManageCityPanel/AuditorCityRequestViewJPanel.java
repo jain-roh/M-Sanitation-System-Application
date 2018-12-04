@@ -5,7 +5,7 @@
  */
 package UI.ManageCityPanel;
 
-import Business.Request.RequestID;
+import Business.Request.Request;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -20,8 +20,8 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
      * Creates new form AuditorCityRequestViewJPanel
      */
     JPanel userProcessContainer;
-    RequestID request;
-    public AuditorCityRequestViewJPanel(JPanel userProcessContainer,RequestID request) {
+    Request request;
+    public AuditorCityRequestViewJPanel(JPanel userProcessContainer,Request request) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.request=request;
