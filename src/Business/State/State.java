@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import Business.City.CityDirectory;
 import Business.City.City;
 import Business.Employee.EmployeeDirectory;
-import Business.Request.RequestID;
+import Business.Request.Request;
 import Business.UserAccount.UserAccountDirectory;
+import java.util.HashMap;
 
 /**
  *
@@ -20,7 +21,7 @@ public  class State {
     
     private int stateID;
     private String stateName;
-    private ArrayList<RequestID> requestList;
+   private HashMap<Integer,Request> requestList;
     private ArrayList<City> city;
     private DepartmentType departmentType;
     private CityDirectory cityDirectory;
@@ -31,14 +32,18 @@ public  class State {
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         cityDirectory = new CityDirectory();
-         requestList=new ArrayList<RequestID>();
+         requestList=new HashMap<Integer,Request>();
+    }
+    public State(String state)
+    {
+        this.stateName=state;
     }
 
-    public ArrayList<RequestID> getRequestList() {
+    public HashMap<Integer,Request> getRequestList() {
         return requestList;
     }
 
-    public void setRequestList(ArrayList<RequestID> requestList) {
+    public void setRequestList(HashMap<Integer,Request> requestList) {
         this.requestList = requestList;
     }
 

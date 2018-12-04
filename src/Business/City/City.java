@@ -5,12 +5,13 @@
  */
 package Business.City;
 import Business.Employee.EmployeeDirectory;
-import Business.Request.RequestID;
+import Business.Request.Request;
 import Business.Role.Role;
 import Business.State.StateDirectory;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class City {
   private String CityName;
   private int CityID;
-  private ArrayList<RequestID> requestList;
+  private HashMap<Integer,Request> requestList;
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
@@ -30,14 +31,14 @@ public class City {
     {
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();  
-         requestList=new ArrayList<RequestID>();
+         requestList=new HashMap<Integer,Request>();
     }
 
-    public ArrayList<RequestID> getRequestList() {
+    public HashMap<Integer,Request> getRequestList() {
         return requestList;
     }
 
-    public void setRequestList(ArrayList<RequestID> requestList) {
+    public void setRequestList(HashMap<Integer,Request> requestList) {
         this.requestList = requestList;
     }
 

@@ -7,15 +7,12 @@ package UI.ManageCityPanel;
 
 import Business.City.City;
 import Business.Country.Country;
-import Business.Request.RequestID;
-import Business.Request.Requestor;
-import Business.Request.Status;
+import Business.Request.Request;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
 import Business.WHO;
 import java.awt.CardLayout;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.HashMap;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,8 +25,8 @@ public class ManageCityJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageCityJPanel
      */
-    ArrayList<RequestID> requestList;
-    ArrayList<RequestID> requestList1;
+    HashMap<Integer,Request> requestList;
+ //   ArrayList<Request> requestList1;
     JPanel userProcessContainer;
     public ManageCityJPanel(JPanel userProcessContainer, UserAccount account,City city, 
             State state,
@@ -69,8 +66,8 @@ protected void populatNewRequestTable()
         
         model1.setRowCount(0);
         
-        for (RequestID request : requestList){
-            if(request.getStatus().getStatusId()==1 || request.getStatus().getStatusId()==4 || request.getStatus().getStatusId()==6)
+        for (Request request : requestList.values()){
+            if(request.getStatus().getStatusId()==0 || request.getStatus().getStatusId()==1 || request.getStatus().getStatusId()==4 || request.getStatus().getStatusId()==6)
             {
 
             Object[] row = new Object[4];
@@ -108,12 +105,12 @@ protected void populatNewRequestTable()
 
         jPanel1 = new javax.swing.JPanel();
         viewRequest = new javax.swing.JButton();
-        backJButton = new javax.swing.JButton();
-        acceptRequest = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         newRequestJTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         newRequestJTable1 = new javax.swing.JTable();
+        acceptRequest = new javax.swing.JButton();
+        backJButton = new javax.swing.JButton();
 
         viewRequest.setText("View Request");
         viewRequest.addActionListener(new java.awt.event.ActionListener() {
@@ -122,44 +119,20 @@ protected void populatNewRequestTable()
             }
         });
 
-        backJButton.setText("<< Back");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
-
-        acceptRequest.setText("Accept");
-        acceptRequest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acceptRequestActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(backJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(viewRequest)
                 .addGap(175, 175, 175))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(acceptRequest)
-                .addGap(249, 249, 249))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(acceptRequest)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewRequest)
-                    .addComponent(backJButton))
+                .addContainerGap(302, Short.MAX_VALUE)
+                .addComponent(viewRequest)
                 .addGap(48, 48, 48))
         );
 
@@ -219,22 +192,43 @@ protected void populatNewRequestTable()
         });
         jScrollPane2.setViewportView(newRequestJTable1);
 
+        acceptRequest.setText("Accept");
+        acceptRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptRequestActionPerformed(evt);
+            }
+        });
+
+        backJButton.setText("<< Back");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(289, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(acceptRequest)
+                        .addGap(143, 143, 143)
+                        .addComponent(backJButton)))
+                .addContainerGap(289, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 78, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 78, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(520, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(78, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,12 +237,16 @@ protected void populatNewRequestTable()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(acceptRequest)
+                    .addComponent(backJButton))
+                .addContainerGap(100, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(22, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(23, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -256,7 +254,7 @@ protected void populatNewRequestTable()
 
  if(!(newRequestJTable1.getSelectedRow()<0))
         {
-            RequestID requestID1 = (RequestID) newRequestJTable1.getValueAt(newRequestJTable1.getSelectedRow(), 0);
+            Request requestID1 = (Request) newRequestJTable1.getValueAt(newRequestJTable1.getSelectedRow(), 0);
             ManagerCityRequestViewJPanel mcvjp1 = new ManagerCityRequestViewJPanel(userProcessContainer, requestID1);
             userProcessContainer.add(mcvjp1);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -266,7 +264,7 @@ protected void populatNewRequestTable()
 
     }//GEN-LAST:event_viewRequestActionPerformed
 
-    public void AcceptRequest(RequestID requestID)
+    public void AcceptRequest(Request requestID)
     {
          
         
@@ -286,7 +284,7 @@ protected void populatNewRequestTable()
         // TODO add your handling code here:
           if(!(newRequestJTable.getSelectedRow()<0)  )
         {
-            RequestID requestID = (RequestID) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
+            Request requestID = (Request) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
 //            AuditorCityRequestViewJPanel mcvjp = new AuditorCityRequestViewJPanel(userProcessContainer, requestID);
 //            userProcessContainer.add(mcvjp);
 //            CardLayout layout = (CardLayout) userProcessContainer.getLayout();

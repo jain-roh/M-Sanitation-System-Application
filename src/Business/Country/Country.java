@@ -6,11 +6,13 @@
 package Business.Country;
 
 import Business.Employee.EmployeeDirectory;
-import Business.Request.RequestID;
+import Business.Request.Request;
 import Business.State.StateDirectory;
 import Business.Role.CountryAdminRole;
 import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -21,12 +23,13 @@ public class Country {
 private int CountryID;
 private int  CountryCode;
 
-private ArrayList<RequestID> requestList;
+
 private String CountryName;
 private StateDirectory stateDirectory;
 private CountryAdminRole countryAdmin;
 private UserAccountDirectory userAccountDirectory;
 private EmployeeDirectory employeeDirectory;
+private HashMap<Integer,Request> requestList;
 
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
@@ -46,18 +49,22 @@ public Country(){
         stateDirectory=new StateDirectory();
         userAccountDirectory=new UserAccountDirectory();
         employeeDirectory=new EmployeeDirectory();
-        requestList=new ArrayList<RequestID>();
+        requestList=new HashMap<>();
     } 
+public Country(String CountryName)
+{
+    this.CountryName=CountryName;
+}
 
     public int getCountryID() {
         return CountryID;
     }
 
-    public ArrayList<RequestID> getRequestList() {
+    public HashMap<Integer,Request> getRequestList() {
         return requestList;
     }
 
-    public void setRequestList(ArrayList<RequestID> requestList) {
+    public void setRequestList(HashMap<Integer,Request> requestList) {
         this.requestList = requestList;
     }
 
