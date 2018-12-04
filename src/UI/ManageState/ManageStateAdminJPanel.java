@@ -50,9 +50,10 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
         
         for (City city : state.getCityDirectory().getCityList()) {
                 for (UserAccount userAccount : city.getUserAccountDirectory().getUserAccountList()) {
-                    Object[] row = new Object[2];
+                    Object[] row = new Object[3];
                     row[0] = city.getCityName();
                     row[1] = userAccount.getUsername();
+                    row[2] = userAccount.getRole();
                     model.addRow(row);
                 }
             
@@ -101,17 +102,17 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
 
         cityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "City", "Username"
+                "City", "Username", "Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -157,7 +158,7 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(countryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

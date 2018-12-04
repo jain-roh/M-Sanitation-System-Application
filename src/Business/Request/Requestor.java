@@ -13,6 +13,15 @@ public class Requestor {
 private int requestorId;
     private String requestorName;
     private String requestorEmail;
+    private String requestorPhoneNumber;
+
+    public String getRequestorPhoneNumber() {
+        return requestorPhoneNumber;
+    }
+
+    public void setRequestorPhoneNumber(String requestorPhoneNumber) {
+        this.requestorPhoneNumber = requestorPhoneNumber;
+    }
 
     public Requestor(int requestorID,String requestorName,String requestorEmail)
     {

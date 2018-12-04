@@ -54,6 +54,11 @@ public Country(){
 public Country(String CountryName)
 {
     this.CountryName=CountryName;
+        stateDirectory=new StateDirectory();
+        userAccountDirectory=new UserAccountDirectory();
+        employeeDirectory=new EmployeeDirectory();
+        requestList=new HashMap<>();
+
 }
 
     public int getCountryID() {
