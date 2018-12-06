@@ -17,6 +17,7 @@ import Business.State.State;
 import Business.UserAccount.UserAccount;
 import Business.WHO;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -82,7 +83,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         countryTextField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        addStateJLabel = new javax.swing.JLabel();
         addStateTextField = new javax.swing.JTextField();
         AddButton = new javax.swing.JButton();
         stateComboBox = new javax.swing.JComboBox();
@@ -107,8 +108,8 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        jLabel2.setText("Add State :");
+        addStateJLabel.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        addStateJLabel.setText("Add State :");
 
         AddButton.setText("Add State");
         AddButton.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +157,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
                                     .addComponent(stateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(65, 65, 65))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
+                                    .addComponent(addStateJLabel)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(addStateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 267, Short.MAX_VALUE)))
@@ -177,7 +178,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(81, 81, 81)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(addStateJLabel)
                     .addComponent(addStateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(AddButton)
@@ -225,14 +226,18 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
        
   
         if(addStateTextField.getText().equals("") )
-          JOptionPane.showMessageDialog(this,"Please enter a value");
-        else
+        {  
+            JOptionPane.showMessageDialog(this,"Please enter a value for state");
+            addStateJLabel.setForeground(Color.red);
+        }
+            else
         {
              State state = new State();
             state.setStateName(addStateTextField.getText());
         
             country.getStateDirectory().getStateList().add(state);    
             populateState();
+            addStateTextField.setText("");
         }   
         
         
@@ -265,10 +270,10 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;
     private javax.swing.JButton AddStateAdmin;
+    private javax.swing.JLabel addStateJLabel;
     private javax.swing.JTextField addStateTextField;
     private javax.swing.JTextField countryTextField;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

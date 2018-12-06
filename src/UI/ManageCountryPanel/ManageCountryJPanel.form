@@ -84,7 +84,7 @@
                                       <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" attributes="0">
-                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="addStateJLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="addStateTextField" min="-2" pref="129" max="-2" attributes="0"/>
                                   </Group>
@@ -115,7 +115,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="addStateJLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="addStateTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
@@ -149,7 +149,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="countryTextFieldActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="addStateJLabel">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Black" size="16" style="0"/>

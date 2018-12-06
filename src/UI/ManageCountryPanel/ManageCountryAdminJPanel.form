@@ -53,9 +53,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jLabel3" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="0" pref="190" max="32767" attributes="0"/>
-                  <Component id="jLabel2" alignment="0" max="32767" attributes="0"/>
+                  <Component id="stateAdminUserIdJLabel" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                  <Component id="stateAdminPwdLabel" alignment="0" pref="190" max="32767" attributes="0"/>
+                  <Component id="stateAdminNameJLabel" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -87,17 +87,17 @@
               <Component id="jScrollPane1" min="-2" pref="95" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stateAdminNameJLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="stateAdminTextBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stateAdminUserIdJLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="StateAdminUserID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="stateAdminPwdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="stateAdminPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
@@ -128,7 +128,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="StateAdminUserID">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="stateAdminPwdLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Black" size="14" style="0"/>
@@ -136,7 +136,7 @@
         <Property name="text" type="java.lang.String" value="State Admin Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="stateAdminNameJLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Black" size="14" style="1"/>
@@ -144,7 +144,7 @@
         <Property name="text" type="java.lang.String" value="State Admin Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="stateAdminUserIdJLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Black" size="14" style="0"/>

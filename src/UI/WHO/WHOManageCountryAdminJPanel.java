@@ -278,7 +278,10 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
         
         UserAccount account = country.getUserAccountDirectory().createUserAccount(username, password, employee, new CountryAdminRole());
         populateTable();
-        JOptionPane.showMessageDialog(this, "User succesfully created"); 
+        JOptionPane.showMessageDialog(this, "User succesfully created");
+        usernameJTextField.setText("");
+        passwordJPasswordField.setText("");
+        nameJTextField.setText("");
         }
     }//GEN-LAST:event_submitJButtonActionPerformed
 

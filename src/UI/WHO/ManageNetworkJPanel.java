@@ -178,7 +178,8 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         Country country = who.createAndAddCountry();
         country.setCountryName(name);
-
+        nameJTextField.setText("");
+        
         populateNetworkTable();
         }
     }//GEN-LAST:event_submitJButtonActionPerformed

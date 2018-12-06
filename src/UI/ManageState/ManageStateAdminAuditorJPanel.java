@@ -16,6 +16,8 @@ import Business.Role.ManagerRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -72,9 +74,9 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
         backJButton = new javax.swing.JButton();
         cityAuditorTextBox = new javax.swing.JTextField();
         cityAuditorUserID = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        cityAuditorPasswordJLabel = new javax.swing.JLabel();
+        cityAuditorNameJLabel = new javax.swing.JLabel();
+        cityAuditoruserIdJLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         cityJTable = new javax.swing.JTable();
         cityAuditorPasswordField = new javax.swing.JPasswordField();
@@ -98,14 +100,14 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        jLabel1.setText("City Auditor Password");
+        cityAuditorPasswordJLabel.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        cityAuditorPasswordJLabel.setText("City Auditor Password");
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        jLabel2.setText("City Auditor Name");
+        cityAuditorNameJLabel.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        cityAuditorNameJLabel.setText("City Auditor Name");
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        jLabel3.setText("City Auditor User Id");
+        cityAuditoruserIdJLabel.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        cityAuditoruserIdJLabel.setText("City Auditor User Id");
 
         cityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -178,9 +180,9 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                    .addComponent(cityAuditoruserIdJLabel)
+                    .addComponent(cityAuditorNameJLabel)
+                    .addComponent(cityAuditorPasswordJLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AddCityAuditorjButton)
@@ -215,16 +217,16 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(cityAuditorNameJLabel)
                     .addComponent(cityAuditorTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(cityAuditoruserIdJLabel)
                     .addComponent(cityAuditorUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel1))
+                        .addComponent(cityAuditorPasswordJLabel))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cityAuditorPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -246,27 +248,47 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
     private void AddCityAuditorjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCityAuditorjButtonActionPerformed
         // TODO add your handling code here:
         
+        if(cityAuditorTextBox.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter a value for city auditor's name");
+            cityAuditorNameJLabel.setForeground(Color.red);
+        }
+        
+        else if(cityAuditorUserID.getText().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter a value for city user id");
+            cityAuditoruserIdJLabel.setForeground(Color.red);
+        }
+        
+        else if(cityAuditorPasswordField.getPassword().equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "Please enter a value for city admin's password");
+            cityAuditorPasswordJLabel.setForeground(Color.red);
+        }
+        
+        else
+        {
         String username =  cityAuditorUserID.getText();
         String password = String.valueOf(cityAuditorPasswordField.getPassword());
         String name = cityAuditorTextBox.getText();
         Employee employee = city.getEmployeeDirectory().createEmployee(name);
         UserAccount account = city.getUserAccountDirectory().createUserAccount(username, password, employee, new AuditorRole());
         populateTable();
-     
+        }
     }//GEN-LAST:event_AddCityAuditorjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCityAuditorjButton;
     private javax.swing.JButton backJButton;
+    private javax.swing.JLabel cityAuditorNameJLabel;
     private javax.swing.JPasswordField cityAuditorPasswordField;
+    private javax.swing.JLabel cityAuditorPasswordJLabel;
     private javax.swing.JTextField cityAuditorTextBox;
     private javax.swing.JTextField cityAuditorUserID;
+    private javax.swing.JLabel cityAuditoruserIdJLabel;
     private javax.swing.JTable cityJTable;
     private javax.swing.JTextField countryTextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
