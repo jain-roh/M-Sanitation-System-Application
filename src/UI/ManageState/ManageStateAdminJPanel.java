@@ -15,6 +15,7 @@ import Business.Role.ManagerRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -72,9 +73,9 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
         backJButton = new javax.swing.JButton();
         cityAdminTextBox = new javax.swing.JTextField();
         cityAdminUserID = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        cityAdminPasswordjLabel = new javax.swing.JLabel();
+        cityAdminNamejLabel = new javax.swing.JLabel();
+        cityAdminUserIdjLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         cityJTable = new javax.swing.JTable();
         cityAdminPasswordField = new javax.swing.JPasswordField();
@@ -98,14 +99,14 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        jLabel1.setText("City Admin Password");
+        cityAdminPasswordjLabel.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        cityAdminPasswordjLabel.setText("City Admin Password");
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        jLabel2.setText("City Admin Name");
+        cityAdminNamejLabel.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        cityAdminNamejLabel.setText("City Admin Name");
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        jLabel3.setText("City Admin User Id");
+        cityAdminUserIdjLabel.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        cityAdminUserIdjLabel.setText("City Admin User Id");
 
         cityJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -187,9 +188,9 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(cityAdminUserIdjLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cityAdminNamejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cityAdminPasswordjLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AddCityAdminjButton)
@@ -217,15 +218,15 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cityAdminTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(cityAdminNamejLabel))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cityAdminUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(cityAdminUserIdjLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cityAdminPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(cityAdminPasswordjLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(AddCityAdminjButton)
                 .addGap(31, 31, 31)
@@ -244,13 +245,22 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
     private void AddCityAdminjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCityAdminjButtonActionPerformed
         // TODO add your handling code here:
         
-        if(cityAdminUserID.getText().equals(""))
-            JOptionPane.showMessageDialog(this, "Please enter city admin's user id");
-        else  if(String.valueOf(cityAdminPasswordField.getPassword()).equals(""))
-            JOptionPane.showMessageDialog(this, "Please enter city admin's password");
-        
-        else  if(cityAdminTextBox.getText().equals(""))
+        if(cityAdminTextBox.getText().equals(""))
+        {
             JOptionPane.showMessageDialog(this, "Please enter city admin's name");
+            cityAdminNamejLabel.setForeground(Color.red);
+        }
+        else if(cityAdminUserID.getText().equals(""))
+        { 
+            JOptionPane.showMessageDialog(this, "Please enter city admin's user id");
+            cityAdminUserIdjLabel.setForeground(Color.red);
+        }
+        else  if(String.valueOf(cityAdminPasswordField.getPassword()).equals(""))
+            {    
+                JOptionPane.showMessageDialog(this, "Please enter city admin's password");
+                cityAdminPasswordjLabel.setForeground(Color.red);
+            }    
+        
         
         else
         {
@@ -261,6 +271,10 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
         UserAccount account = city.getUserAccountDirectory().createUserAccount(username, password, employee, new ManagerRole());
         populateTable();
         JOptionPane.showMessageDialog(this, "City Admin successfully created");
+        
+        cityAdminTextBox.setText("");
+        cityAdminPasswordField.setText("");
+        cityAdminUserID.setText("");
         }
     }//GEN-LAST:event_AddCityAdminjButtonActionPerformed
 
@@ -268,14 +282,14 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCityAdminjButton;
     private javax.swing.JButton backJButton;
+    private javax.swing.JLabel cityAdminNamejLabel;
     private javax.swing.JPasswordField cityAdminPasswordField;
+    private javax.swing.JLabel cityAdminPasswordjLabel;
     private javax.swing.JTextField cityAdminTextBox;
     private javax.swing.JTextField cityAdminUserID;
+    private javax.swing.JLabel cityAdminUserIdjLabel;
     private javax.swing.JTable cityJTable;
     private javax.swing.JTextField countryTextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

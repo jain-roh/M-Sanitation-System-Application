@@ -51,9 +51,9 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityAuditoruserIdJLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityAuditorNameJLabel" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityAuditorPasswordJLabel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -96,18 +96,18 @@
               <Component id="jScrollPane1" min="-2" pref="95" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityAuditorNameJLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cityAuditorTextBox" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cityAuditoruserIdJLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cityAuditorUserID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="cityAuditorPasswordJLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -142,7 +142,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="cityAuditorUserID">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="cityAuditorPasswordJLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Black" size="16" style="0"/>
@@ -150,7 +150,7 @@
         <Property name="text" type="java.lang.String" value="City Auditor Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="cityAuditorNameJLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Black" size="16" style="0"/>
@@ -158,7 +158,7 @@
         <Property name="text" type="java.lang.String" value="City Auditor Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="cityAuditoruserIdJLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial Black" size="16" style="0"/>
