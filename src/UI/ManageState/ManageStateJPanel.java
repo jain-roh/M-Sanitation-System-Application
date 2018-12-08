@@ -99,6 +99,8 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         AddCityAuditor = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        viewRequest = new javax.swing.JButton();
+        updateRequest = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
@@ -165,6 +167,15 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel7.setText("City List :");
 
+        viewRequest.setText("View Requests");
+
+        updateRequest.setText("Update request");
+        updateRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateRequestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -200,9 +211,13 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(AddCityManager)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddCityManager)
+                    .addComponent(viewRequest))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AddCityAuditor)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AddCityAuditor)
+                    .addComponent(updateRequest))
                 .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
@@ -232,7 +247,14 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddCityManager)
                     .addComponent(AddCityAuditor))
-                .addGap(112, 112, 112))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(viewRequest))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(updateRequest)))
+                .addGap(56, 56, 56))
         );
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
@@ -324,6 +346,21 @@ public class ManageStateJPanel extends javax.swing.JPanel {
 
         
     }//GEN-LAST:event_AddCityAuditorActionPerformed
+
+    private void updateRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRequestActionPerformed
+        // TODO add your handling code here:
+        for(Request request:state.getRequestList().values())
+        {
+                for(City city:state.getCityDirectory().getCityList())
+                {
+                    if(request.getCity().getCityName().equalsIgnoreCase(city.getCityName()) && 
+                            (!city.getRequestList().containsKey(request.getRequestID())))
+                    {
+                        city.getRequestList().put(request.getCityID(), request);
+                    }
+                }
+        }    
+    }//GEN-LAST:event_updateRequestActionPerformed
    private void populateCity()
    {
        cityComboBox.removeAllItems();
@@ -350,5 +387,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField stateTextField;
+    private javax.swing.JButton updateRequest;
+    private javax.swing.JButton viewRequest;
     // End of variables declaration//GEN-END:variables
 }
