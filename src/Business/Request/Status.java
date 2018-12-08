@@ -71,7 +71,11 @@ private int statusId;
                else if(this.statusId==9)
         {
             return "Lavatory Built";
-        }        
+        } 
+               else if(this.statusId==0)
+               {
+                   return "New Request";
+               }
         return "";
                 
     }

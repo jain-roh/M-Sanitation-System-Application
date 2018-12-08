@@ -5,15 +5,15 @@
  */
 package Business;
 
+import Business.City.City;
 import java.util.ArrayList;
 import Business.Country.Country;
 import Business.Role.Role;
-import Business.UserAccount.UserAccount;
-import Business.City.City;
 import Business.Country.CountryDirectory;
 import Business.Employee.EmployeeDirectory;
 import Business.Request.Request;
 import Business.Role.AdminRole;
+import Business.State.State;
 import Business.UserAccount.UserAccountDirectory;
 import java.util.HashMap;
 
@@ -109,14 +109,26 @@ public class WHO {
     
     //List Not needed as we are working with DB
     public boolean checkIfUserIsUnique(String userName){
-//        if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
-//            return false;
-//        }
-//        for(Country country:countryList){
-//            
-//        }
-//        return true;
+        if(!this.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+            return false;
+        }
+        for(Country country:countryList){
+            if(!country.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+            return false;
+            }
+            for(State state:country.getStateDirectory().getStateList()){
+                if(!state.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+            return false;
+                }
+            for(City city:state.getCityDirectory().getCityList())
+                if(!state.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+            return false;
+                }
+                }
+            }
+        
         return true;
+        //return true;
     }
     
 }

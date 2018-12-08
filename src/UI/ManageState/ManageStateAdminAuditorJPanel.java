@@ -7,14 +7,12 @@ package UI.ManageState;
 
 
 import Business.City.City;
-import UI.ManageCountryPanel.*;
 import Business.Country.Country;
 import Business.Employee.Employee;
 import Business.Role.AuditorRole;
-import Business.Role.CountryAdminRole;
-import Business.Role.ManagerRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
+import Business.WHO;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -34,8 +32,8 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
     Country country;
     State state;
     City city;
-
-    public ManageStateAdminAuditorJPanel(JPanel userProcessContainer, State state, Country country, City city) {
+    private WHO who;
+    public ManageStateAdminAuditorJPanel(JPanel userProcessContainer, State state, Country country, City city,WHO who) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.state = state;    
@@ -43,6 +41,7 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
         this.city = city;
         countryTextField.setText(country.getCountryName());
         stateTextField.setText(state.getStateName());
+        this.who=who;
         populateTable();
     }
    
@@ -268,12 +267,21 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
         
         else
         {
+            
         String username =  cityAuditorUserID.getText();
+       //  String username =  cityAdminUserID.getText();
+         if(who.checkIfUserIsUnique(username))
+         {
         String password = String.valueOf(cityAuditorPasswordField.getPassword());
         String name = cityAuditorTextBox.getText();
         Employee employee = city.getEmployeeDirectory().createEmployee(name);
         UserAccount account = city.getUserAccountDirectory().createUserAccount(username, password, employee, new AuditorRole());
         populateTable();
+         }
+         else
+         {
+             JOptionPane.showMessageDialog(this, "Username already exist");
+         }
         }
     }//GEN-LAST:event_AddCityAuditorjButtonActionPerformed
 

@@ -7,13 +7,12 @@ package UI.ManageState;
 
 
 import Business.City.City;
-import UI.ManageCountryPanel.*;
 import Business.Country.Country;
 import Business.Employee.Employee;
-import Business.Role.CountryAdminRole;
 import Business.Role.ManagerRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
+import Business.WHO;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -33,13 +32,14 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
     Country country;
     State state;
     City city;
-
-    public ManageStateAdminJPanel(JPanel userProcessContainer, State state, Country country, City city) {
+    WHO who;
+    public ManageStateAdminJPanel(JPanel userProcessContainer, State state, Country country, City city,WHO who) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.state = state;    
         this.country = country;
         this.city = city;
+        this.who=who;
         countryTextField.setText(country.getCountryName());
         stateTextField.setText(state.getStateName());
         populateTable();
@@ -264,7 +264,10 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
         
         else
         {
+           
         String username =  cityAdminUserID.getText();
+         if(who.checkIfUserIsUnique(username))
+         {
         String password = String.valueOf(cityAdminPasswordField.getPassword());
         String name = cityAdminTextBox.getText();
         Employee employee = city.getEmployeeDirectory().createEmployee(name);
@@ -275,6 +278,11 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
         cityAdminTextBox.setText("");
         cityAdminPasswordField.setText("");
         cityAdminUserID.setText("");
+         }
+         else
+         {
+             JOptionPane.showMessageDialog(this, "Username already taken");
+         }
         }
     }//GEN-LAST:event_AddCityAdminjButtonActionPerformed
 

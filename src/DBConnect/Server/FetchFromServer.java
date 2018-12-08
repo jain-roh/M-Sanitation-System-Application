@@ -12,11 +12,12 @@ import Business.Request.Requestor;
 import Business.Request.Status;
 import Business.State.State;
 import Business.WHO;
-import Business.WorkQueue.WorkQueue;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.json.JSONArray;
 import org.json.JSONObject;
 //import org.json.JSONObject;
@@ -69,6 +70,9 @@ for(int i=0;i<myresponse.length();i++)
         String ZipCode=jObject.getString("ZipCode");
         String City=jObject.getString("City");
         int Status=jObject.getInt("Status");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+        Date reqDate=simpleDateFormat.parse(jObject.getString("RequestDate"));
+        String mobileNumber=jObject.getString("RequestorMobile");
         boolean flag=false;
         Request request=new Request();
        request.setStatus(new Status(Status, "New  Request"));
@@ -77,7 +81,10 @@ for(int i=0;i<myresponse.length();i++)
         request.setLat(latitude);
         request.setLong(longitude);
         request.setRequestID(ID);
+        request.setDateTime(reqDate);
+        request.getRequestor().setRequestorPhoneNumber(mobileNumber);
         system.setLastFetchedID(ID);
+        
         for(Country country:system.getCountryList())
         {
             if(CountryName.equalsIgnoreCase(country.getCountryName()))
