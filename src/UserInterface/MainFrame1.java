@@ -34,7 +34,6 @@ public class MainFrame1 extends javax.swing.JFrame {
     public MainFrame1() {
         
         initComponents();
-       Logger.logDetails("MainFrame", "Contructor", "Check");
       
 //       JEditorPane editorPane = new JEditorPane();
 
@@ -49,7 +48,9 @@ public class MainFrame1 extends javax.swing.JFrame {
 //        
         
     this.setSize(1680, 1050);
-  //  this.setVisible(true);
+ Logger.logDetails("MainFrame", "Contructor", "Check");
+      
+    //  this.setVisible(true);
     //Thread.sleep(10000);
     system = dB4OUtil.retrieveSystem();
            FetchFromServer.FetchRequestAndStore(system);
@@ -180,6 +181,8 @@ public class MainFrame1 extends javax.swing.JFrame {
      //  ConfigureASystem.configure();
       
         String userName = UserNameTextField.getText();
+         Logger.logDetails("MainFrame", "Contructor", "Username : "+userName);
+      
         // Get Password
         char[] passwordCharArray = PasswordField.getPassword();
         String password = String.valueOf(passwordCharArray);
