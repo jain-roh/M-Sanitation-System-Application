@@ -5,9 +5,11 @@
  */
 package UI.ManageCityPanel;
 
+import Business.OpenLocation;
 import Business.Request.Request;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.net.URL;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -64,6 +66,8 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
         RequestorEmailTextBox = new javax.swing.JTextField();
         progressBar = new javax.swing.JProgressBar();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        viewLocation = new javax.swing.JButton();
 
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +103,15 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
 
         jLabel6.setText("Status : ");
 
+        jLabel7.setText("View Location L");
+
+        viewLocation.setText("View Location");
+        viewLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewLocationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,16 +119,23 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(43, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(RequestorNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(94, 94, 94)
-                                .addComponent(RequestIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(94, 94, 94))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel7)
+                                        .addGap(101, 101, 101)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(RequestIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(viewLocation)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -154,7 +174,11 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
                         .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addComponent(jLabel6)))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(viewLocation))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(RequestIdTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,6 +234,19 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
         // TODO add your handling code here:
     }//GEN-LAST:event_RequestorEmailTextBoxActionPerformed
 
+    private void viewLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewLocationActionPerformed
+        // TODO add your handling code here:
+        try
+{
+    String url="https://www.google.com/maps/search/?api=1&query="+request.getLat()+","+request.getLong();
+     OpenLocation.openWebpage(new URL(url));
+}
+catch(Exception ex)
+{
+    System.out.print(ex.getMessage());
+}
+    }//GEN-LAST:event_viewLocationActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptButton;
@@ -225,7 +262,9 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JButton viewLocation;
     // End of variables declaration//GEN-END:variables
 }

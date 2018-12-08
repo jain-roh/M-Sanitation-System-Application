@@ -5,15 +5,9 @@
  */
 package UI.ManageState;
 
-import UI.ManageCountryPanel.*;
-import UI.ManageCityPanel.*;
-import UI.ManageCountryPanel.*;
 import Business.City.City;
 import Business.Country.Country;
 import Business.Request.Request;
-import Business.Request.Requestor;
-import Business.Request.Status;
-import Business.Role.CountryAdminRole;
 import Business.Role.StateAdminRole;
 import Business.State.*;
 import Business.UserAccount.UserAccount;
@@ -23,7 +17,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -39,10 +32,11 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     StateAdminRole stateAdminRole;
     private Country country;
     private State state;
+    private WHO who;
     public ManageStateJPanel(JPanel userProcessContainer, UserAccount account,City city, 
             State state,
             Country country,
-            WHO business) {
+            WHO who) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         requestList=new ArrayList<Request>();
@@ -51,6 +45,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         this.state=state;
         countryTextField.setText(country.getCountryName());
         stateTextField.setText(state.getStateName());
+        this.who=who;
         populateCity();
              
         /*RequestID request=new RequestID();
@@ -100,6 +95,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         updateRequest = new javax.swing.JButton();
+        viewReports = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
@@ -173,6 +169,13 @@ public class ManageStateJPanel extends javax.swing.JPanel {
             }
         });
 
+        viewReports.setText("View Reports");
+        viewReports.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReportsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -213,7 +216,9 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addComponent(AddCityAuditor)
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(71, 71, 71)
+                .addComponent(viewReports)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(updateRequest)
                 .addGap(48, 48, 48))
         );
@@ -241,12 +246,17 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                     .addComponent(cityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AddCityManager)
-                    .addComponent(AddCityAuditor))
-                .addGap(18, 18, 18)
-                .addComponent(updateRequest)
-                .addGap(65, 65, 65))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(AddCityManager)
+                            .addComponent(AddCityAuditor))
+                        .addGap(18, 18, 18)
+                        .addComponent(updateRequest)
+                        .addGap(65, 65, 65))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(viewReports)
+                        .addGap(38, 38, 38))))
         );
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
@@ -307,7 +317,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         if(cityComboBox.getSelectedItem()!=null)
         {
             City city = (City) cityComboBox.getSelectedItem();
-            ManageStateAdminJPanel msajp = new ManageStateAdminJPanel(userProcessContainer, state,country,city);
+            ManageStateAdminJPanel msajp = new ManageStateAdminJPanel(userProcessContainer, state,country,city,who);
             userProcessContainer.add("managestateadminjapanel",msajp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -327,7 +337,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         if(cityComboBox.getSelectedItem()!=null)
         {
             City city = (City) cityComboBox.getSelectedItem();
-            ManageStateAdminAuditorJPanel msajp = new ManageStateAdminAuditorJPanel(userProcessContainer, state,country,city);
+            ManageStateAdminAuditorJPanel msajp = new ManageStateAdminAuditorJPanel(userProcessContainer, state,country,city,who);
             userProcessContainer.add("managestateadminauditorjapanel",msajp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -358,6 +368,15 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_updateRequestActionPerformed
+
+    private void viewReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReportsActionPerformed
+        // TODO add your handling code here:
+        
+        ViewCityReport msajp = new ViewCityReport(userProcessContainer, state,country,null,who);
+            userProcessContainer.add("managestateadminauditorjapanel",msajp);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+    }//GEN-LAST:event_viewReportsActionPerformed
    private void populateCity()
    {
        cityComboBox.removeAllItems();
@@ -385,5 +404,6 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField stateTextField;
     private javax.swing.JButton updateRequest;
+    private javax.swing.JButton viewReports;
     // End of variables declaration//GEN-END:variables
 }

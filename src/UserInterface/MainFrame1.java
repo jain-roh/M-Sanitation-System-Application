@@ -15,8 +15,6 @@ import javax.swing.JPanel;
 import Business.UserAccount.UserAccount;
 import Business.DB4OUtil.DB4OUtil;
 import DBConnect.Server.FetchFromServer;
-import java.awt.Image;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -36,21 +34,28 @@ public class MainFrame1 extends javax.swing.JFrame {
     public MainFrame1() {
         
         initComponents();
-       
-//    JPanel loadingPanel = new JPanel();
-//  //  Image play = ImageIO.read(getClass().getResource("/images/play.png"));
-//    
-//    ImageIcon pic = new ImageIcon("icons/Loadingicon.gif");
-//    loadingPanel.add(new JLabel(pic));
-//    container.add(loadingPanel);
-//    this.pack();
+       Logger.logDetails("MainFrame", "Contructor", "Check");
+      
+//       JEditorPane editorPane = new JEditorPane();
+
+
+ 
+  //  Image play = ImageIO.read(getClass().getResource("/images/play.png"));
+    
+   
+    
+    
+    this.pack();
 //        
         
     this.setSize(1680, 1050);
   //  this.setVisible(true);
-        system = dB4OUtil.retrieveSystem();
-                FetchFromServer.FetchRequestAndStore(system);
+    //Thread.sleep(10000);
+    system = dB4OUtil.retrieveSystem();
+           FetchFromServer.FetchRequestAndStore(system);
            (new FetchPastRequest()).FetchRequestAndStore(system);
+           
+          
          //  SendEmail.sendMail();
         
     }
@@ -173,6 +178,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         // Get user name
      // Get user name
      //  ConfigureASystem.configure();
+      
         String userName = UserNameTextField.getText();
         // Get Password
         char[] passwordCharArray = PasswordField.getPassword();
@@ -265,10 +271,17 @@ public class MainFrame1 extends javax.swing.JFrame {
         LogoutButton.setEnabled(true);
         UserNameTextField.setEnabled(false);
         PasswordField.setEnabled(false);
+        
     }//GEN-LAST:event_LoginButtonActionPerformed
 
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
+       
+            ImageIcon pic = new ImageIcon("Icons/Loadingicon.gif");
+             JPanel loadingPanel = new JPanel();
+    loadingPanel.add(new JLabel(pic));
+    container.add(loadingPanel);
+  
         LogoutButton.setEnabled(false);
         UserNameTextField.setEnabled(true);
         PasswordField.setEnabled(true);
@@ -283,6 +296,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
         dB4OUtil.storeSystem(system);
+         container.remove(loadingPanel);
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
     /**

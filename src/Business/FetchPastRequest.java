@@ -37,12 +37,14 @@ public class FetchPastRequest {
                 {
                     if(request.getState().getStateName().equalsIgnoreCase(state.getStateName()))
                     {
-                state.getRequestList().put(request.getRequestID(), request);    
+                state.getRequestList().put(request.getRequestID(), request);
+                request.setState(state);
                 for(City city:state.getCityDirectory().getCityList())
                 {
                     if(request.getCity().getCityName().equalsIgnoreCase(city.getCityName()))
                     {
                         city.getRequestList().put(request.getRequestID(), request);
+                        request.setCity(city);
                         break;
                         
                     }
