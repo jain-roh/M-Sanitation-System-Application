@@ -5,27 +5,20 @@
  */
 package UserInterface;
 
-import Business.UserAccount.UserAccount;
-import UI.ManageCityPanel.ManageCityJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import Business.*;
 import Business.City.City;
-import Business.City.CityDirectory;
 import Business.State.State;
-import Business.Country.CountryDirectory;
 import Business.Country.Country;
 import javax.swing.JPanel;
-import Business.UserAccount.UserAccountDirectory;
 import Business.UserAccount.UserAccount;
 import Business.DB4OUtil.DB4OUtil;
-import Business.Request.Request;
-import Business.Request.Requestor;
-import Business.Request.Status;
-import Business.Role.Role;
 import DBConnect.Server.FetchFromServer;
-import java.util.Date;
-import java.util.Random;
+import java.awt.Image;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 
 
@@ -43,12 +36,23 @@ public class MainFrame1 extends javax.swing.JFrame {
     public MainFrame1() {
         
         initComponents();
+       
+//    JPanel loadingPanel = new JPanel();
+//  //  Image play = ImageIO.read(getClass().getResource("/images/play.png"));
+//    
+//    ImageIcon pic = new ImageIcon("icons/Loadingicon.gif");
+//    loadingPanel.add(new JLabel(pic));
+//    container.add(loadingPanel);
+//    this.pack();
+//        
+        
+    this.setSize(1680, 1050);
+  //  this.setVisible(true);
         system = dB4OUtil.retrieveSystem();
                 FetchFromServer.FetchRequestAndStore(system);
            (new FetchPastRequest()).FetchRequestAndStore(system);
-        this.setSize(1680, 1050);
+         //  SendEmail.sendMail();
         
-
     }
 
     /**
