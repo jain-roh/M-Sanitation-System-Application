@@ -12,18 +12,17 @@ import javax.mail.internet.*;
 import javax.activation.*;  
 
 
-
 /**
  *
  * @author rohitjain
  */
 public class SendEmail {
-    String to = "sonoojaiswal1988@gmail.com";//change accordingly  
-      String from = "sonoojaiswal1987@gmail.com";
-      String host = "localhost";
+    static String to = "rohit.jain058@gmail.com";//change accordingly  
+    static String from = "msanitation@who.com";
+    static String host = "localhost";
       
       
-      public void sendMail()
+      public static void sendMail()
       {
       Properties properties = System.getProperties();  
      properties.setProperty("mail.smtp.host", host);
@@ -46,7 +45,7 @@ catch(MessagingException mex)
 }
 catch(Exception ex)
 {
-    
+    System.out.println(ex.getMessage());
 }
       }
 }

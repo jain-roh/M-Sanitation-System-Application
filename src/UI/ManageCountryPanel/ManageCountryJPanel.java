@@ -263,6 +263,21 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_AddButtonActionPerformed
 
+    
+      private void updateRequest()
+    {
+      for(Request request:country.getRequestList().values())
+        {
+                for(State state:country.getStateDirectory().getStateList())
+                {
+                    if(request.getCity().getCityName().equalsIgnoreCase(state.getStateName()) && 
+                            (!state.getRequestList().containsKey(request.getRequestID())))
+                    {
+                        state.getRequestList().put(request.getRequestID(), request);
+                    }
+                }
+        }      
+    }
     private void AddStateAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddStateAdminActionPerformed
         // TODO add your handling code here:
         if(stateComboBox.getSelectedItem()!=null)
