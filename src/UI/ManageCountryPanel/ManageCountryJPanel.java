@@ -36,16 +36,25 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     CountryAdminRole countryAdminRole;
     private Country country;
+    UserAccount userAccount;
+    State state;
+    City city;
+    WHO business;
     public ManageCountryJPanel(JPanel userProcessContainer, UserAccount account,City city, 
             State state,
             Country country,
             WHO business) {
         initComponents();
+        
+        this.userAccount = account;
         this.userProcessContainer=userProcessContainer;
         requestList=new ArrayList<Request>();
         countryAdminRole=(CountryAdminRole)account.getRole();
         this.country = country;
         countryTextField.setText(country.getCountryName());
+        this.state = state;
+        this.city = city;
+        this.business = business;
           
         populateState();
              
@@ -90,6 +99,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         AddStateAdmin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        viewAllRequestsJButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(210, 215, 211));
@@ -133,6 +143,13 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel5.setText("State List");
 
+        viewAllRequestsJButton.setText("View All Requests");
+        viewAllRequestsJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewAllRequestsJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,7 +164,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(countryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(271, Short.MAX_VALUE)
+                        .addContainerGap(250, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(AddButton)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -159,8 +176,9 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(addStateJLabel)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(addStateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 267, Short.MAX_VALUE)))
+                                    .addComponent(addStateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(viewAllRequestsJButton))
+                        .addGap(0, 246, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -187,8 +205,10 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
                     .addComponent(stateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                .addComponent(AddStateAdmin)
-                .addGap(110, 110, 110))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddStateAdmin)
+                    .addComponent(viewAllRequestsJButton))
+                .addGap(108, 108, 108))
         );
 
         jLabel3.setBackground(new java.awt.Color(197, 239, 247));
@@ -248,7 +268,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         if(stateComboBox.getSelectedItem()!=null)
         {
             State state = (State) stateComboBox.getSelectedItem();
-            ManageCountryAdminJPanel mcajp = new ManageCountryAdminJPanel(userProcessContainer, state,country);
+            ManageCountryAdminJPanel mcajp = new ManageCountryAdminJPanel(userProcessContainer,state,country);
             userProcessContainer.add("managecountryadminjapanel",mcajp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -258,6 +278,16 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a state from the drop down");
 
     }//GEN-LAST:event_AddStateAdminActionPerformed
+
+    private void viewAllRequestsJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllRequestsJButtonActionPerformed
+        // TODO add your handling code here:
+            CountryAllRequestJPanel mcajp = new CountryAllRequestJPanel(userProcessContainer, userAccount,city,state,country,business);
+            userProcessContainer.add("countryAllRequestJPanel",mcajp);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        
+        
+    }//GEN-LAST:event_viewAllRequestsJButtonActionPerformed
    private void populateState()
    {
        stateComboBox.removeAllItems();
@@ -279,5 +309,6 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox stateComboBox;
+    private javax.swing.JButton viewAllRequestsJButton;
     // End of variables declaration//GEN-END:variables
 }
