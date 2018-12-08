@@ -283,7 +283,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         if(stateComboBox.getSelectedItem()!=null)
         {
             State state = (State) stateComboBox.getSelectedItem();
-            ManageCountryAdminJPanel mcajp = new ManageCountryAdminJPanel(userProcessContainer,state,country);
+            ManageCountryAdminJPanel mcajp = new ManageCountryAdminJPanel(userProcessContainer,state,country,business);
             userProcessContainer.add("managecountryadminjapanel",mcajp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

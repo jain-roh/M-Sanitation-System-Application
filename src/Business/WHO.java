@@ -121,7 +121,7 @@ public class WHO {
             return false;
                 }
             for(City city:state.getCityDirectory().getCityList())
-                if(!state.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
+                if(!city.getUserAccountDirectory().checkIfUsernameIsUnique(userName)){
             return false;
                 }
                 }

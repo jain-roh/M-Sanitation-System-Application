@@ -270,7 +270,10 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
         {
         Country country = (Country) countryJComboBox.getSelectedItem();
         
+        
         String username = usernameJTextField.getText();
+         if(who.checkIfUserIsUnique(username))
+         {     
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
         
@@ -283,6 +286,15 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
         passwordJPasswordField.setText("");
         nameJTextField.setText("");
         }
+           else
+         {
+             JOptionPane.showMessageDialog(this, "Username already taken");
+             usernameJTextField.setText("");
+             passwordJPasswordField.setText("");
+             nameJTextField.setText("");
+         }
+         
+        } 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

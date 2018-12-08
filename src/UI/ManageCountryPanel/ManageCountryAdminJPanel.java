@@ -12,6 +12,7 @@ import Business.Role.CountryAdminRole;
 import Business.Role.StateAdminRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
+import Business.WHO;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -29,10 +30,12 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Country country;
+    WHO who;
     State state;
 
-    public ManageCountryAdminJPanel(JPanel userProcessContainer, State state, Country country) {
+    public ManageCountryAdminJPanel(JPanel userProcessContainer, State state, Country country, WHO who) {
         initComponents();
+        this.who = who;
         this.userProcessContainer = userProcessContainer;
         this.state = state;    
         this.country = country;
@@ -246,6 +249,8 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
         else
         {    
         String username =  StateAdminUserID.getText();
+        if(who.checkIfUserIsUnique(username))
+        {    
         String password = String.valueOf(stateAdminPasswordField.getPassword());
         String name = stateAdminTextBox.getText();
         Employee employee = state.getEmployeeDirectory().createEmployee(name);
@@ -256,6 +261,15 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
         StateAdminUserID.setText("");
         stateAdminPasswordField.setText("");
         stateAdminTextBox.setText("");
+        }
+        
+         else
+         {
+             JOptionPane.showMessageDialog(this, "Username already taken");
+                 StateAdminUserID.setText("");
+                stateAdminPasswordField.setText("");
+                stateAdminTextBox.setText("");
+         }
         
         }
         
