@@ -33,6 +33,11 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     private Country country;
     private State state;
     private WHO who;
+    City city;
+    UserAccount userAccount;
+    WHO business;
+    
+    UserAccount account;
     public ManageStateJPanel(JPanel userProcessContainer, UserAccount account,City city, 
             State state,
             Country country,
@@ -96,6 +101,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         updateRequest = new javax.swing.JButton();
         viewReports = new javax.swing.JButton();
+        viewAllRequestsJButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
@@ -176,6 +182,13 @@ public class ManageStateJPanel extends javax.swing.JPanel {
             }
         });
 
+        viewAllRequestsJButton.setText("View All Requests");
+        viewAllRequestsJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewAllRequestsJButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -219,8 +232,10 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addGap(71, 71, 71)
                 .addComponent(viewReports)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(updateRequest)
-                .addGap(48, 48, 48))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(updateRequest)
+                    .addComponent(viewAllRequestsJButton))
+                .addGap(32, 32, 32))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +268,9 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                             .addComponent(AddCityAuditor))
                         .addGap(18, 18, 18)
                         .addComponent(updateRequest)
-                        .addGap(65, 65, 65))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(viewAllRequestsJButton)
+                        .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(viewReports)
                         .addGap(38, 38, 38))))
@@ -377,6 +394,15 @@ public class ManageStateJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
     }//GEN-LAST:event_viewReportsActionPerformed
+
+    private void viewAllRequestsJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllRequestsJButtonActionPerformed
+        
+        StateAllRequestJPanel scajp = new StateAllRequestJPanel(userProcessContainer, userAccount,city,state,country,business);
+        userProcessContainer.add("stateAllRequestJPanel",scajp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+
+    }//GEN-LAST:event_viewAllRequestsJButtonActionPerformed
    private void populateCity()
    {
        cityComboBox.removeAllItems();
@@ -404,6 +430,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField stateTextField;
     private javax.swing.JButton updateRequest;
+    private javax.swing.JButton viewAllRequestsJButton;
     private javax.swing.JButton viewReports;
     // End of variables declaration//GEN-END:variables
 }

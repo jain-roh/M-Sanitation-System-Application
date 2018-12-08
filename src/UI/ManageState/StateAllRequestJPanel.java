@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UI.ManageCountryPanel;
+package UI.ManageState;
 
-import UI.ManageCityPanel.*;
 import Business.City.City;
 import Business.Country.Country;
 import Business.Request.Request;
@@ -19,78 +18,37 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Avinash Chourasiya
+ * @author VAIBHAV RAJ
  */
-public class CountryAllRequestJPanel extends javax.swing.JPanel {
-
-    /**
-     * Creates new form ManageCityJPanel
-     */
+public class StateAllRequestJPanel extends javax.swing.JPanel {
+    
     HashMap<Integer,Request> requestList;
- //   ArrayList<Request> requestList1;
+ 
     JPanel userProcessContainer;
     Country country;
     City city;
     State state;
     UserAccount account;
-    
-    public CountryAllRequestJPanel(JPanel userProcessContainer, UserAccount account,City city, 
+
+    /**
+     * Creates new form StateAllRequestJPanel
+     */
+    public StateAllRequestJPanel(JPanel userProcessContainer, UserAccount account,City city, 
             State state,
             Country country,
-            WHO business) 
-    {
+            WHO business)
+     {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        //requestList=new ArrayList<RequestID>();
-        this.requestList=country.getRequestList();
+       
+        this.requestList=state.getRequestList();
         this.country = country;
         this.city = city;
         this.state = state;
         this.account = account;
-        
-//        account.setUsername("rohit");
-//        account.setPassword("rohit");
-//        city.setCityID(1);
-//        city.setCityName("Mumbai");
-        
-        //Populate the requesting status table
-        //requestList1=new ArrayList<RequestID>();
-             
         populatNewRequestTable();
     }
 
-
-protected void populatNewRequestTable()
-{
-    
-     
-     DefaultTableModel model = (DefaultTableModel) newRequestJTable1.getModel();
-        
-        model.setRowCount(0);
-                DefaultTableModel model1 = (DefaultTableModel) newRequestJTable1.getModel();
-        
-        model1.setRowCount(0);
-        
-        for (Request request : requestList.values())
-        {
-
-            Object[] row = new Object[8];
-            row[0] = request;
-            row[1] = request.getRequestor().getRequestorName();
-            row[2]=request.getDateTime();
-            row[3] = request.getStatus();
-            row[4] = request.getRequestor().getRequestorEmail();
-            
-            row[5] = request.getCity();
-            row[6] = request.getState();
-            row[7] = request.getRequestor().getRequestorPhoneNumber();
-            model.addRow(row);
-            
-                     
-     }
-       
-        
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,31 +58,33 @@ protected void populatNewRequestTable()
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        newRequestJTable1 = new javax.swing.JTable();
-        backJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        StateRequestJTable = new javax.swing.JTable();
+        backJButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(210, 215, 211));
-        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        setForeground(new java.awt.Color(51, 110, 123));
 
-        newRequestJTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 110, 123));
+        jLabel1.setText("All Requests");
+
+        StateRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "RequestNo", "Name", "Date", "Status", "Email Id", "City", "State", "Phone Number"
+                "RequestNo", "Name", "Date", "Status", "Email Id", "City", "Phone Number"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true, true, true, true, true
+                false, false, false, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -135,7 +95,7 @@ protected void populatNewRequestTable()
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(newRequestJTable1);
+        jScrollPane2.setViewportView(StateRequestJTable);
 
         backJButton.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         backJButton.setForeground(new java.awt.Color(31, 58, 147));
@@ -145,10 +105,6 @@ protected void populatNewRequestTable()
                 backJButtonActionPerformed(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 110, 123));
-        jLabel1.setText("All Requests");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -166,7 +122,7 @@ protected void populatNewRequestTable()
                     .addGroup(layout.createSequentialGroup()
                         .addGap(386, 386, 386)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,33 +131,52 @@ protected void populatNewRequestTable()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(44, 44, 44))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void AcceptRequest(Request requestID)
-    {
-         
-        
-    }
-    
-    
-    
-    
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable StateRequestJTable;
     private javax.swing.JButton backJButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable newRequestJTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void populatNewRequestTable() {
+        
+         DefaultTableModel model = (DefaultTableModel) StateRequestJTable.getModel();
+        
+        model.setRowCount(0);
+                DefaultTableModel model1 = (DefaultTableModel) StateRequestJTable.getModel();
+        
+        model1.setRowCount(0);
+        
+        for (Request request : requestList.values())
+        {
+
+            Object[] row = new Object[7];
+            row[0] = request;
+            row[1] = request.getRequestor().getRequestorName();
+            row[2]=request.getDateTime();
+            row[3] = request.getStatus();
+            row[4] = request.getRequestor().getRequestorEmail();
+            
+            row[5] = request.getCity();
+            
+            row[6] = request.getRequestor().getRequestorPhoneNumber();
+            model.addRow(row);
+            
+                     
+     }
+    }
 }
