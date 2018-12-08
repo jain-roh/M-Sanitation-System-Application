@@ -6,10 +6,10 @@
 package Business;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
@@ -31,10 +31,8 @@ String today= new SimpleDateFormat("yyyy-MM-dd").format(date);
 logFile.createNewFile(); // if file already exists will do nothing 
 //FileOutputStream log = new FileOutputStream(logFile, false); 
 //log.close();;
-String text = "\nClass - "+className+" In Function - "+functionName+": At"+date.toString()+" : \n"+logData;
-Files.write(Paths.get(logFileName), text.getBytes());
-
-
+String text = "\nClass - "+className+" In Function - "+functionName+": At "+date.toString()+" : \n"+logData;
+Files.write(Paths.get(logFile.getAbsolutePath()), text.getBytes(),StandardOpenOption.APPEND);
         }
         catch(IOException ioex)
         {
