@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import Business.UserAccount.UserAccount;
 import Business.DB4OUtil.DB4OUtil;
 import DBConnect.Server.FetchFromServer;
+import java.util.concurrent.TimeUnit;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -48,15 +49,24 @@ public class MainFrame1 extends javax.swing.JFrame {
 //        
         
     this.setSize(1680, 1050);
+    try
+    {
  Logger.logDetails("MainFrame", "Contructor", "Check");
       
     //  this.setVisible(true);
     //Thread.sleep(10000);
     system = dB4OUtil.retrieveSystem();
-           FetchFromServer.FetchRequestAndStore(system);
-           (new FetchPastRequest()).FetchRequestAndStore(system);
+
+    Runnable r = new FetchRequestsFromServer(system,container);
+new Thread(r).start();
+   
            
           
+    }
+    catch(Exception ex)
+    {
+        
+    }
          //  SendEmail.sendMail();
         
     }
@@ -181,7 +191,6 @@ public class MainFrame1 extends javax.swing.JFrame {
      //  ConfigureASystem.configure();
       
         String userName = UserNameTextField.getText();
-         Logger.logDetails("MainFrame", "Contructor", "Username : "+userName);
       
         // Get Password
         char[] passwordCharArray = PasswordField.getPassword();
@@ -261,9 +270,13 @@ public class MainFrame1 extends javax.swing.JFrame {
         
         if(userAccount==null){
             JOptionPane.showMessageDialog(null, "Invalid credentials");
+               Logger.logDetails("MainFrame", "Login", "Username : "+userName + "login failed");
+      
             return;
         }
         else{
+              Logger.logDetails("MainFrame", "Login", "Username : "+userName + "login successfully, Open : "+userAccount.getRole());
+      
             CardLayout layout=(CardLayout)container.getLayout();
 
             container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inCity, inState, inCountry,system));
@@ -280,10 +293,7 @@ public class MainFrame1 extends javax.swing.JFrame {
     private void LogoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogoutButtonActionPerformed
         // TODO add your handling code here:
        
-            ImageIcon pic = new ImageIcon("Icons/Loadingicon.gif");
-             JPanel loadingPanel = new JPanel();
-    loadingPanel.add(new JLabel(pic));
-    container.add(loadingPanel);
+            
   
         LogoutButton.setEnabled(false);
         UserNameTextField.setEnabled(true);
@@ -299,7 +309,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
         dB4OUtil.storeSystem(system);
-         container.remove(loadingPanel);
+         
     }//GEN-LAST:event_LogoutButtonActionPerformed
 
     /**
@@ -349,4 +359,27 @@ public class MainFrame1 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
+}
+ 
+class FetchRequestsFromServer implements Runnable {
+    private WHO who;
+    JPanel container;
+   public FetchRequestsFromServer(WHO system,JPanel container) {
+       // store parameter for later user
+       this.who=system;
+       this.container=container;
+   }
+
+   public void run() {
+        ImageIcon pic = new ImageIcon("Icons/Loadingicon.gif");
+             JPanel loadingPanel = new JPanel();
+    loadingPanel.add(new JLabel(pic));
+    container.add(loadingPanel);      
+      //  TimeUnit.SECONDS.sleep(10);
+ 
+        FetchFromServer.FetchRequestAndStore(who);
+           (new FetchPastRequest()).FetchRequestAndStore(who);
+           container.remove(loadingPanel);
+       
+   }
 }
