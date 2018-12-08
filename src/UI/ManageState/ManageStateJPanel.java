@@ -154,7 +154,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         });
 
         AddCityAuditor.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        AddCityAuditor.setForeground(new java.awt.Color(219, 10, 91));
+        AddCityAuditor.setForeground(new java.awt.Color(52, 73, 94));
         AddCityAuditor.setText("Add City Auditor");
         AddCityAuditor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +168,8 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel7.setText("City List :");
 
+        updateRequest.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        updateRequest.setForeground(new java.awt.Color(52, 73, 94));
         updateRequest.setText("Update Request");
         updateRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,6 +177,8 @@ public class ManageStateJPanel extends javax.swing.JPanel {
             }
         });
 
+        viewReports.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        viewReports.setForeground(new java.awt.Color(31, 58, 147));
         viewReports.setText("View Reports");
         viewReports.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +186,8 @@ public class ManageStateJPanel extends javax.swing.JPanel {
             }
         });
 
+        viewAllRequestsJButton.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        viewAllRequestsJButton.setForeground(new java.awt.Color(52, 73, 94));
         viewAllRequestsJButton.setText("View All Requests");
         viewAllRequestsJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -222,20 +228,17 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                         .addGap(34, 34, 34)
                         .addComponent(stateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(AddCityManager)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(AddCityAuditor)
-                .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(viewReports)
+                .addGap(41, 41, 41)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(AddCityManager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(updateRequest)
-                    .addComponent(viewAllRequestsJButton))
-                .addGap(32, 32, 32))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(viewAllRequestsJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                    .addComponent(updateRequest, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(AddCityAuditor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +253,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(countryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addCityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addCityJLabel))
@@ -260,20 +263,20 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddCityManager)
+                    .addComponent(AddCityAuditor))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(updateRequest)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(AddCityManager)
-                            .addComponent(AddCityAuditor))
-                        .addGap(18, 18, 18)
-                        .addComponent(updateRequest)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(viewAllRequestsJButton)
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(viewReports)
-                        .addGap(38, 38, 38))))
+                        .addContainerGap(32, Short.MAX_VALUE))))
         );
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N

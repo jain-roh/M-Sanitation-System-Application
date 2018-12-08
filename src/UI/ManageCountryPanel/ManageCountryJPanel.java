@@ -128,8 +128,8 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
             }
         });
 
-        AddStateAdmin.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        AddStateAdmin.setForeground(new java.awt.Color(219, 10, 91));
+        AddStateAdmin.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
+        AddStateAdmin.setForeground(new java.awt.Color(52, 73, 94));
         AddStateAdmin.setText("Add State Admin");
         AddStateAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +143,8 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         jLabel5.setText("State List");
 
+        viewAllRequestsJButton.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        viewAllRequestsJButton.setForeground(new java.awt.Color(52, 73, 94));
         viewAllRequestsJButton.setText("View All Requests");
         viewAllRequestsJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,7 +210,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddStateAdmin)
                     .addComponent(viewAllRequestsJButton))
-                .addGap(108, 108, 108))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jLabel3.setBackground(new java.awt.Color(197, 239, 247));
