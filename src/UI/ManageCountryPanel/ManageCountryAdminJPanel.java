@@ -125,7 +125,7 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(stateJTable);
 
         AddStateAdminjButton.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        AddStateAdminjButton.setForeground(new java.awt.Color(219, 10, 91));
+        AddStateAdminjButton.setForeground(new java.awt.Color(52, 73, 94));
         AddStateAdminjButton.setText("Add State Admin");
         AddStateAdminjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -130,7 +130,7 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(cityJTable);
 
         AddCityAuditorjButton.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        AddCityAuditorjButton.setForeground(new java.awt.Color(219, 10, 91));
+        AddCityAuditorjButton.setForeground(new java.awt.Color(52, 73, 94));
         AddCityAuditorjButton.setText("Add City Auditor");
         AddCityAuditorjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
