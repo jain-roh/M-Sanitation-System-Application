@@ -23,8 +23,8 @@ import java.util.HashMap;
  */
 public class WHO {
     private static WHO business;
-    private static UserAccountDirectory userAccountDirectory;
-    private static EmployeeDirectory employeeDirectory;    
+    private UserAccountDirectory userAccountDirectory;
+    private EmployeeDirectory employeeDirectory;    
     private CountryDirectory countryDirectory;
     private HashMap<Integer,Request> requestList;
 
