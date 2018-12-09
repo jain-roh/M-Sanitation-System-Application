@@ -92,21 +92,16 @@ private CategoryDataset createDataset( ) {
         jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        DownloadjButton = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(210, 215, 211));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("jButton1");
+        jButton1.setText("SELECT");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
-            }
-        });
-
-        DownloadjButton.setText("Download");
-        DownloadjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DownloadjButtonActionPerformed(evt);
             }
         });
 
@@ -114,15 +109,11 @@ private CategoryDataset createDataset( ) {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(DownloadjButton)
-                .addGap(0, 389, Short.MAX_VALUE))
+            .addGap(0, 492, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 252, Short.MAX_VALUE)
-                .addComponent(DownloadjButton))
+            .addGap(0, 388, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -137,9 +128,9 @@ private CategoryDataset createDataset( ) {
                         .addGap(28, 28, 28)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
+                        .addContainerGap(51, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,9 +139,9 @@ private CategoryDataset createDataset( ) {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,19 +164,6 @@ jPanel1.validate();
       
         
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void DownloadjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DownloadjButtonActionPerformed
-      
-        /*
-        try
-       {
-       ExcelAnalytics();
-       }
-       catch(Exception ex)
-       {
-           
-       }*/
-    }//GEN-LAST:event_DownloadjButtonActionPerformed
 
     
     public void ExcelAnalytics() throws Exception
@@ -259,7 +237,6 @@ jPanel1.validate();
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton DownloadjButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JPanel jPanel1;
