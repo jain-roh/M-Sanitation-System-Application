@@ -29,6 +29,7 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
         RequestorNameTextBox.setText(request.getRequestor().getRequestorName());
         RequestStatusTextBox.setText(request.getStatus().getStatusMsg());
         statusTextField.setText(request.getStatus().getStatusMsg());
+        checkStatusForEnability();
     }
 
     /**
@@ -48,12 +49,13 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
         RequestStatusTextBox = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        Accept = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         notes = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         statusTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        Reject = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(210, 215, 211));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -86,12 +88,12 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Notes");
 
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(52, 73, 94));
-        jButton1.setText("Accept");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Accept.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        Accept.setForeground(new java.awt.Color(52, 73, 94));
+        Accept.setText("Accept");
+        Accept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                AcceptActionPerformed(evt);
             }
         });
 
@@ -107,6 +109,13 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 110, 123));
         jLabel6.setText("AUDITOR REVIEW PANEL");
+
+        Reject.setText("jButton2");
+        Reject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RejectActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,7 +153,9 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
                 .addContainerGap(235, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(Accept)
+                .addGap(39, 39, 39)
+                .addComponent(Reject)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -160,7 +171,7 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(RequestorNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(RequestStatusTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -173,13 +184,34 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Accept)
+                    .addComponent(Reject))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    private void checkStatusForEnability()
+    {
+         if(request.getStatus().getStatusId()==2 )
+                {
+                   // budgetTb.setEditable(true);
+                    notes.setEditable(true);
+                    Accept.setEnabled(true);
+                    Reject.setEnabled(true);
+                   // revertBtn.setEnabled(true);
+                }
+         else
+         {
+                 //   budgetTb.setEditable(false);
+                    notes.setEditable(false);
+                    Accept.setEnabled(false);
+                    Reject.setEnabled(false);
+                   // revertBtn.setEnabled(false);
+         }
+    }
+ 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
 
         userProcessContainer.remove(this);
@@ -199,19 +231,29 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_RequestIdTextBoxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void AcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptActionPerformed
         // TODO add your handling code here:
         request.getStatus().setStatusMsg(notes.getText());
-        request.getStatus().setStatusId(3);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        request.getStatus().setStatusId(5);
+                checkStatusForEnability();
+
+    }//GEN-LAST:event_AcceptActionPerformed
+
+    private void RejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RejectActionPerformed
+        // TODO add your handling code here:
+        request.getStatus().setStatusMsg(notes.getText());
+        request.getStatus().setStatusId(11);
+        checkStatusForEnability();
+    }//GEN-LAST:event_RejectActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Accept;
+    private javax.swing.JButton Reject;
     private javax.swing.JTextField RequestIdTextBox;
     private javax.swing.JTextField RequestStatusTextBox;
     private javax.swing.JTextField RequestorNameTextBox;
     private javax.swing.JButton backJButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

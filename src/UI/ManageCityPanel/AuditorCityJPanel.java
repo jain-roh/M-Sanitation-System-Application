@@ -285,7 +285,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             //RequestID request = (RequestID)newRequestJTable.getValueAt(newRequestJTable.getSelectedRowCount(), 0);
         requestID.setUserAccount(userAccount);
         String oldStatus = requestID.getStatus().getStatusMsg();
-        requestID.getStatus().setStatusId(3);
+        requestID.getStatus().setStatusId(2);
        // userAccount.getWorkQueue().
         
         // Need to check on the status getting generated in log files
