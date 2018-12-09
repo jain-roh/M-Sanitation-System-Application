@@ -11,8 +11,10 @@ import Business.Request.Request;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
 import Business.WHO;
+import UI.ManageCityPanel.AuditorCityRequestViewJPanel;
 import java.awt.CardLayout;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,9 +48,16 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
         this.city = city;
         this.state = state;
         this.account = account;
+        cityList.addItem("All");
+        populateCityList();
         populatNewRequestTable();
     }
 
+    private void populateCityList()
+    {
+        for(City city:state.getCityDirectory().getCityList())
+            cityList.addItem(city);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,6 +71,8 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         StateRequestJTable = new javax.swing.JTable();
         backJButton = new javax.swing.JButton();
+        cityList = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(210, 215, 211));
 
@@ -106,6 +117,19 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        cityList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityListActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,22 +140,33 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
                         .addGap(42, 42, 42)
                         .addComponent(backJButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(171, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 15, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(131, 131, 131))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cityList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(124, 124, 124))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(cityList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(44, 44, 44))
         );
@@ -144,10 +179,53 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    private void cityListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityListActionPerformed
+        // TODO add your handling code here:
+        
+        if(cityList.getSelectedIndex()>0)
+        {
+        populateCityRequestTable((City)cityList.getSelectedItem());
+        }
+        else
+        {
+            populatNewRequestTable();
+        }
+    }//GEN-LAST:event_cityListActionPerformed
+
+    public void checkSelectedNode()
+    {
+         if(cityList.getSelectedIndex()>0)
+        {
+        populateCityRequestTable((City)cityList.getSelectedItem());
+        }
+        else
+        {
+            populatNewRequestTable();
+        }
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(StateRequestJTable.getSelectedRow()>=0)
+        {
+            Request req=(Request)StateRequestJTable.getValueAt(StateRequestJTable.getSelectedRow(),0);
+            ManagerStateRequestViewJPanel mcvjp = new ManagerStateRequestViewJPanel(userProcessContainer, req);
+            userProcessContainer.add(mcvjp);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+        else
+        {
+                
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable StateRequestJTable;
     private javax.swing.JButton backJButton;
+    private javax.swing.JComboBox cityList;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
@@ -176,7 +254,34 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
             row[6] = request.getRequestor().getRequestorPhoneNumber();
             model.addRow(row);
             
-                     
+          
+     }
+    }
+     private void populateCityRequestTable(City city) {
+        
+         DefaultTableModel model = (DefaultTableModel) StateRequestJTable.getModel();
+        
+        model.setRowCount(0);
+                DefaultTableModel model1 = (DefaultTableModel) StateRequestJTable.getModel();
+        
+        model1.setRowCount(0);
+        
+        for (Request request : city.getRequestList().values())
+        {
+
+            Object[] row = new Object[7];
+            row[0] = request;
+            row[1] = request.getRequestor().getRequestorName();
+            row[2]=request.getDateTime();
+            row[3] = request.getStatus();
+            row[4] = request.getRequestor().getRequestorEmail();
+            
+            row[5] = request.getCity();
+            
+            row[6] = request.getRequestor().getRequestorPhoneNumber();
+            model.addRow(row);
+            
+          
      }
     }
 }
