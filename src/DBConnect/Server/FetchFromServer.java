@@ -81,6 +81,7 @@ for(int i=0;i<myresponse.length();i++)
         request.setLat(latitude);
         request.setLong(longitude);
         request.setRequestID(ID);
+        request.setRequestNo(ReqNo);
         request.setDateTime(reqDate);
         request.getRequestor().setRequestorPhoneNumber(mobileNumber);
         system.setLastFetchedID(ID);
