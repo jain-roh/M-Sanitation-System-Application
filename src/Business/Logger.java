@@ -31,7 +31,7 @@ String today= new SimpleDateFormat("yyyy-MM-dd").format(date);
 logFile.createNewFile(); // if file already exists will do nothing 
 //FileOutputStream log = new FileOutputStream(logFile, false); 
 //log.close();;
-String text = "\nClass - "+className+" In Function - "+functionName+": At "+date.toString()+" : \n"+logData;
+String text = "\nClass - "+className+" In Function - "+functionName+": At "+date.toString()+" : \n"+logData + "\n\n";
 Files.write(Paths.get(logFile.getAbsolutePath()), text.getBytes(),StandardOpenOption.APPEND);
         }
         catch(IOException ioex)
