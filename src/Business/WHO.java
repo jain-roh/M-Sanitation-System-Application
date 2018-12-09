@@ -79,8 +79,8 @@ public class WHO {
         return business;
     }
 
-    public Country createAndAddCountry(){
-        Country country=new Country();
+    public Country createAndAddCountry(String name,Country.EnterpriseType enterpriseType){
+        Country country=new Country(name,enterpriseType);
         countryList.add(country);
         return country;
     }
@@ -97,6 +97,7 @@ public class WHO {
             employeeDirectory=new EmployeeDirectory();
            userAccountDirectory=new UserAccountDirectory();
            requestList=new HashMap<>();
+           lastFetchedID=0;
     }
 
     public ArrayList<Country> getCountryList() {

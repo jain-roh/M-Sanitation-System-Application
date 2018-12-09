@@ -371,6 +371,15 @@ class FetchRequestsFromServer implements Runnable {
         Thread.sleep(1000);
            (new FetchPastRequest()).FetchRequestAndStore(who);
        container.remove(loadingPanel);
+       
+       
+       
+       while(true)
+       {
+          FetchFromServer.FetchRequestAndStore(who);
+        Thread.sleep(90000);
+           (new FetchPastRequest()).FetchRequestAndStore(who); 
+       }
        }
        catch(Exception ex)
        {

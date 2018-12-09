@@ -35,6 +35,25 @@ private int CityID;
 private String Notes;
 private Double Budget;
 
+private UserAccount managerUserAccountr;
+private UserAccount stateAdminUserAccountr;
+
+    public UserAccount getManagerUserAccountr() {
+        return managerUserAccountr;
+    }
+
+    public void setManagerUserAccountr(UserAccount managerUserAccountr) {
+        this.managerUserAccountr = managerUserAccountr;
+    }
+
+    public UserAccount getStateAdminUserAccountr() {
+        return stateAdminUserAccountr;
+    }
+
+    public void setStateAdminUserAccountr(UserAccount stateAdminUserAccountr) {
+        this.stateAdminUserAccountr = stateAdminUserAccountr;
+    }
+
 
   public UserAccount getUserAccount() {
         return userAccount;

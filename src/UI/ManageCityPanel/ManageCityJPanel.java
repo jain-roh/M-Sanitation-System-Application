@@ -69,7 +69,7 @@ protected void populatNewRequestTable()
         model1.setRowCount(0);
         
         for (Request request : requestList.values()){
-            if(request.getStatus().getStatusId()==0 || request.getStatus().getStatusId()==1 || request.getStatus().getStatusId()==4 || request.getStatus().getStatusId()==6)
+            if(request.getStatus().getStatusId()==0)
             {
 
             Object[] row = new Object[6];
@@ -81,8 +81,10 @@ protected void populatNewRequestTable()
             row[5] = request.getRequestor().getRequestorPhoneNumber();
             model.addRow(row);
             }
-            else if(request.getStatus().getStatusId()==2 || request.getStatus().getStatusId()==3 || request.getStatus().getStatusId()==7 || request.getStatus().getStatusId()==7)
-        {
+            else if((request.getStatus().getStatusId()==1 || request.getStatus().getStatusId()==2 || request.getStatus().getStatusId()==3 || request.getStatus().getStatusId()==4))
+            {
+            if(request.getManagerUserAccountr().getUsername().equals(account.getUsername()))
+            {
             Object[] row = new Object[6];
             row[0] = request;
             row[1] = request.getRequestor().getRequestorName();
@@ -91,6 +93,22 @@ protected void populatNewRequestTable()
             row[4] = request.getRequestor().getRequestorEmail();
             row[5] = request.getRequestor().getRequestorPhoneNumber();
             model1.addRow(row);
+            }
+        
+       }
+                else if((request.getStatus().getStatusId()==6 || request.getStatus().getStatusId()==7 || request.getStatus().getStatusId()==8 || request.getStatus().getStatusId()==9))
+            {
+            if(request.getManagerUserAccountr().getUsername().equals(account.getUsername()))
+            {
+            Object[] row = new Object[6];
+            row[0] = request;
+            row[1] = request.getRequestor().getRequestorName();
+            row[2]=request.getDateTime();
+            row[3] = request.getStatus();
+            row[4] = request.getRequestor().getRequestorEmail();
+            row[5] = request.getRequestor().getRequestorPhoneNumber();
+            model1.addRow(row);
+            }
         
        }
             
@@ -203,26 +221,12 @@ protected void populatNewRequestTable()
         jLabel2.setText("Current Queue Requests");
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        jLabel3.setText("Processed Requests in Queue");
+        jLabel3.setText("Current Working Requests in Queue");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(212, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -230,13 +234,24 @@ protected void populatNewRequestTable()
                         .addComponent(acceptRequest))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(390, 390, 390)
-                        .addComponent(viewRequest)))
+                        .addComponent(viewRequest))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 764, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -281,7 +296,7 @@ protected void populatNewRequestTable()
         // TODO add your handling code here:
           if(!(newRequestJTable.getSelectedRow()<0)  )
         {
-            Request requestID = (Request) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
+            Request request = (Request) newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
 //            AuditorCityRequestViewJPanel mcvjp = new AuditorCityRequestViewJPanel(userProcessContainer, requestID);
 //            userProcessContainer.add(mcvjp);
 //            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -290,13 +305,16 @@ protected void populatNewRequestTable()
     //        RequestID request = (RequestID)newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
        // request.setUserAccount(userAccount);
             
-        String oldStatus = String.valueOf(requestID.getStatus());    
-        requestID.getStatus().setStatusId(2);
+        String oldStatus = String.valueOf(request.getStatus());
+        
+        request.getStatus().setStatusId(1);
+        
+        request.setManagerUserAccountr(account);
        // userAccount.getWorkQueue().
         
         
     // Need to check on the status getting generated in log 
-         Logger.logDetails("ManageCityJPanel", "Add Requests","RequestNo: " + requestID.getRequestNo()+ "New Status: "+requestID.getStatus().getStatusMsg()+ " Old Status: " +oldStatus+ " By : " + account.getUsername());
+         Logger.logDetails("ManageCityJPanel", "Add Requests","RequestNo: " + request.getRequestNo()+ "New Status: "+request.getStatus().getStatusMsg()+ " Old Status: " +oldStatus+ " By : " + account.getUsername());
        
         populatNewRequestTable();
         

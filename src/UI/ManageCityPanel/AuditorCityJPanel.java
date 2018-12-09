@@ -318,7 +318,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         model1.setRowCount(0);
         
         for (Request request : requestList.values()){
-            if(request.getStatus().getStatusId()==2)
+            if(request.getStatus().getStatusId()==1)
             {
 
             Object[] row = new Object[6];
@@ -330,11 +330,11 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             row[5] = request.getRequestor().getRequestorPhoneNumber();
             model.addRow(row);
             }
-            else if(request.getStatus().getStatusId()==3 && request.getUserAccount().getUsername().equals(userAccount.getUsername()))
+            else if(request.getStatus().getStatusId()==2 || request.getStatus().getStatusId()==3)
         {
-            
-        
-     
+           // request.setUserAccount(userAccount);
+            if(request.getUserAccount().getUsername().equals(userAccount.getUsername()))
+                    {
             Object[] row = new Object[6];
             row[0] = request;
             row[1] = request.getRequestor().getRequestorName();
@@ -343,7 +343,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
             row[4] = request.getRequestor().getRequestorEmail();
             row[5] = request.getRequestor().getRequestorPhoneNumber();
             model1.addRow(row);
-        
+                    }
        }
         
                 

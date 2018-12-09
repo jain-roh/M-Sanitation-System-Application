@@ -211,7 +211,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
-        ManageNetworkJPanel manageCountryJPanel=new ManageNetworkJPanel(userProcessContainer, who);
+        ManagCountryJPanel manageCountryJPanel=new ManagCountryJPanel(userProcessContainer, who);
         userProcessContainer.add("manageCountryJPanel",manageCountryJPanel);
         CardLayout layout=(CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
