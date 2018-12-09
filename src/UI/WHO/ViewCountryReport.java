@@ -18,7 +18,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
 
 import org.jfree.data.general.PieDataset;
-import sun.org.mozilla.javascript.internal.Token;
+//import sun.org.mozilla.javascript.internal.Token;
 
 /**
  *
