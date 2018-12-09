@@ -5,6 +5,7 @@
  */
 package UI.ManageState;
 
+import Business.Logger;
 import UI.ManageCityPanel.*;
 import Business.OpenLocation;
 import Business.Request.Request;
@@ -12,7 +13,6 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import java.net.URL;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,10 +37,12 @@ public class ManagerStateRequestViewJPanel extends javax.swing.JPanel {
                 progressBar.setBorderPainted(true);
                
                 statusBarUpdate();
+                        checkStatusForEnability();
+
     }
     private void checkStatusForEnability()
     {
-         if(request.getStatus().getStatusId()==3 || request.getStatus().getStatusId()==8)
+         if(request.getStatus().getStatusId()==5)
                 {
                     budgetTb.setEditable(true);
                     notesTextAre.setEditable(true);
@@ -50,7 +52,7 @@ public class ManagerStateRequestViewJPanel extends javax.swing.JPanel {
                 }
          else
          {
-             budgetTb.setEditable(false);
+                    budgetTb.setEditable(false);
                     notesTextAre.setEditable(false);
                     AcceptButton.setEnabled(false);
                     RejectButton.setEnabled(false);
@@ -321,9 +323,19 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
     private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
         // TODO add your handling code here:
        // m.AcceptRequest(request);
+        try
+        {
+//        Double budget=Double.parseDouble(budgetTb.getText().toString().trim());
+//        request.setBudget(budget);
         request.getStatus().setStatusId(9);
-        request.getStatus().setStatusMsg("Working");
+        
+        request.getStatus().setStatusMsg(notesTextAre.getText());
         checkStatusForEnability();
+        }
+        catch(Exception ex)
+        {
+            Logger.logDetails("ManageState", "Acceptance", "Error:"+ex.getMessage());
+        }
         
     }//GEN-LAST:event_AcceptButtonActionPerformed
 
@@ -347,14 +359,14 @@ catch(Exception ex)
     private void RejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RejectButtonActionPerformed
         // TODO add your handling code here:
         request.getStatus().setStatusId(11);
-        request.getStatus().setStatusMsg("Rejected");
+        request.getStatus().setStatusMsg(notesTextAre.getText());
         checkStatusForEnability();
     }//GEN-LAST:event_RejectButtonActionPerformed
 
     private void revertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revertBtnActionPerformed
         // TODO add your handling code here:
         request.getStatus().setStatusId(6);
-        request.getStatus().setStatusMsg("Reverted");
+        request.getStatus().setStatusMsg(notesTextAre.getText());
         checkStatusForEnability();
     }//GEN-LAST:event_revertBtnActionPerformed
 
