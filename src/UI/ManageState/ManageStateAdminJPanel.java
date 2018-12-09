@@ -288,7 +288,7 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
         UserAccount account = city.getUserAccountDirectory().createUserAccount(username, password, employee, new ManagerRole());
         populateTable();
         JOptionPane.showMessageDialog(this, "City Admin successfully created");
-         Logger.logDetails("ManageStateAdminJPanel", "Add City Manager", "New Manager added: "+cityAdminTextBox.getText() + " By : " + userAccount.getUsername());
+        Logger.logDetails("ManageStateAdminJPanel", "Add City Manager", "New Manager added: "+cityAdminTextBox.getText() + " By : " + userAccount.getUsername());
         
         
         cityAdminTextBox.setText("");
