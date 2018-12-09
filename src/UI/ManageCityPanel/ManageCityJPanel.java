@@ -7,6 +7,7 @@ package UI.ManageCityPanel;
 
 import Business.City.City;
 import Business.Country.Country;
+import Business.Logger;
 import Business.Request.Request;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
@@ -28,6 +29,7 @@ public class ManageCityJPanel extends javax.swing.JPanel {
     HashMap<Integer,Request> requestList;
  //   ArrayList<Request> requestList1;
     JPanel userProcessContainer;
+    UserAccount account;
     public ManageCityJPanel(JPanel userProcessContainer, UserAccount account,City city, 
             State state,
             Country country,
@@ -37,6 +39,7 @@ public class ManageCityJPanel extends javax.swing.JPanel {
         this.userProcessContainer=userProcessContainer;
         //requestList=new ArrayList<RequestID>();
         this.requestList=city.getRequestList();
+        this.account = account;
         
 //        account.setUsername("rohit");
 //        account.setPassword("rohit");
@@ -57,12 +60,11 @@ public class ManageCityJPanel extends javax.swing.JPanel {
 protected void populatNewRequestTable()
 {
     
-    System.out.println("Inside populate");
+   
      
-                        DefaultTableModel model = (DefaultTableModel) newRequestJTable.getModel();
-        
+        DefaultTableModel model = (DefaultTableModel) newRequestJTable.getModel();
         model.setRowCount(0);
-                DefaultTableModel model1 = (DefaultTableModel) newRequestJTable1.getModel();
+        DefaultTableModel model1 = (DefaultTableModel) newRequestJTable1.getModel();
         
         model1.setRowCount(0);
         
@@ -73,7 +75,7 @@ protected void populatNewRequestTable()
             Object[] row = new Object[6];
             row[0] = request;
             row[1] = request.getRequestor().getRequestorName();
-            row[2]=request.getDateTime();
+            row[2]= request.getDateTime();
             row[3] = request.getStatus();
             row[4] = request.getRequestor().getRequestorEmail();
             row[5] = request.getRequestor().getRequestorPhoneNumber();
@@ -81,8 +83,6 @@ protected void populatNewRequestTable()
             }
             else if(request.getStatus().getStatusId()==2 || request.getStatus().getStatusId()==3 || request.getStatus().getStatusId()==7 || request.getStatus().getStatusId()==7)
         {
-
-     
             Object[] row = new Object[6];
             row[0] = request;
             row[1] = request.getRequestor().getRequestorName();
@@ -289,10 +289,18 @@ protected void populatNewRequestTable()
 //            newRequestJTable.getSelectionModel().clearSelection();
     //        RequestID request = (RequestID)newRequestJTable.getValueAt(newRequestJTable.getSelectedRow(), 0);
        // request.setUserAccount(userAccount);
+            
+        String oldStatus = String.valueOf(requestID.getStatus());    
         requestID.getStatus().setStatusId(2);
        // userAccount.getWorkQueue().
         
+        
+    // Need to check on the status getting generated in log 
+         Logger.logDetails("ManageCityJPanel", "Add Requests","RequestNo: " + requestID.getRequestNo()+ "New Status: "+requestID.getStatus().getStatusMsg()+ " Old Status: " +oldStatus+ " By : " + account.getUsername());
+       
         populatNewRequestTable();
+        
+        
         
         }
     }//GEN-LAST:event_acceptRequestActionPerformed

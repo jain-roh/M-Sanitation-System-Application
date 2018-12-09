@@ -7,6 +7,7 @@ package UI.ManageCityPanel;
 
 import Business.City.City;
 import Business.Country.Country;
+import Business.Logger;
 import Business.Request.Request;
 import Business.Request.Requestor;
 import Business.Request.Status;
@@ -52,7 +53,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
 //        request.setStatus(status);
 //        request.setRequestor(requestor);
 //        requestList.add(request);
-        this.userAccount=account;
+        
 //        account.setUsername("rohit");
 //        account.setPassword("rohit");
 //        city.setCityID(1);
@@ -262,8 +263,13 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
            // newRequestJTable.getSelectionModel().clearSelection();
             //RequestID request = (RequestID)newRequestJTable.getValueAt(newRequestJTable.getSelectedRowCount(), 0);
         requestID.setUserAccount(userAccount);
+        String oldStatus = requestID.getStatus().getStatusMsg();
         requestID.getStatus().setStatusId(3);
        // userAccount.getWorkQueue().
+        
+        // Need to check on the status getting generated in log files
+         Logger.logDetails("AuditorCityJPanel", "Assign requests to me","RequestNo: " + requestID.getRequestNo()+ "New Status: "+requestID.getStatus().getStatusMsg()+ " Old Status: " +oldStatus+ " By : " + userAccount.getUsername());
+    
         
         populateRequestTable();
         
