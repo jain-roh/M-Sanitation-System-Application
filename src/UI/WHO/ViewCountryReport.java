@@ -11,6 +11,8 @@ import Business.Request.Request;
 import Business.State.State;
 import Business.WHO;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -29,7 +31,7 @@ public class ViewCountryReport extends javax.swing.JPanel {
     /**
      * Creates new form ViewStateReport
      */
-    
+    JPanel userProcessContainer;
     State state;
     WHO who;
     public ViewCountryReport(JPanel userProcessContainer, State state, Country country,City city, 
@@ -40,6 +42,7 @@ public class ViewCountryReport extends javax.swing.JPanel {
         
         this.state = state;
         this.who=who;
+        this.userProcessContainer=userProcessContainer;
         populateCountryList();
        
     }
@@ -64,9 +67,13 @@ public class ViewCountryReport extends javax.swing.JPanel {
         countryList = new javax.swing.JComboBox();
         Generate = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        DownloadjButton = new javax.swing.JButton();
+        backJButton = new javax.swing.JButton();
 
-        Generate.setText("jButton1");
+        setBackground(new java.awt.Color(210, 215, 211));
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        Generate.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        Generate.setText("SELECT");
         Generate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GenerateActionPerformed(evt);
@@ -81,13 +88,15 @@ public class ViewCountryReport extends javax.swing.JPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 266, Short.MAX_VALUE)
+            .addGap(0, 376, Short.MAX_VALUE)
         );
 
-        DownloadjButton.setText("Download");
-        DownloadjButton.addActionListener(new java.awt.event.ActionListener() {
+        backJButton.setFont(new java.awt.Font("Arial Black", 1, 16)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(31, 58, 147));
+        backJButton.setText("<< Back");
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DownloadjButtonActionPerformed(evt);
+                backJButtonActionPerformed(evt);
             }
         });
 
@@ -96,31 +105,28 @@ public class ViewCountryReport extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backJButton)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(DownloadjButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(countryList, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Generate)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addComponent(countryList, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(Generate))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Generate)
                     .addComponent(countryList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(DownloadjButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backJButton)
+                .addGap(5, 5, 5))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -139,6 +145,16 @@ jPanel1.validate();
     //  jPanel1.add(chartPanel);
         }
     }//GEN-LAST:event_GenerateActionPerformed
+
+    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
+         userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        sysAdminwjp.populateTree();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backJButtonActionPerformed
 
     private static JFreeChart createChart( PieDataset dataset,String countryName ) {
       JFreeChart chart = ChartFactory.createPieChart(      
@@ -173,19 +189,6 @@ jPanel1.validate();
       return dataset;       
    }
     
-    private void DownloadjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DownloadjButtonActionPerformed
-      
-        /*
-        try
-       {
-       ExcelAnalytics();
-       }
-       catch(Exception ex)
-       {
-           
-       }*/
-    }//GEN-LAST:event_DownloadjButtonActionPerformed
-
     
     public void ExcelAnalytics() throws Exception
     {
@@ -258,8 +261,8 @@ jPanel1.validate();
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton DownloadjButton;
     private javax.swing.JButton Generate;
+    private javax.swing.JButton backJButton;
     private javax.swing.JComboBox countryList;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
