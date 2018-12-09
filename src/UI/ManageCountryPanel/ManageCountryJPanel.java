@@ -268,8 +268,8 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         }
             else
         {
-             State state = new State();
-            state.setStateName(addStateTextField.getText());
+             State state = new State(addStateTextField.getText());
+             //addStateTextField.getText());
         
             country.getStateDirectory().getStateList().add(state);    
             populateState();
