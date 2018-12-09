@@ -318,6 +318,19 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_countryTextFieldActionPerformed
 
+    private boolean CheckIfCityExists(String cityName)
+        {
+            for(City city : state.getCityDirectory().getCityList())
+                {
+                 if(city.getCityName().equalsIgnoreCase(cityName))
+                    { 
+                        return true;
+                    }
+                }
+            return false;
+        }
+    
+    
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // TODO add your handling code here:
        
@@ -327,6 +340,14 @@ public class ManageStateJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Please enter a value");
             addCityJLabel.setForeground(Color.red);
         }
+        
+        else if(CheckIfCityExists(addCityTextField.getText()))
+        { 
+            
+            JOptionPane.showMessageDialog(this,"City already exists");
+            addCityJLabel.setForeground(Color.red);
+        }
+        
             else
         {
              City city = new City();
