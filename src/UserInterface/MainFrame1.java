@@ -35,33 +35,21 @@ public class MainFrame1 extends javax.swing.JFrame {
     public MainFrame1() {
         
         initComponents();
-      
-//       JEditorPane editorPane = new JEditorPane();
-
-
- 
-  //  Image play = ImageIO.read(getClass().getResource("/images/play.png"));
-    
-   
-    
-    
     this.pack();
 //        
-        
+        system=dB4OUtil.retrieveSystem();
     this.setSize(1680, 1050);
     try
     {
  Logger.logDetails("MainFrame", "Contructor", "Check");
       
     //  this.setVisible(true);
-    //Thread.sleep(10000);
-    system = dB4OUtil.retrieveSystem();
-
+    //Thread.sleep(10000)z
     Runnable r = new FetchRequestsFromServer(system,container);
 new Thread(r).start();
    
            
-          
+        //  container.remove(loadingPanel);
     }
     catch(Exception ex)
     {
@@ -379,7 +367,6 @@ class FetchRequestsFromServer implements Runnable {
  
         FetchFromServer.FetchRequestAndStore(who);
            (new FetchPastRequest()).FetchRequestAndStore(who);
-           container.remove(loadingPanel);
-       
+       container.remove(loadingPanel);
    }
 }
