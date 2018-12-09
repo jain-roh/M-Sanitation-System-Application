@@ -7,9 +7,12 @@ package UI.ManageState;
 
 import Business.City.City;
 import Business.Country.Country;
+import Business.Request.Request;
 import Business.State.State;
 import Business.WHO;
 import java.awt.BorderLayout;
+import java.io.File;
+import java.io.FileOutputStream;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -17,6 +20,15 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -27,11 +39,15 @@ public class ViewCityReport extends javax.swing.JPanel {
     /**
      * Creates new form ViewStateReport
      */
+    
+    State state;
     public ViewCityReport(JPanel userProcessContainer, State state, Country country,City city, 
             
            
             WHO who) {
         initComponents();
+        
+        this.state = state;
         
         
        
@@ -76,6 +92,7 @@ private CategoryDataset createDataset( ) {
         jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        DownloadjButton = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -86,15 +103,26 @@ private CategoryDataset createDataset( ) {
             }
         });
 
+        DownloadjButton.setText("Download");
+        DownloadjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DownloadjButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(DownloadjButton)
+                .addGap(0, 389, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 299, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 252, Short.MAX_VALUE)
+                .addComponent(DownloadjButton))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -111,7 +139,7 @@ private CategoryDataset createDataset( ) {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +150,7 @@ private CategoryDataset createDataset( ) {
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -146,8 +174,92 @@ jPanel1.validate();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void DownloadjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DownloadjButtonActionPerformed
+      
+        /*
+        try
+       {
+       ExcelAnalytics();
+       }
+       catch(Exception ex)
+       {
+           
+       }*/
+    }//GEN-LAST:event_DownloadjButtonActionPerformed
+
+    
+    public void ExcelAnalytics() throws Exception
+    {
+         /*
+                 try
+            {
+        //Create blank workbook
+      XSSFWorkbook workbook = new XSSFWorkbook();
+      
+      //Create a blank sheet
+      XSSFSheet spreadsheet = workbook.createSheet( "All_Requests");
+
+      //Create row object
+      XSSFRow row;
+
+      //This data needs to be written (Object[])
+      Map <String, Object[]> allRequest = new TreeMap <String, Object[]>();
+      
+      int treeSize = state.getRequestList().values().size();
+      int i=1;
+      
+      allRequest.put( Integer.toString(i), new Object[] 
+      {"State", "City", "Request Number","Status","Budget"});
+      
+      for(Request request : state.getRequestList().values())
+        {
+          do
+          {
+              allRequest.put(Integer.toString(i),new Object[]{request.getState(),request.getCity(),request.getRequestNo(),request.getStatus(),request.getBudget()});
+              
+              i++;
+              treeSize--;
+          }
+          while(treeSize>0);
+        
+      }
+      
+      
+      //Iterate over data and write to sheet
+      Set <String> keyid = allRequest.keySet();
+      int rowid = 0;
+      
+      for (String key : keyid) 
+      {
+         row = spreadsheet.createRow(rowid++);
+         Object [] objectArr = allRequest.get(key);
+         int cellid = 0;
+         
+         for (Object obj : objectArr)
+         {
+            Cell cell = row.createCell(cellid++);
+            cell.setCellValue((String)obj);
+         }
+      } 
+      //Write the workbook in file system
+      FileOutputStream out = new FileOutputStream(new File("C:\\NeU\\Application Engineering - Java\\MSanitation_Final_Project\\msanitation_project\\Excel Analytics.xlsx"));
+      
+      workbook.write(out);
+      out.close();
+      System.out.println("Writesheet.xlsx written successfully");
+    
+            }
+            catch(Exception ex)
+            {
+               System.out.println(ex.getMessage());
+            }
+      
+      */
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton DownloadjButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JPanel jPanel1;
