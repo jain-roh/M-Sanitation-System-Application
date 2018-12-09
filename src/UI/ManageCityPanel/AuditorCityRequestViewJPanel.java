@@ -234,7 +234,7 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
     private void AcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptActionPerformed
         // TODO add your handling code here:
         request.getStatus().setStatusMsg(notes.getText());
-        request.getStatus().setStatusId(5);
+        request.getStatus().setStatusId(4);
                 checkStatusForEnability();
 
     }//GEN-LAST:event_AcceptActionPerformed
