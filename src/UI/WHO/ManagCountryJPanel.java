@@ -187,6 +187,19 @@ public class ManagCountryJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean CheckIfCountryExists(String countryName)
+        {
+            for(Country country : who.getCountryList())
+                {
+                 if(country.getCountryName().equalsIgnoreCase(countryName))
+                    { 
+                        return true;
+                    }
+                }
+            return false;
+        }
+    
+    
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
         if(nameJTextField.getText().equals(""))
@@ -194,6 +207,13 @@ public class ManagCountryJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter a value");
             nameJLabel.setForeground(Color.RED);
         }
+        
+        else if(CheckIfCountryExists(nameJTextField.getText()))
+        {
+            JOptionPane.showMessageDialog(this,"Country already exists");
+            nameJLabel.setForeground(Color.red);
+        }
+        
         else
         {
           
