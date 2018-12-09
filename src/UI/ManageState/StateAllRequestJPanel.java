@@ -11,10 +11,9 @@ import Business.Request.Request;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
 import Business.WHO;
-import UI.ManageCityPanel.AuditorCityRequestViewJPanel;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import java.util.HashMap;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -49,9 +48,10 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
         this.state = state;
         this.account = account;
         cityList.addItem("All");
-        populateCityList();
-        populatNewRequestTable();
-    }
+       populateCityList();
+       // populatNewRequestTable();
+        displayList();
+     }
 
     private void populateCityList()
     {
@@ -72,7 +72,8 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
         StateRequestJTable = new javax.swing.JTable();
         backJButton = new javax.swing.JButton();
         cityList = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        viewRequest = new javax.swing.JButton();
+        statusList = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(210, 215, 211));
 
@@ -123,10 +124,17 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewRequest.setText("View Request");
+        viewRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewRequestActionPerformed(evt);
+            }
+        });
+
+        statusList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "New Request", "Working Request", "Proposal", "Reverted", "Accepted", "Built", "Rejected" }));
+        statusList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                statusListActionPerformed(evt);
             }
         });
 
@@ -134,26 +142,26 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(backJButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(171, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(171, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cityList, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(124, 124, 124))))
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 970, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(backJButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewRequest)
+                .addGap(117, 117, 117))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(335, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cityList, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(statusList, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,14 +169,16 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(cityList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cityList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(statusList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(backJButton)
-                .addGap(44, 44, 44))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backJButton)
+                    .addComponent(viewRequest))
+                .addGap(43, 43, 43))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -182,28 +192,30 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
     private void cityListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityListActionPerformed
         // TODO add your handling code here:
         
-        if(cityList.getSelectedIndex()>0)
-        {
-        populateCityRequestTable((City)cityList.getSelectedItem());
-        }
-        else
-        {
-            populatNewRequestTable();
-        }
+//        if(cityList.getSelectedIndex()>0)
+//        {
+//        populateCityRequestTable((City)cityList.getSelectedItem());
+//        }
+//        else
+//        {
+//            populatNewRequestTable();
+//        }
+        displayList();
     }//GEN-LAST:event_cityListActionPerformed
 
     public void checkSelectedNode()
     {
-         if(cityList.getSelectedIndex()>0)
-        {
-        populateCityRequestTable((City)cityList.getSelectedItem());
-        }
-        else
-        {
-            populatNewRequestTable();
-        }
+//         if(cityList.getSelectedIndex()>0)
+//        {
+//        populateCityRequestTable((City)cityList.getSelectedItem());
+//        }
+//        else
+//        {
+//            populatNewRequestTable();
+//        }
+        displayList();
     }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void viewRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestActionPerformed
         // TODO add your handling code here:
         if(StateRequestJTable.getSelectedRow()>=0)
         {
@@ -218,16 +230,144 @@ public class StateAllRequestJPanel extends javax.swing.JPanel {
                 
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_viewRequestActionPerformed
 
+    private void statusListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_statusListActionPerformed
+        // TODO add your handling code here:
+        displayList();
+        
+        
+    }//GEN-LAST:event_statusListActionPerformed
 
+    public void displayList()
+    {
+              ArrayList<Request> reqList=new ArrayList<>();
+        if(cityList.getSelectedIndex()==0)
+        {
+         reqList.addAll(state.getRequestList().values());
+        }
+        else
+        {
+            reqList.addAll(((City)cityList.getSelectedItem()).getRequestList().values());
+        }
+        
+        int status=statusList.getSelectedIndex();
+        
+        reqList=getRequestListBasedOnStatus(reqList,status);
+        if(reqList!=null)
+        {
+                DefaultTableModel model = (DefaultTableModel) StateRequestJTable.getModel();
+        
+        model.setRowCount(0);
+                DefaultTableModel model1 = (DefaultTableModel) StateRequestJTable.getModel();
+        
+        model1.setRowCount(0);
+        
+        for (Request request : reqList)
+        {
+
+            Object[] row = new Object[7];
+            row[0] = request;
+            row[1] = request.getRequestor().getRequestorName();
+            row[2]=request.getDateTime();
+            row[3] = request.getStatus();
+            row[4] = request.getRequestor().getRequestorEmail();
+            
+            row[5] = request.getCity();
+            
+            row[6] = request.getRequestor().getRequestorPhoneNumber();
+            model.addRow(row);
+            
+          
+     }
+        }
+    }
+private ArrayList<Request> getRequestListBasedOnStatus(ArrayList<Request> reqList,int status)
+{
+    ArrayList<Request> updatedReqList=new ArrayList<Request>();
+    if(status==1)
+    {
+        for(Request req:reqList)
+        {
+            if(req.getStatus().getStatusId()==0)
+            {
+            updatedReqList.add(req);
+            }
+        }
+    }
+    else if(status==2)
+    {
+        for(Request req:reqList)
+        {
+            if(req.getStatus().getStatusId()>0 && req.getStatus().getStatusId()<5)
+            {
+            updatedReqList.add(req);
+            }
+        }
+    }
+    else if(status==3)
+    {
+        for(Request req:reqList)
+        {
+            if(req.getStatus().getStatusId()==5)
+            {
+            updatedReqList.add(req);
+            }
+        }
+    }
+        else if(status==4)
+    {
+        for(Request req:reqList)
+        {
+            if(req.getStatus().getStatusId()>5 && req.getStatus().getStatusId()<9)
+            {
+            updatedReqList.add(req);
+            }
+        }
+    }
+        else if(status==5)
+    {
+        for(Request req:reqList)
+        {
+            if(req.getStatus().getStatusId()==9)
+            {
+            updatedReqList.add(req);
+            }
+        }
+    }
+        else if(status==6)
+    {
+        for(Request req:reqList)
+        {
+            if(req.getStatus().getStatusId()==10)
+            {
+            updatedReqList.add(req);
+            }
+        }
+    }
+            else if(status==7)
+    {
+        for(Request req:reqList)
+        {
+            if(req.getStatus().getStatusId()==11)
+            {
+            updatedReqList.add(req);
+            }
+        }
+    }
+    else
+                updatedReqList=reqList;
+    return updatedReqList;
+}
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable StateRequestJTable;
     private javax.swing.JButton backJButton;
     private javax.swing.JComboBox cityList;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox statusList;
+    private javax.swing.JButton viewRequest;
     // End of variables declaration//GEN-END:variables
 
     private void populatNewRequestTable() {

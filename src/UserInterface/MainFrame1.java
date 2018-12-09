@@ -359,14 +359,22 @@ class FetchRequestsFromServer implements Runnable {
    }
 
    public void run() {
+       try
+       {
         ImageIcon pic = new ImageIcon("Icons/Loadingicon.gif");
              JPanel loadingPanel = new JPanel();
     loadingPanel.add(new JLabel(pic));
     container.add(loadingPanel);      
-      //  TimeUnit.SECONDS.sleep(10);
+      
  
         FetchFromServer.FetchRequestAndStore(who);
+        Thread.sleep(1000);
            (new FetchPastRequest()).FetchRequestAndStore(who);
        container.remove(loadingPanel);
+       }
+       catch(Exception ex)
+       {
+           Logger.logDetails("Main Frame", "Thread", "Error :"+ex.getMessage());
+       }
    }
 }
