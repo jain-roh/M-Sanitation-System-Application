@@ -39,7 +39,7 @@ public class ManagerCityRequestViewJPanel extends javax.swing.JPanel {
     }
      private void checkStatusForEnability()
     {
-         if(request.getStatus().getStatusId()==2 || request.getStatus().getStatusId()==3)
+         if(request.getStatus().getStatusId()==4 || request.getStatus().getStatusId()==6)
                 {
                     budgetTb.setEditable(true);
                     notesTextAre.setEditable(true);
@@ -298,11 +298,17 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
     private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
         // TODO add your handling code here:
 //        m.AcceptRequest(request);
+          request.getStatus().setStatusMsg(notesTextAre.getText());
+        request.getStatus().setStatusId(5);
+                checkStatusForEnability();
         
     }//GEN-LAST:event_AcceptButtonActionPerformed
 
     private void RequestorEmailTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestorEmailTextBoxActionPerformed
         // TODO add your handling code here:
+                  request.getStatus().setStatusMsg(notesTextAre.getText());
+        request.getStatus().setStatusId(3);
+                checkStatusForEnability();
     }//GEN-LAST:event_RequestorEmailTextBoxActionPerformed
 
     private void viewLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewLocationActionPerformed
