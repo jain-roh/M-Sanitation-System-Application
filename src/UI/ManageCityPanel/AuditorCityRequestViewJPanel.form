@@ -72,7 +72,7 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Component id="Accept" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Component id="Reject" min="-2" max="-2" attributes="0"/>
+              <Component id="RejectButtonJButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -110,7 +110,7 @@
               <EmptySpace type="separate" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Accept" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Reject" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="RejectButtonJButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="backJButton" min="-2" max="-2" attributes="0"/>
@@ -122,7 +122,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Request Id"/>
+        <Property name="text" type="java.lang.String" value="Request No"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="RequestIdTextBox">
@@ -225,12 +225,12 @@
         <Property name="text" type="java.lang.String" value="AUDITOR REVIEW PANEL"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="Reject">
+    <Component class="javax.swing.JButton" name="RejectButtonJButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton2"/>
+        <Property name="text" type="java.lang.String" value="Reject"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RejectActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RejectButtonJButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

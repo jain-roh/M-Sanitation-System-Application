@@ -55,12 +55,12 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         statusTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        Reject = new javax.swing.JButton();
+        RejectButtonJButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(210, 215, 211));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setText("Request Id");
+        jLabel2.setText("Request No");
 
         RequestIdTextBox.setEditable(false);
         RequestIdTextBox.addActionListener(new java.awt.event.ActionListener() {
@@ -110,10 +110,10 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(51, 110, 123));
         jLabel6.setText("AUDITOR REVIEW PANEL");
 
-        Reject.setText("jButton2");
-        Reject.addActionListener(new java.awt.event.ActionListener() {
+        RejectButtonJButton.setText("Reject");
+        RejectButtonJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RejectActionPerformed(evt);
+                RejectButtonJButtonActionPerformed(evt);
             }
         });
 
@@ -155,7 +155,7 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Accept)
                 .addGap(39, 39, 39)
-                .addComponent(Reject)
+                .addComponent(RejectButtonJButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -186,7 +186,7 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Accept)
-                    .addComponent(Reject))
+                    .addComponent(RejectButtonJButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(21, 21, 21))
@@ -199,7 +199,7 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
                    // budgetTb.setEditable(true);
                     notes.setEditable(true);
                     Accept.setEnabled(true);
-                    Reject.setEnabled(true);
+                    RejectButtonJButton.setEnabled(true);
                    // revertBtn.setEnabled(true);
                 }
          else
@@ -207,7 +207,7 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
                  //   budgetTb.setEditable(false);
                     notes.setEditable(false);
                     Accept.setEnabled(false);
-                    Reject.setEnabled(false);
+                    RejectButtonJButton.setEnabled(false);
                    // revertBtn.setEnabled(false);
          }
     }
@@ -239,17 +239,17 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_AcceptActionPerformed
 
-    private void RejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RejectActionPerformed
+    private void RejectButtonJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RejectButtonJButtonActionPerformed
         // TODO add your handling code here:
         request.getStatus().setStatusMsg(notes.getText());
         request.getStatus().setStatusId(11);
         checkStatusForEnability();
-    }//GEN-LAST:event_RejectActionPerformed
+    }//GEN-LAST:event_RejectButtonJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Accept;
-    private javax.swing.JButton Reject;
+    private javax.swing.JButton RejectButtonJButton;
     private javax.swing.JTextField RequestIdTextBox;
     private javax.swing.JTextField RequestStatusTextBox;
     private javax.swing.JTextField RequestorNameTextBox;
