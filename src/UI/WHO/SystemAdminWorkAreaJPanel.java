@@ -50,7 +50,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         State state;
         City city;
         
-        DefaultMutableTreeNode networks=new DefaultMutableTreeNode("Networks");
+        DefaultMutableTreeNode networks=new DefaultMutableTreeNode("Country");
         DefaultMutableTreeNode root=(DefaultMutableTreeNode)model.getRoot();
         root.removeAllChildren();
         root.insert(networks, 0);
@@ -69,10 +69,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 state=stateList.get(j);
                 stateNode=new DefaultMutableTreeNode(state.getStateName());
                 countryNode.insert(stateNode, j);
-                
                 cityList=state.getCityDirectory().getCityList();
                 for(int k=0;k<cityList.size();k++){
-                    city=cityList.get(i);
+                    city=cityList.get(k);
                     cityNode=new DefaultMutableTreeNode(city.getCityName());
                     stateNode.insert(cityNode, k);
                 }

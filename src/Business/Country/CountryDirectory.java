@@ -23,6 +23,6 @@ public class CountryDirectory {
     }
 
     public CountryDirectory() {
-        countryList = new ArrayList();
+        countryList = new ArrayList<>();
     }
 }
