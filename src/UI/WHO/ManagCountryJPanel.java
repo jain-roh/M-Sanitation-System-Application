@@ -4,8 +4,10 @@
  */
 package UI.WHO;
 
+import Business.City.City;
 import Business.WHO;
 import Business.Country.Country;
+import Business.Request.Request;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -17,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author raunak
  */
-public class ManageNetworkJPanel extends javax.swing.JPanel {
+public class ManagCountryJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private WHO who;
@@ -26,15 +28,22 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
      *
      * Creates new form ManageNetworkJPanel
      */
-    public ManageNetworkJPanel(JPanel userProcessContainer, WHO who) {
+    public ManagCountryJPanel(JPanel userProcessContainer, WHO who) {
         initComponents();
 
         this.userProcessContainer = userProcessContainer;
         this.who = who;
 
         populateNetworkTable();
+        populateEnterpriseCB();
     }
-
+    private void populateEnterpriseCB()
+    {
+        for(Country.EnterpriseType enterprise:Country.EnterpriseType.values())
+        {
+         enterpriseList.addItem(enterprise);
+        }
+    }
     private void populateNetworkTable() {
         DefaultTableModel model = (DefaultTableModel) networkJTable.getModel();
 
@@ -62,6 +71,8 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         nameJTextField = new javax.swing.JTextField();
         backJButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        nameJLabel1 = new javax.swing.JLabel();
+        enterpriseList = new javax.swing.JComboBox();
 
         setBackground(new java.awt.Color(210, 215, 211));
 
@@ -121,6 +132,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel2.setText("ADD COUNTRY");
 
+        nameJLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        nameJLabel1.setForeground(new java.awt.Color(115, 101, 152));
+        nameJLabel1.setText("Enterprise Type");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,16 +148,20 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addComponent(backJButton)
                 .addContainerGap(559, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nameJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(submitJButton)
-                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nameJLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(enterpriseList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -157,8 +176,12 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                     .addComponent(nameJLabel)
                     .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameJLabel1)
+                    .addComponent(enterpriseList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addComponent(submitJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(backJButton)
                 .addGap(31, 31, 31))
         );
@@ -176,14 +199,30 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
           
         String name = nameJTextField.getText();
 
-        Country country = who.createAndAddCountry();
+        Country country = who.createAndAddCountry(name,(Country.EnterpriseType)enterpriseList.getSelectedItem());
         country.setCountryName(name);
         nameJTextField.setText("");
         
         populateNetworkTable();
+        updateRequest();
         }
     }//GEN-LAST:event_submitJButtonActionPerformed
-
+private void updateRequest()
+    {
+      for(Request request:who.getRequestList().values())
+        {
+                for(Country country:who.getCountryList())
+                {
+                    if(request.getCountry().getCountryName().equalsIgnoreCase(country.getCountryName()) && 
+                            (!country.getRequestList().containsKey(request.getRequestID())))
+                    {
+                        country.getRequestList().put(request.getRequestID(), request);
+                       // who.getRequestList().remove(request.getRequestID());
+                        
+                    }
+                }
+        }      
+    }
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
@@ -196,9 +235,11 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
+    private javax.swing.JComboBox enterpriseList;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameJLabel;
+    private javax.swing.JLabel nameJLabel1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JTable networkJTable;
     private javax.swing.JButton submitJButton;

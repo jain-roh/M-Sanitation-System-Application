@@ -30,11 +30,26 @@ private CountryAdminRole countryAdmin;
 private UserAccountDirectory userAccountDirectory;
 private EmployeeDirectory employeeDirectory;
 private HashMap<Integer,Request> requestList;
-
+ private EnterpriseType enterpriseType;
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
-
+public enum EnterpriseType{
+        Sanitation("Sanitation");
+        
+        private String value;
+        
+        private EnterpriseType(String value){
+            this.value=value;
+        }
+        public String getValue() {
+            return value;
+        }
+        @Override
+        public String toString(){
+        return value;
+    }
+    }
     public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
         this.employeeDirectory = employeeDirectory;
     }
@@ -45,8 +60,11 @@ private HashMap<Integer,Request> requestList;
     public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
         this.userAccountDirectory = userAccountDirectory;
     }
-public Country(){
-        stateDirectory=new StateDirectory();
+public Country(String name,EnterpriseType type){
+    
+    this.enterpriseType=enterpriseType;
+    this.CountryName=name;
+    stateDirectory=new StateDirectory();
         userAccountDirectory=new UserAccountDirectory();
         employeeDirectory=new EmployeeDirectory();
         requestList=new HashMap<>();

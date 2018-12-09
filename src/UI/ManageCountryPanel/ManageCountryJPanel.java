@@ -272,6 +272,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
             country.getStateDirectory().getStateList().add(state);    
             populateState();
             addStateTextField.setText("");
+            updateRequest();
         }   
         
         
@@ -284,7 +285,7 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         {
                 for(State state:country.getStateDirectory().getStateList())
                 {
-                    if(request.getCity().getCityName().equalsIgnoreCase(state.getStateName()) && 
+                    if(request.getState().getStateName().equalsIgnoreCase(state.getStateName()) && 
                             (!state.getRequestList().containsKey(request.getRequestID())))
                     {
                         state.getRequestList().put(request.getRequestID(), request);

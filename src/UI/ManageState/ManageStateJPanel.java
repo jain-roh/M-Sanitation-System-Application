@@ -338,6 +338,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
              Logger.logDetails("ManageStateJPanel", "Add City", "New City Added: "+city.getCityName() + "By" + userAccount.getUsername());
             populateCity();
             addCityTextField.setText("");
+            updateRequest();
         }   
         
         

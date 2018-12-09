@@ -35,7 +35,27 @@ public class ManagerStateRequestViewJPanel extends javax.swing.JPanel {
         RequestStatusTextBox.setText(request.getStatus().getStatusMsg());
         RequestorEmailTextBox.setText(request.getRequestor().getRequestorEmail());
                 progressBar.setBorderPainted(true);
+               
                 statusBarUpdate();
+    }
+    private void checkStatusForEnability()
+    {
+         if(request.getStatus().getStatusId()==3 || request.getStatus().getStatusId()==8)
+                {
+                    budgetTb.setEditable(true);
+                    notesTextAre.setEditable(true);
+                    AcceptButton.setEnabled(true);
+                    RejectButton.setEnabled(true);
+                    revertBtn.setEnabled(true);
+                }
+         else
+         {
+             budgetTb.setEditable(false);
+                    notesTextAre.setEditable(false);
+                    AcceptButton.setEnabled(false);
+                    RejectButton.setEnabled(false);
+                    revertBtn.setEnabled(false);
+         }
     }
     
     public void statusBarUpdate()
@@ -62,13 +82,17 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
         AcceptButton = new javax.swing.JButton();
         RejectButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        budgetTb = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         RequestorEmailTextBox = new javax.swing.JTextField();
         progressBar = new javax.swing.JProgressBar();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         viewLocation = new javax.swing.JButton();
+        revertBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        notesTextAre = new javax.swing.JTextArea();
 
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,13 +101,20 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
             }
         });
 
+        RequestIdTextBox.setEditable(false);
+
+        RequestorNameTextBox.setEditable(false);
+
         jLabel1.setText("Request Status");
 
         jLabel2.setText("Request Id");
 
         jLabel3.setText("Requestor Name");
 
+        RequestStatusTextBox.setEditable(false);
+
         AcceptButton.setText("Accept");
+        AcceptButton.setEnabled(false);
         AcceptButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AcceptButtonActionPerformed(evt);
@@ -91,11 +122,20 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
         });
 
         RejectButton.setText("Reject");
+        RejectButton.setEnabled(false);
+        RejectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RejectButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Budget");
 
+        budgetTb.setEditable(false);
+
         jLabel5.setText("Requestor Email ");
 
+        RequestorEmailTextBox.setEditable(false);
         RequestorEmailTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RequestorEmailTextBoxActionPerformed(evt);
@@ -113,6 +153,21 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
             }
         });
 
+        revertBtn.setText("Revert");
+        revertBtn.setEnabled(false);
+        revertBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                revertBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Notes");
+
+        notesTextAre.setEditable(false);
+        notesTextAre.setColumns(20);
+        notesTextAre.setRows(5);
+        jScrollPane1.setViewportView(notesTextAre);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,7 +175,7 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel3)
@@ -144,27 +199,31 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
                                 .addGap(27, 27, 27)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel4))))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel8))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RequestStatusTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RequestorEmailTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(168, 168, 168))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(backJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(AcceptButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RejectButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(RequestStatusTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                            .addComponent(RequestorEmailTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                            .addComponent(budgetTb)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addGap(136, 136, 136))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(backJButton)
+                .addGap(18, 18, 18)
+                .addComponent(AcceptButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RejectButton)
+                .addGap(18, 18, 18)
+                .addComponent(revertBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,13 +258,21 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(budgetTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backJButton)
+                    .addComponent(RejectButton)
                     .addComponent(AcceptButton)
-                    .addComponent(RejectButton))
-                .addGap(48, 48, 48))
+                    .addComponent(backJButton)
+                    .addComponent(revertBtn))
+                .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -227,7 +294,10 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
 
     private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
         // TODO add your handling code here:
-        m.AcceptRequest(request);
+       // m.AcceptRequest(request);
+        request.getStatus().setStatusId(9);
+        request.getStatus().setStatusMsg("Working");
+        checkStatusForEnability();
         
     }//GEN-LAST:event_AcceptButtonActionPerformed
 
@@ -248,6 +318,20 @@ catch(Exception ex)
 }
     }//GEN-LAST:event_viewLocationActionPerformed
 
+    private void RejectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RejectButtonActionPerformed
+        // TODO add your handling code here:
+        request.getStatus().setStatusId(11);
+        request.getStatus().setStatusMsg("Rejected");
+        checkStatusForEnability();
+    }//GEN-LAST:event_RejectButtonActionPerformed
+
+    private void revertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revertBtnActionPerformed
+        // TODO add your handling code here:
+        request.getStatus().setStatusId(6);
+        request.getStatus().setStatusMsg("Reverted");
+        checkStatusForEnability();
+    }//GEN-LAST:event_revertBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptButton;
@@ -257,6 +341,7 @@ catch(Exception ex)
     private javax.swing.JTextField RequestorEmailTextBox;
     private javax.swing.JTextField RequestorNameTextBox;
     private javax.swing.JButton backJButton;
+    private javax.swing.JTextField budgetTb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -264,8 +349,11 @@ catch(Exception ex)
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea notesTextAre;
     private javax.swing.JProgressBar progressBar;
+    private javax.swing.JButton revertBtn;
     private javax.swing.JButton viewLocation;
     // End of variables declaration//GEN-END:variables
 }

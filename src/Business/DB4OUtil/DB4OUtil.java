@@ -85,7 +85,7 @@ public class DB4OUtil {
          //  for(int j=systems.size()-1;j>=0;j--)
            //    systems.remove(j);
            
-         // system = ConfigureASystem.configure();
+       //   system = ConfigureASystem.configure();
           system = systems.get(systems.size() - 1);
         }
 //system.setCountryDirectory(new CountryDirectory());
