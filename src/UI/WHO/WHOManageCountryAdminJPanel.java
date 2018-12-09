@@ -8,6 +8,7 @@ import Business.WHO;
 import Business.Employee.Employee;
 import Business.State.State;
 import Business.Country.Country;
+import Business.Logger;
 import Business.Role.AdminRole;
 import Business.Role.CountryAdminRole;
 import Business.UserAccount.UserAccount;
@@ -136,7 +137,7 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
 
         userNameJLabel.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         userNameJLabel.setForeground(new java.awt.Color(115, 101, 152));
-        userNameJLabel.setText("Username");
+        userNameJLabel.setText("User ID");
 
         submitJButton.setFont(new java.awt.Font("Courier New", 1, 18)); // NOI18N
         submitJButton.setText("SUBMIT");
@@ -251,11 +252,26 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
          JOptionPane.showMessageDialog(this, "Please enter a user name");
          userNameJLabel.setForeground(Color.red);
         }
+        
+        else if(usernameJTextField.getText().contains(" "))
+      
+        { 
+         JOptionPane.showMessageDialog(this, "User ID should not contain space");
+         userNameJLabel.setForeground(Color.red);
+        }
         else if(String.valueOf(passwordJPasswordField.getPassword()).equals(""))
          
         {
             
             JOptionPane.showMessageDialog(this, "Please enter a password");
+            passwordJLabel.setForeground(Color.RED);
+        }  
+        
+         else if(String.valueOf(passwordJPasswordField.getPassword()).contains(" "))
+         
+        {
+            
+            JOptionPane.showMessageDialog(this, "Password should not contain space");
             passwordJLabel.setForeground(Color.RED);
         }  
         
@@ -281,10 +297,18 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
         
         UserAccount account = country.getUserAccountDirectory().createUserAccount(username, password, employee, new CountryAdminRole());
         populateTable();
+        Logger.logDetails("WHOManageCountryAdminJPanel", "Add Country Admin", "New Admin added: "+nameJTextField.getText() + " By : " + "WHO");
+        
+        
         JOptionPane.showMessageDialog(this, "User succesfully created");
+        
+        
         usernameJTextField.setText("");
         passwordJPasswordField.setText("");
         nameJTextField.setText("");
+        
+        
+        
         }
            else
          {

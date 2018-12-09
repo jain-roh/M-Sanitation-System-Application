@@ -8,6 +8,7 @@ package UI.ManageCountryPanel;
 
 import Business.Country.Country;
 import Business.Employee.Employee;
+import Business.Logger;
 import Business.Role.CountryAdminRole;
 import Business.Role.StateAdminRole;
 import Business.State.State;
@@ -240,9 +241,22 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter state admin's user id");
             stateAdminUserIdJLabel.setForeground(Color.red);
         }
+        
+        else if(StateAdminUserID.getText().contains(" "))
+        {    
+            JOptionPane.showMessageDialog(this, "User ID should not contain space");
+            stateAdminUserIdJLabel.setForeground(Color.red);
+        }
+        
         else  if(String.valueOf(stateAdminPasswordField.getPassword()).equals(""))
         {
             JOptionPane.showMessageDialog(this, "Please enter state admin's password");
+            stateAdminPwdLabel.setForeground(Color.red);
+        }
+        
+        else  if(String.valueOf(stateAdminPasswordField.getPassword()).contains(" "))
+        {
+            JOptionPane.showMessageDialog(this, "Password should not contain space");
             stateAdminPwdLabel.setForeground(Color.red);
         }
        
@@ -257,6 +271,8 @@ public class ManageCountryAdminJPanel extends javax.swing.JPanel {
 
         UserAccount account = state.getUserAccountDirectory().createUserAccount(username, password, employee, new StateAdminRole());
         populateTable();
+        Logger.logDetails("ManageCountryAdminJPanel", "Add State Admin", "New Admin added: "+stateAdminTextBox.getText() + " By : " + account.getUsername());
+        
         JOptionPane.showMessageDialog(this, "State Admin succesfully created");
         StateAdminUserID.setText("");
         stateAdminPasswordField.setText("");
