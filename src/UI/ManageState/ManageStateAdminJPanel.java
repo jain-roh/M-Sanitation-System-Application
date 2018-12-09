@@ -9,6 +9,7 @@ package UI.ManageState;
 import Business.City.City;
 import Business.Country.Country;
 import Business.Employee.Employee;
+import Business.Logger;
 import Business.Role.ManagerRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
@@ -33,13 +34,15 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
     State state;
     City city;
     WHO who;
-    public ManageStateAdminJPanel(JPanel userProcessContainer, State state, Country country, City city,WHO who) {
+    UserAccount userAccount;
+    public ManageStateAdminJPanel(JPanel userProcessContainer, State state, Country country, City city,WHO who,UserAccount userAccount ) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.state = state;    
         this.country = country;
         this.city = city;
         this.who=who;
+        this.userAccount = userAccount;
         countryTextField.setText(country.getCountryName());
         stateTextField.setText(state.getStateName());
         populateTable();
@@ -255,13 +258,24 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter city admin's user id");
             cityAdminUserIdjLabel.setForeground(Color.red);
         }
-        else  if(String.valueOf(cityAdminPasswordField.getPassword()).equals(""))
+        
+        else if(cityAdminUserID.getText().contains(" "))
+        { 
+            JOptionPane.showMessageDialog(this, "User id should not contains space");
+            cityAdminUserIdjLabel.setForeground(Color.red);
+        }
+        
+        else if(String.valueOf(cityAdminPasswordField.getPassword()).equals(""))
             {    
                 JOptionPane.showMessageDialog(this, "Please enter city admin's password");
                 cityAdminPasswordjLabel.setForeground(Color.red);
-            }    
-        
-        
+            }
+        else  if(String.valueOf(cityAdminPasswordField.getPassword()).contains(" "))
+            {    
+                JOptionPane.showMessageDialog(this, "Password should not contain space");
+                cityAdminPasswordjLabel.setForeground(Color.red);
+            }  
+                
         else
         {
            
@@ -274,6 +288,8 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
         UserAccount account = city.getUserAccountDirectory().createUserAccount(username, password, employee, new ManagerRole());
         populateTable();
         JOptionPane.showMessageDialog(this, "City Admin successfully created");
+         Logger.logDetails("ManageStateAdminJPanel", "Add City Manager", "New Manager added: "+cityAdminTextBox.getText() + " By : " + userAccount.getUsername());
+        
         
         cityAdminTextBox.setText("");
         cityAdminPasswordField.setText("");
