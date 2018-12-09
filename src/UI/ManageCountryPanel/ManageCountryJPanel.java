@@ -253,6 +253,19 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private boolean CheckIfStateExists(String stateName)
+        {
+            for(State state : country.getStateDirectory().getStateList())
+                {
+                 if(state.getStateName().equalsIgnoreCase(stateName))
+                    { 
+                        return true;
+                    }
+                }
+            return false;
+        }
+    
+    
     private void countryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_countryTextFieldActionPerformed
@@ -261,12 +274,21 @@ public class ManageCountryJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
        
   
+        
+        
         if(addStateTextField.getText().equals("") )
         {  
             JOptionPane.showMessageDialog(this,"Please enter a value for state");
             addStateJLabel.setForeground(Color.red);
         }
-            else
+        
+        else if(CheckIfStateExists(addStateTextField.getText()))
+        {
+            JOptionPane.showMessageDialog(this,"State already exists");
+            addStateJLabel.setForeground(Color.red);
+        }
+        
+        else
         {
              State state = new State(addStateTextField.getText());
              //addStateTextField.getText());
