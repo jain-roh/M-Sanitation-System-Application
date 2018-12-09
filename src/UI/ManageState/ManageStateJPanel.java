@@ -7,6 +7,7 @@ package UI.ManageState;
 
 import Business.City.City;
 import Business.Country.Country;
+import Business.Logger;
 import Business.Request.Request;
 import Business.Role.StateAdminRole;
 import Business.State.*;
@@ -37,7 +38,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     UserAccount userAccount;
     WHO business;
     
-    UserAccount account;
+   
     public ManageStateJPanel(JPanel userProcessContainer, UserAccount account,City city, 
             State state,
             Country country,
@@ -48,6 +49,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         stateAdminRole=(StateAdminRole)account.getRole();
         this.country = country;
         this.state=state;
+        this.userAccount = account;
         countryTextField.setText(country.getCountryName());
         stateTextField.setText(state.getStateName());
         this.who=who;
@@ -72,7 +74,15 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         
         
     }
+/*
+    public ManageStateJPanel(JPanel userProcessContainer, UserAccount account, City city, State state, Country country, WHO business) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
+    public ManageStateJPanel(JPanel userProcessContainer, UserAccount account, City city, State state, Country country, WHO business) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+*/
 
 
     /**
@@ -324,7 +334,8 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         {
              City city = new City();
             city.setCityName(addCityTextField.getText());
-            state.getCityDirectory().getCityList().add(city);    
+            state.getCityDirectory().getCityList().add(city);
+             Logger.logDetails("ManageStateJPanel", "Add City", "New City Added: "+city.getCityName() + "By" + userAccount.getUsername());
             populateCity();
             addCityTextField.setText("");
         }   
@@ -337,7 +348,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         if(cityComboBox.getSelectedItem()!=null)
         {
             City city = (City) cityComboBox.getSelectedItem();
-            ManageStateAdminJPanel msajp = new ManageStateAdminJPanel(userProcessContainer, state,country,city,who);
+            ManageStateAdminJPanel msajp = new ManageStateAdminJPanel(userProcessContainer, state,country,city,who,userAccount);
             userProcessContainer.add("managestateadminjapanel",msajp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -357,7 +368,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         if(cityComboBox.getSelectedItem()!=null)
         {
             City city = (City) cityComboBox.getSelectedItem();
-            ManageStateAdminAuditorJPanel msajp = new ManageStateAdminAuditorJPanel(userProcessContainer, state,country,city,who);
+            ManageStateAdminAuditorJPanel msajp = new ManageStateAdminAuditorJPanel(userProcessContainer, state,country,city,who,userAccount);
             userProcessContainer.add("managestateadminauditorjapanel",msajp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

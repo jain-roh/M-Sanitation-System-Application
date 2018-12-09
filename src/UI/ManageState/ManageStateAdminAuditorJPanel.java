@@ -9,6 +9,7 @@ package UI.ManageState;
 import Business.City.City;
 import Business.Country.Country;
 import Business.Employee.Employee;
+import Business.Logger;
 import Business.Role.AuditorRole;
 import Business.State.State;
 import Business.UserAccount.UserAccount;
@@ -32,13 +33,15 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
     Country country;
     State state;
     City city;
+    UserAccount userAccount;
     private WHO who;
-    public ManageStateAdminAuditorJPanel(JPanel userProcessContainer, State state, Country country, City city,WHO who) {
+    public ManageStateAdminAuditorJPanel(JPanel userProcessContainer, State state, Country country, City city,WHO who, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.state = state;    
         this.country = country;
         this.city = city;
+        this.userAccount = userAccount;
         countryTextField.setText(country.getCountryName());
         stateTextField.setText(state.getStateName());
         this.who=who;
@@ -259,9 +262,21 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
             cityAuditoruserIdJLabel.setForeground(Color.red);
         }
         
-        else if(cityAuditorPasswordField.getPassword().equals(""))
+        else if ( cityAuditorUserID.getText().contains(" "))
+        {
+        JOptionPane.showMessageDialog(this, "User name should not contain space");
+        cityAuditoruserIdJLabel.setForeground(Color.red);
+        }   
+        
+        else if(String.valueOf(cityAuditorPasswordField.getPassword()).equals(""))
         {
             JOptionPane.showMessageDialog(this, "Please enter a value for city admin's password");
+            cityAuditorPasswordJLabel.setForeground(Color.red);
+        }
+        
+        else if(String.valueOf(cityAuditorPasswordField.getPassword()).contains(" "))
+        {
+            JOptionPane.showMessageDialog(this, "Password should not contain space");
             cityAuditorPasswordJLabel.setForeground(Color.red);
         }
         
@@ -276,11 +291,22 @@ public class ManageStateAdminAuditorJPanel extends javax.swing.JPanel {
         String name = cityAuditorTextBox.getText();
         Employee employee = city.getEmployeeDirectory().createEmployee(name);
         UserAccount account = city.getUserAccountDirectory().createUserAccount(username, password, employee, new AuditorRole());
+        JOptionPane.showMessageDialog(this, "Auditor successfully created");
+        Logger.logDetails("ManageStateAdminAuditorJPanel", "Add City Auditor", "New Auditor added: "+cityAuditorTextBox.getText() + " By : " + userAccount.getUsername());
+        
+        cityAuditorTextBox.setText("");
+        cityAuditorUserID.setText("");
+        cityAuditorPasswordField.setText("");
+        
+        
         populateTable();
          }
          else
          {
              JOptionPane.showMessageDialog(this, "Username already exist");
+                cityAuditorTextBox.setText("");
+                cityAuditorUserID.setText("");
+                cityAuditorPasswordField.setText("");
          }
         }
     }//GEN-LAST:event_AddCityAuditorjButtonActionPerformed
