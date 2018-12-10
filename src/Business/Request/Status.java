@@ -38,19 +38,19 @@ private int statusId;
     {
         if(this.statusId==1)
         {
-            return "New Request";
+            return "Manager Acceptance";
         }
         else if(this.statusId==2)
         {
-            return "Management Acceptance";
+            return "Auditor Acceptance";
         }
             else if(this.statusId==3)
         {
-            return "Assigned TO Auditor";
+            return "Auditing Complete";
         }
                else if(this.statusId==4)
         {
-            return "Auditor Acceptance";
+            return "Auditing Complete";
         }
                else if(this.statusId==5)
         {
@@ -70,8 +70,12 @@ private int statusId;
         }
                else if(this.statusId==9)
         {
-            return "Lavatory Built";
+            return "State Fund Release";
         } 
+               else if(this.statusId==10)
+                       return "Lavatory Built";
+               else if(this.statusId==11)
+                   return "Rejected";
                else if(this.statusId==0)
                {
                    return "New Request";

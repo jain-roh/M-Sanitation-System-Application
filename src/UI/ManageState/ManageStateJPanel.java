@@ -109,8 +109,6 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         AddCityAuditor = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        updateRequest = new javax.swing.JButton();
-        viewReports = new javax.swing.JButton();
         viewAllRequestsJButton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
@@ -178,24 +176,6 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         jLabel7.setText("City List :");
 
-        updateRequest.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        updateRequest.setForeground(new java.awt.Color(52, 73, 94));
-        updateRequest.setText("Update Request");
-        updateRequest.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateRequestActionPerformed(evt);
-            }
-        });
-
-        viewReports.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
-        viewReports.setForeground(new java.awt.Color(31, 58, 147));
-        viewReports.setText("View Reports");
-        viewReports.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewReportsActionPerformed(evt);
-            }
-        });
-
         viewAllRequestsJButton.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
         viewAllRequestsJButton.setForeground(new java.awt.Color(52, 73, 94));
         viewAllRequestsJButton.setText("View All Requests");
@@ -219,10 +199,10 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap(417, Short.MAX_VALUE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 316, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(AddButton)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -240,15 +220,12 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(AddCityManager, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(viewReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(AddCityManager)
+                .addGap(94, 94, 94)
+                .addComponent(AddCityAuditor, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(viewAllRequestsJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                    .addComponent(updateRequest, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AddCityAuditor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18))
+                .addComponent(viewAllRequestsJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,14 +253,9 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddCityManager)
-                    .addComponent(AddCityAuditor))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(updateRequest)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewAllRequestsJButton)
-                    .addComponent(viewReports))
-                .addContainerGap(66, Short.MAX_VALUE))
+                    .addComponent(AddCityAuditor)
+                    .addComponent(viewAllRequestsJButton))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
@@ -295,7 +267,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -414,20 +386,6 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 }
         }      
     }
-    private void updateRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateRequestActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_updateRequestActionPerformed
-
-    private void viewReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReportsActionPerformed
-        // TODO add your handling code here:
-        
-        ViewCityReport msajp = new ViewCityReport(userProcessContainer, state,country,null,who);
-            userProcessContainer.add("managestateadminauditorjapanel",msajp);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-    }//GEN-LAST:event_viewReportsActionPerformed
-
     private void viewAllRequestsJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewAllRequestsJButtonActionPerformed
         
         StateAllRequestJPanel scajp = new StateAllRequestJPanel(userProcessContainer, userAccount,city,state,country,business);
@@ -462,8 +420,6 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField stateTextField;
-    private javax.swing.JButton updateRequest;
     private javax.swing.JButton viewAllRequestsJButton;
-    private javax.swing.JButton viewReports;
     // End of variables declaration//GEN-END:variables
 }
