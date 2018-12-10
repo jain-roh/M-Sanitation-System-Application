@@ -93,7 +93,7 @@ public class CountryAllRequestJPanel extends javax.swing.JPanel {
         for (Request request : reqList)
         {
 
-            Object[] row = new Object[7];
+            Object[] row = new Object[8];
             row[0] = request;
             row[1] = request.getRequestor().getRequestorName();
             row[2]=request.getDateTime();
@@ -102,7 +102,8 @@ public class CountryAllRequestJPanel extends javax.swing.JPanel {
             
             row[5] = request.getCity();
             
-            row[6] = request.getRequestor().getRequestorPhoneNumber();
+            row[6] = request.getState();
+            row[7]=request.getRequestor().getRequestorPhoneNumber();
             model.addRow(row);
             
           
