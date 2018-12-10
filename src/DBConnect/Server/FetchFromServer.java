@@ -139,10 +139,10 @@ for(int i=0;i<myresponse.length();i++)
             
             system.getRequestList().put(ID, request);
         }
-    System.out.println(jObject);
+    //System.out.println(jObject);
 } 
 } catch(Exception e) {
-    System.out.println(e);
+  //  System.out.println(e);
   }
         
 //        for(Country country:system.getCountryList())

@@ -79,7 +79,7 @@ public class FetchPastRequest {
 
    
    catch(Exception e) {
-    System.out.println(e);
+  //  System.out.println(e);
   }
         
 //        for(Country country:system.getCountryList())
