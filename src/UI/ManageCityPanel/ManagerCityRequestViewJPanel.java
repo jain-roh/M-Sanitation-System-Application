@@ -7,6 +7,7 @@ package UI.ManageCityPanel;
 
 import Business.OpenLocation;
 import Business.Request.Request;
+import DBConnect.Server.FetchFromServer;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.net.URL;
@@ -45,14 +46,25 @@ public class ManagerCityRequestViewJPanel extends javax.swing.JPanel {
                     notesTextAre.setEditable(true);
                     AcceptButton.setEnabled(true);
                     RejectButton.setEnabled(true);
+                                 built.setEnabled(false);
+
                    // revertBtn.setEnabled(true);
                 }
+         else if(request.getStatus().getStatusId()==9 )
+         {
+             built.setEnabled(true);
+                    notesTextAre.setEditable(false);
+                    AcceptButton.setEnabled(false);
+                    RejectButton.setEnabled(false);
+         }
          else
          {
                     budgetTb.setEditable(false);
                     notesTextAre.setEditable(false);
                     AcceptButton.setEnabled(false);
                     RejectButton.setEnabled(false);
+                                                     built.setEnabled(false);
+
                    // revertBtn.setEnabled(false);
          }
     }
@@ -92,6 +104,7 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
         jScrollPane1 = new javax.swing.JScrollPane();
         notesTextAre = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
+        built = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(210, 215, 211));
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -171,6 +184,13 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
         jLabel9.setForeground(new java.awt.Color(51, 110, 123));
         jLabel9.setText("MANAGER REVIEW PANEL");
 
+        built.setText("Built");
+        built.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                builtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -220,9 +240,11 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
                                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(RejectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(AcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(built)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(RejectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(AcceptButton, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(51, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -261,13 +283,13 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(budgetTb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                         .addComponent(AcceptButton)
@@ -275,7 +297,9 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(RejectButton)
                             .addComponent(backJButton))
-                        .addContainerGap(42, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(built)
+                        .addGap(7, 7, 7))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -324,6 +348,29 @@ catch(Exception ex)
 }
     }//GEN-LAST:event_viewLocationActionPerformed
 
+    private void builtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_builtActionPerformed
+        // TODO add your handling code here:
+        
+        try
+        {
+            int res=FetchFromServer.SendRequest(request);
+            if(res==1)
+            {
+                request.getStatus().setStatusId(10);
+               
+                checkStatusForEnability();
+            }
+            else
+            {
+               
+            }
+        }
+        catch(Exception ex)
+        {
+            
+        }
+    }//GEN-LAST:event_builtActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptButton;
@@ -334,6 +381,7 @@ catch(Exception ex)
     private javax.swing.JTextField RequestorNameTextBox;
     private javax.swing.JButton backJButton;
     private javax.swing.JTextField budgetTb;
+    private javax.swing.JButton built;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
