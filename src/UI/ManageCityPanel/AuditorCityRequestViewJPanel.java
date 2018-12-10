@@ -110,6 +110,8 @@ public class AuditorCityRequestViewJPanel extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(51, 110, 123));
         jLabel6.setText("AUDITOR REVIEW PANEL");
 
+        RejectButtonJButton.setFont(new java.awt.Font("Arial Black", 0, 16)); // NOI18N
+        RejectButtonJButton.setForeground(new java.awt.Color(52, 73, 94));
         RejectButtonJButton.setText("Reject");
         RejectButtonJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
