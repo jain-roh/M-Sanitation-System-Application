@@ -100,7 +100,6 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         countryTextField = new javax.swing.JTextField();
         addCityJLabel = new javax.swing.JLabel();
-        addCityTextField = new javax.swing.JTextField();
         AddButton = new javax.swing.JButton();
         cityComboBox = new javax.swing.JComboBox();
         AddCityManager = new javax.swing.JButton();
@@ -110,6 +109,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         viewAllRequestsJButton = new javax.swing.JButton();
+        addCityTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         jLabel3.setText("jLabel3");
@@ -203,16 +203,14 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 316, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(AddButton)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(addCityJLabel)
-                                            .addComponent(jLabel7))
-                                        .addGap(38, 38, 38)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(cityComboBox, 0, 129, Short.MAX_VALUE)
-                                            .addComponent(addCityTextField))))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addCityJLabel)
+                                    .addComponent(jLabel7))
+                                .addGap(38, 38, 38)
+                                .addComponent(cityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(AddButton)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(34, 34, 34)
@@ -226,6 +224,11 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(viewAllRequestsJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(447, 447, 447)
+                    .addComponent(addCityTextField1)
+                    .addGap(262, 262, 262)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -240,11 +243,9 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(countryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addCityTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addCityJLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addComponent(addCityJLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
                 .addComponent(AddButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -255,7 +256,12 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                     .addComponent(AddCityManager)
                     .addComponent(AddCityAuditor)
                     .addComponent(viewAllRequestsJButton))
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(188, 188, 188)
+                    .addComponent(addCityTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(373, Short.MAX_VALUE)))
         );
 
         jLabel5.setFont(new java.awt.Font("Arial Black", 1, 36)); // NOI18N
@@ -282,7 +288,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -306,14 +312,14 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         // TODO add your handling code here:
        
-        if(addCityTextField.getText().equals("") )
+        if(addCityTextField1.getText().equals("") )
         { 
             
             JOptionPane.showMessageDialog(this,"Please enter a value");
             addCityJLabel.setForeground(Color.red);
         }
         
-        else if(CheckIfCityExists(addCityTextField.getText()))
+        else if(CheckIfCityExists(addCityTextField1.getText()))
         { 
             
             JOptionPane.showMessageDialog(this,"City already exists");
@@ -322,12 +328,13 @@ public class ManageStateJPanel extends javax.swing.JPanel {
         
             else
         {
+            addCityJLabel.setForeground(Color.black);
              City city = new City();
-            city.setCityName(addCityTextField.getText());
+            city.setCityName(addCityTextField1.getText());
             state.getCityDirectory().getCityList().add(city);
              Logger.logDetails("ManageStateJPanel", "Add City", "New City Added: "+city.getCityName() + "By" + userAccount.getUsername());
             populateCity();
-            addCityTextField.setText("");
+            addCityTextField1.setText("");
             updateRequest();
         }   
         
@@ -408,7 +415,7 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     private javax.swing.JButton AddCityAuditor;
     private javax.swing.JButton AddCityManager;
     private javax.swing.JLabel addCityJLabel;
-    private javax.swing.JTextField addCityTextField;
+    private javax.swing.JTextField addCityTextField1;
     private javax.swing.JComboBox cityComboBox;
     private javax.swing.JTextField countryTextField;
     private javax.swing.JButton jButton1;
