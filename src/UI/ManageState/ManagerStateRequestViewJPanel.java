@@ -332,7 +332,7 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
 //        request.setBudget(budget);
             int oldStatus=request.getStatus().getStatusId();
         request.getStatus().setStatusId(9);
-              Logger.logDetails("ManageStateRequestView", "Acceptance","Status updated by : " );
+              Logger.logDetails("ManageStateRequestView", "Acceptance","Status updated from : "+oldStatus+" to "+request.getStatus().getStatusId()+"" );
       
         request.getStatus().setStatusMsg(notesTextAre.getText());
         checkStatusForEnability();
