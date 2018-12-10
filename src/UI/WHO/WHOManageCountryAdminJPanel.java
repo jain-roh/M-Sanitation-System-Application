@@ -48,11 +48,11 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Country country : who.getCountryList()) {
                 for (UserAccount userAccount : country.getUserAccountDirectory().getUserAccountList()) {
-                    Object[] row = new Object[3];
-                    row[0]=country.getEnterpriseType();
-                    row[1] = country.getCountryName();
+                    Object[] row = new Object[2];
+                   // row[0]=country.getEnterpriseType();
+                    row[0] = country.getCountryName();
                    
-                    row[2] = userAccount.getUsername();
+                    row[1] = userAccount.getUsername();
 
                     model.addRow(row);
                 }
@@ -106,17 +106,17 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
 
         countryJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Enterprise Name", "Country", "Username"
+                "Country", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
