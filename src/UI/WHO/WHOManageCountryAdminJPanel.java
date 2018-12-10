@@ -49,9 +49,10 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
         for (Country country : who.getCountryList()) {
                 for (UserAccount userAccount : country.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[3];
-                    row[0] = country.getCountryName();
+                    row[0]=country.getEnterpriseType();
+                    row[1] = country.getCountryName();
                    
-                    row[1] = userAccount.getUsername();
+                    row[2] = userAccount.getUsername();
 
                     model.addRow(row);
                 }
@@ -111,11 +112,11 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Enterprise Name", "Network", "Username"
+                "Enterprise Name", "Country", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -125,7 +126,7 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(countryJTable);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel1.setText("Network");
+        jLabel1.setText("Country");
 
         countryJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         countryJComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -245,9 +246,9 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_countryJComboBoxActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        
+        if(countryJComboBox.getSelectedIndex()>=0)
+        {
         if(usernameJTextField.getText().equals(""))
-      
         { 
          JOptionPane.showMessageDialog(this, "Please enter a user name");
          userNameJLabel.setForeground(Color.red);
@@ -319,6 +320,11 @@ public class WHOManageCountryAdminJPanel extends javax.swing.JPanel {
          }
          
         } 
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "No Country in the List");
+        }
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed

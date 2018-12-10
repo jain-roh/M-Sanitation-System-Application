@@ -34,6 +34,8 @@ public class ManagerStateRequestViewJPanel extends javax.swing.JPanel {
         RequestorNameTextBox.setText(request.getRequestor().getRequestorName());
         RequestStatusTextBox.setText(request.getStatus().getStatusMsg());
         RequestorEmailTextBox.setText(request.getRequestor().getRequestorEmail());
+        notesTextAre.setText(request.getStatus().getStatusMsg());
+        budgetTb.setText(request.getBudget()+"");
                 progressBar.setBorderPainted(true);
                
                 statusBarUpdate();
@@ -44,7 +46,7 @@ public class ManagerStateRequestViewJPanel extends javax.swing.JPanel {
     {
          if(request.getStatus().getStatusId()==5)
                 {
-                    budgetTb.setEditable(true);
+                    budgetTb.setEditable(false);
                     notesTextAre.setEditable(true);
                     AcceptButton.setEnabled(true);
                     RejectButton.setEnabled(true);

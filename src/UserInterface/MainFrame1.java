@@ -37,6 +37,7 @@ public class MainFrame1 extends javax.swing.JFrame {
         initComponents();
     this.pack();
 //        
+        setTitle("M-Sanitation:Open Defication Control");
         system=dB4OUtil.retrieveSystem();
     this.setSize(1680, 1050);
     try

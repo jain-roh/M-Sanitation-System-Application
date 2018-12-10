@@ -31,6 +31,14 @@ private UserAccountDirectory userAccountDirectory;
 private EmployeeDirectory employeeDirectory;
 private HashMap<Integer,Request> requestList;
  private EnterpriseType enterpriseType;
+
+    public EnterpriseType getEnterpriseType() {
+        return enterpriseType;
+    }
+
+    public void setEnterpriseType(EnterpriseType enterpriseType) {
+        this.enterpriseType = enterpriseType;
+    }
     public EmployeeDirectory getEmployeeDirectory() {
         return employeeDirectory;
     }
