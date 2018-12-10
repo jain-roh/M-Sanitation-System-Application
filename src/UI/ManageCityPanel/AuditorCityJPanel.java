@@ -82,7 +82,6 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         newRequestJTable = new javax.swing.JTable();
         ScrollPane2 = new javax.swing.JScrollPane();
         newRequestJTable1 = new javax.swing.JTable();
-        backJButton = new javax.swing.JButton();
         AssignRequest = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -151,15 +150,6 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         });
         ScrollPane2.setViewportView(newRequestJTable1);
 
-        backJButton.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        backJButton.setForeground(new java.awt.Color(31, 58, 147));
-        backJButton.setText("<< Back");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
-
         AssignRequest.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         AssignRequest.setForeground(new java.awt.Color(52, 73, 94));
         AssignRequest.setText("ASSIGN TO ME");
@@ -200,10 +190,6 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(backJButton)
-                .addGap(0, 771, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,7 +204,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
                 .addComponent(auditorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(116, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -227,7 +213,7 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(ScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE)
                         .addComponent(ScrollJPane1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,18 +238,9 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
                 .addComponent(ScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(37, 37, 37)
-                .addComponent(backJButton)
-                .addContainerGap())
+                .addGap(72, 72, 72))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backJButtonActionPerformed
 
     private void AssignRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AssignRequestActionPerformed
 
@@ -312,7 +289,6 @@ public class AuditorCityJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane ScrollJPane1;
     private javax.swing.JScrollPane ScrollPane2;
     private javax.swing.JTextField auditorTextField;
-    private javax.swing.JButton backJButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -7,6 +7,7 @@ package UI.WHO;
 import Business.City.City;
 import Business.WHO;
 import Business.Country.Country;
+import Business.Logger;
 import Business.Request.Request;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -228,6 +229,8 @@ public class ManagCountryJPanel extends javax.swing.JPanel {
         
         populateNetworkTable();
         updateRequest();
+             Logger.logDetails("ManagControlJPanel", "Add Country", "New Country added: "+nameJTextField.getText() + " By : " + "WHO");
+   
         }
     }//GEN-LAST:event_submitJButtonActionPerformed
 private void updateRequest()

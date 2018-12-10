@@ -25,6 +25,7 @@ public class ManagerStateRequestViewJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Request request;
+   
     ManageCityJPanel m;
     public ManagerStateRequestViewJPanel(JPanel userProcessContainer,Request request) {
         initComponents();
@@ -329,8 +330,10 @@ progressBar.setValue(request.getStatus().getStatusId()*10);
         {
 //        Double budget=Double.parseDouble(budgetTb.getText().toString().trim());
 //        request.setBudget(budget);
+            int oldStatus=request.getStatus().getStatusId();
         request.getStatus().setStatusId(9);
-        
+              Logger.logDetails("ManageStateRequestView", "Acceptance","Status updated by : " );
+      
         request.getStatus().setStatusMsg(notesTextAre.getText());
         checkStatusForEnability();
         }
